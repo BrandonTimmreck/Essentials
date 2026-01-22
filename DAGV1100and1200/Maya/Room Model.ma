@@ -1,6 +1,6 @@
 //Maya ASCII 2026 scene
-//Name: Table.ma
-//Last modified: Thu, Jan 22, 2026 04:43:46 PM
+//Name: Room Model.ma
+//Last modified: Thu, Jan 22, 2026 04:47:16 PM
 //Codeset: 1252
 requires maya "2026";
 requires "mtoa" "5.5.4.2";
@@ -10,7 +10,7 @@ fileInfo "product" "Maya 2026";
 fileInfo "version" "2026";
 fileInfo "cutIdentifier" "202510291147-60ec9eda33";
 fileInfo "osv" "Windows 11 Home v2009 (Build: 26200)";
-fileInfo "UUID" "252630F9-4E48-E0CB-266A-5B8322951B4F";
+fileInfo "UUID" "462CA24A-43AE-362B-C70F-66B627461031";
 createNode transform -s -n "persp";
 	rename -uid "33B89B83-48E9-CEFE-9C3C-49941F2F62B3";
 	setAttr ".v" no;
@@ -422,20 +422,20 @@ createNode mesh -n "polySurface2Shape" -p "|polySurface2";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "3AD268C1-4E20-5B0A-6450-9A93D879838A";
+	rename -uid "9DF3FBB5-4E56-B436-81F4-1BBC2B2E7F90";
 	setAttr -s 2 ".lnk";
 	setAttr -s 2 ".slnk";
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "AC0CA38E-4DEF-8137-12CE-2BAB685B5883";
+	rename -uid "DC036368-4FA2-900C-1C3E-DD95EE58FB4F";
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "F546ADF6-41E4-FA1F-72DA-1F954FCDF27F";
+	rename -uid "6EF35D00-4C31-9EC4-086E-CDA82BE25072";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "E1993918-4319-0E43-C48D-10A80863CD6F";
+	rename -uid "08921C63-4D1A-7036-B0C9-64BA3EA1A79C";
 createNode displayLayer -n "defaultLayer";
 	rename -uid "757DAF2B-4F81-4F24-860F-08A2D6CFF7E4";
 	setAttr ".ufem" -type "stringArray" 0  ;
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "E2505F42-4A5E-DF33-3ED9-308D284832D4";
+	rename -uid "D0A1B627-49B3-9439-1E9A-1EB4C06ACA7A";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "D9AB6A2E-44C3-3B2F-D8FE-D8BD740CEB98";
 	setAttr ".g" yes;
@@ -985,7 +985,7 @@ createNode polyExtrudeFace -n "polyExtrudeFace29";
 	setAttr ".ws" yes;
 	setAttr ".pvt" -type "float3" 8.8252792 0 11.428465 ;
 	setAttr ".rs" 35178;
-	setAttr ".lt" -type "double3" 0 -3.944304526105059e-31 17.477466583548576 ;
+	setAttr ".lt" -type "double3" 0 -3.9443045261050599e-31 17.477466583548576 ;
 	setAttr ".c[0]"  0 1 1;
 	setAttr ".cbn" -type "double3" 8.3252789206598372 -0.5 11.428464826961713 ;
 	setAttr ".cbx" -type "double3" 9.3252789206598372 0.5 11.428464826961713 ;
@@ -1163,7 +1163,7 @@ createNode groupId -n "groupId30";
 createNode groupParts -n "groupParts16";
 	rename -uid "02A814D0-4A84-323F-E2F4-9EB85A3E297E";
 	setAttr ".ihi" 0;
-	setAttr ".ic" -type "componentList" 5 "f[0]" "f[1]" "f[2]" "f[3]" "f[4]";
+	setAttr ".ic" -type "componentList" 1 "f[0:4]";
 createNode polyUnite -n "polyUnite3";
 	rename -uid "0D9FCF0B-4BE0-79DF-458B-87AC07A9A41C";
 	setAttr -s 2 ".ip";
@@ -1560,4 +1560,4 @@ connectAttr "groupId28.msg" ":initialShadingGroup.gn" -na;
 connectAttr "groupId29.msg" ":initialShadingGroup.gn" -na;
 connectAttr "groupId30.msg" ":initialShadingGroup.gn" -na;
 connectAttr "groupId31.msg" ":initialShadingGroup.gn" -na;
-// End of Table.ma
+// End of Room Model.ma
