@@ -1,15 +1,18 @@
 //Maya ASCII 2026 scene
 //Name: Scene2_Main.ma
-//Last modified: Mon, Apr 20, 2026 11:52:17 PM
+//Last modified: Sat, Apr 25, 2026 12:32:09 AM
 //Codeset: 1252
 file -rdi 1 -ns "Asset1" -rfn "Asset1RN" -op "v=0;" -typ "mayaAscii" "C:/GitHub/Essentials/DAGV1100and1200/Maya/assets/Asset1.ma";
 file -rdi 1 -ns "Asset2" -rfn "Asset2RN" -op "v=0;" -typ "mayaAscii" "C:/GitHub/Essentials/DAGV1100and1200/Maya/assets/Asset2.ma";
+file -rdi 1 -ns "Asset3" -rfn "Asset3RN" -op "v=0;" -typ "mayaAscii" "C:/GitHub/Essentials/DAGV1100and1200/Maya/assets/Asset3.ma";
 file -r -ns "Asset1" -dr 1 -rfn "Asset1RN" -op "v=0;" -typ "mayaAscii" "C:/GitHub/Essentials/DAGV1100and1200/Maya/assets/Asset1.ma";
 file -r -ns "Asset2" -dr 1 -rfn "Asset2RN" -op "v=0;" -typ "mayaAscii" "C:/GitHub/Essentials/DAGV1100and1200/Maya/assets/Asset2.ma";
+file -r -ns "Asset3" -dr 1 -rfn "Asset3RN" -op "v=0;" -typ "mayaAscii" "C:/GitHub/Essentials/DAGV1100and1200/Maya/assets/Asset3.ma";
 requires maya "2026";
 requires -nodeType "HIKCharacterNode" -nodeType "HIKProperty2State" -dataType "HIKCharacter"
 		 -dataType "HIKCharacterState" -dataType "HIKEffectorState" -dataType "HIKPropertySetState"
 		 "mayaHIK" "1.0_HIK_2018.11";
+requires "stereoCamera" "10.0";
 requires "mtoa" "5.5.4.2";
 currentUnit -l centimeter -a degree -t film;
 fileInfo "application" "maya";
@@ -17,17 +20,17 @@ fileInfo "product" "Maya 2026";
 fileInfo "version" "2026";
 fileInfo "cutIdentifier" "202510291147-60ec9eda33";
 fileInfo "osv" "Windows 11 Home v2009 (Build: 26200)";
-fileInfo "UUID" "F727D493-4035-1637-522A-61A33223DC63";
+fileInfo "UUID" "4374809D-41E5-C3AE-7EE8-6584DADD0DA8";
 createNode transform -s -n "persp";
 	rename -uid "23888641-43C1-374F-AFF0-2E9CD9630370";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 8.587466521081911 19.179502618405522 48.13640248365607 ;
-	setAttr ".r" -type "double3" -16.538352729990606 8.1999999999993367 -2.008379888140483e-16 ;
+	setAttr ".t" -type "double3" 15.709976265767384 16.877122938098402 44.523016115508973 ;
+	setAttr ".r" -type "double3" -17.738352730000734 17.800000000000878 0 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "933E41F4-4DA7-B8D4-B436-DDAF1F090D40";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999993;
-	setAttr ".coi" 42.910247812708761;
+	setAttr ".coi" 46.551012664884723;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -105,12 +108,15 @@ createNode mesh -n "WallShape" -p "Wall";
 	setAttr ".gtag[4].gtagcmp" -type "componentList" 1 "f[4]";
 	setAttr ".gtag[5].gtagnm" -type "string" "top";
 	setAttr ".gtag[5].gtagcmp" -type "componentList" 1 "f[1]";
-	setAttr ".pv" -type "double2" 0.625 0.625 ;
+	setAttr ".pv" -type "double2" 0.89067979068571401 0.38527656940181387 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 22 ".uvst[0].uvsp[0:21]" -type "float2" 0.375 0 0.625 0 0.375
-		 0.25 0.625 0.25 0.375 0.5 0.625 0.5 0.375 0.75 0.625 0.75 0.375 1 0.625 1 0.875 0
-		 0.875 0.25 0.125 0 0.125 0.25 0.375 0.5 0.625 0.5 0.625 0.75 0.375 0.75 0.625 0.5
-		 0.625 0.75 0.625 0.75 0.625 0.5;
+	setAttr -s 22 ".uvst[0].uvsp[0:21]" -type "float2" 0.8646425 0.28112748
+		 0.91671705 0.28112748 0.8646425 0.33320203 0.91671705 0.33320203 0.8646425 0.38527659
+		 0.91671705 0.38527659 0.8646425 0.43735114 0.91671705 0.43735114 0.8646425 0.48942569
+		 0.91671705 0.48942569 0.9687916 0.28112748 0.9687916 0.33320203 0.81256795 0.28112748
+		 0.81256795 0.33320203 0.8646425 0.38527659 0.91671705 0.38527659 0.91671705 0.43735114
+		 0.8646425 0.43735114 0.91671705 0.38527659 0.91671705 0.43735114 0.91671705 0.43735114
+		 0.91671705 0.38527659;
 	setAttr ".cuvs" -type "string" "map1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
@@ -181,9 +187,11 @@ createNode mesh -n "pCubeShape2" -p "pCube2";
 	setAttr ".gtag[5].gtagcmp" -type "componentList" 1 "f[1]";
 	setAttr ".pv" -type "double2" 0.75 0.125 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.375 0 0.625 0 0.375
-		 0.25 0.625 0.25 0.375 0.5 0.625 0.5 0.375 0.75 0.625 0.75 0.375 1 0.625 1 0.875 0
-		 0.875 0.25 0.125 0 0.125 0.25;
+	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.34213385 0.7646184
+		 0.39741299 0.7646184 0.34213385 0.81989753 0.39741299 0.81989753 0.34213385 0.87517667
+		 0.39741299 0.87517667 0.34213385 0.9304558 0.39741299 0.9304558 0.34213385 0.98573494
+		 0.39741299 0.98573494 0.45269212 0.7646184 0.45269212 0.81989753 0.28685471 0.7646184
+		 0.28685471 0.81989753;
 	setAttr ".cuvs" -type "string" "map1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
@@ -232,11 +240,13 @@ createNode mesh -n "pCubeShape5" -p "pCube5";
 	setAttr ".gtag[4].gtagcmp" -type "componentList" 1 "f[4]";
 	setAttr ".gtag[5].gtagnm" -type "string" "top";
 	setAttr ".gtag[5].gtagcmp" -type "componentList" 1 "f[1]";
-	setAttr ".pv" -type "double2" 0.75 0.125 ;
+	setAttr ".pv" -type "double2" 0.36977340310476214 0.87517662438866206 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.375 0 0.625 0 0.375
-		 0.25 0.625 0.25 0.375 0.5 0.625 0.5 0.375 0.75 0.625 0.75 0.375 1 0.625 1 0.875 0
-		 0.875 0.25 0.125 0 0.125 0.25;
+	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.34213385 0.7646184
+		 0.39741299 0.7646184 0.34213385 0.81989753 0.39741299 0.81989753 0.34213385 0.87517667
+		 0.39741299 0.87517667 0.34213385 0.9304558 0.39741299 0.9304558 0.34213385 0.98573494
+		 0.39741299 0.98573494 0.45269212 0.7646184 0.45269212 0.81989753 0.28685471 0.7646184
+		 0.28685471 0.81989753;
 	setAttr ".cuvs" -type "string" "map1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
@@ -287,11 +297,13 @@ createNode mesh -n "pCubeShape4" -p "pCube4";
 	setAttr ".gtag[4].gtagcmp" -type "componentList" 1 "f[4]";
 	setAttr ".gtag[5].gtagnm" -type "string" "top";
 	setAttr ".gtag[5].gtagcmp" -type "componentList" 1 "f[1]";
-	setAttr ".pv" -type "double2" 0.75 0.125 ;
+	setAttr ".pv" -type "double2" 0.375 0.5 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.375 0 0.625 0 0.375
-		 0.25 0.625 0.25 0.375 0.5 0.625 0.5 0.375 0.75 0.625 0.75 0.375 1 0.625 1 0.875 0
-		 0.875 0.25 0.125 0 0.125 0.25;
+	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.34213385 0.7646184
+		 0.39741299 0.7646184 0.34213385 0.81989753 0.39741299 0.81989753 0.34213385 0.87517667
+		 0.39741299 0.87517667 0.34213385 0.9304558 0.39741299 0.9304558 0.34213385 0.98573494
+		 0.39741299 0.98573494 0.45269212 0.7646184 0.45269212 0.81989753 0.28685471 0.7646184
+		 0.28685471 0.81989753;
 	setAttr ".cuvs" -type "string" "map1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
@@ -344,9 +356,11 @@ createNode mesh -n "pCubeShape3" -p "pCube3";
 	setAttr ".gtag[5].gtagcmp" -type "componentList" 1 "f[1]";
 	setAttr ".pv" -type "double2" 0.75 0.125 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.375 0 0.625 0 0.375
-		 0.25 0.625 0.25 0.375 0.5 0.625 0.5 0.375 0.75 0.625 0.75 0.375 1 0.625 1 0.875 0
-		 0.875 0.25 0.125 0 0.125 0.25;
+	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.34213385 0.7646184
+		 0.39741299 0.7646184 0.34213385 0.81989753 0.39741299 0.81989753 0.34213385 0.87517667
+		 0.39741299 0.87517667 0.34213385 0.9304558 0.39741299 0.9304558 0.34213385 0.98573494
+		 0.39741299 0.98573494 0.45269212 0.7646184 0.45269212 0.81989753 0.28685471 0.7646184
+		 0.28685471 0.81989753;
 	setAttr ".cuvs" -type "string" "map1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
@@ -399,9 +413,11 @@ createNode mesh -n "pCubeShape6" -p "pCube6";
 	setAttr ".gtag[5].gtagcmp" -type "componentList" 1 "f[1]";
 	setAttr ".pv" -type "double2" 0.75 0.125 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.375 0 0.625 0 0.375
-		 0.25 0.625 0.25 0.375 0.5 0.625 0.5 0.375 0.75 0.625 0.75 0.375 1 0.625 1 0.875 0
-		 0.875 0.25 0.125 0 0.125 0.25;
+	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.34213385 0.7646184
+		 0.39741299 0.7646184 0.34213385 0.81989753 0.39741299 0.81989753 0.34213385 0.87517667
+		 0.39741299 0.87517667 0.34213385 0.9304558 0.39741299 0.9304558 0.34213385 0.98573494
+		 0.39741299 0.98573494 0.45269212 0.7646184 0.45269212 0.81989753 0.28685471 0.7646184
+		 0.28685471 0.81989753;
 	setAttr ".cuvs" -type "string" "map1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
@@ -454,9 +470,11 @@ createNode mesh -n "pCubeShape8" -p "pCube8";
 	setAttr ".gtag[5].gtagcmp" -type "componentList" 1 "f[1]";
 	setAttr ".pv" -type "double2" 0.75 0.125 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.375 0 0.625 0 0.375
-		 0.25 0.625 0.25 0.375 0.5 0.625 0.5 0.375 0.75 0.625 0.75 0.375 1 0.625 1 0.875 0
-		 0.875 0.25 0.125 0 0.125 0.25;
+	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.86043841 0.52786499
+		 0.90851861 0.52786499 0.86043841 0.5759452 0.90851861 0.5759452 0.86043841 0.62402534
+		 0.90851861 0.62402534 0.86043841 0.67210549 0.90851861 0.67210549 0.86043841 0.72018564
+		 0.90851861 0.72018564 0.95659876 0.52786499 0.95659876 0.5759452 0.81235832 0.52786499
+		 0.81235832 0.5759452;
 	setAttr ".cuvs" -type "string" "map1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
@@ -510,9 +528,11 @@ createNode mesh -n "pCubeShape9" -p "pCube9";
 	setAttr ".gtag[5].gtagcmp" -type "componentList" 1 "f[1]";
 	setAttr ".pv" -type "double2" 0.75 0.125 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.375 0 0.625 0 0.375
-		 0.25 0.625 0.25 0.375 0.5 0.625 0.5 0.375 0.75 0.625 0.75 0.375 1 0.625 1 0.875 0
-		 0.875 0.25 0.125 0 0.125 0.25;
+	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.86043841 0.52786499
+		 0.90851861 0.52786499 0.86043841 0.5759452 0.90851861 0.5759452 0.86043841 0.62402534
+		 0.90851861 0.62402534 0.86043841 0.67210549 0.90851861 0.67210549 0.86043841 0.72018564
+		 0.90851861 0.72018564 0.95659876 0.52786499 0.95659876 0.5759452 0.81235832 0.52786499
+		 0.81235832 0.5759452;
 	setAttr ".cuvs" -type "string" "map1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
@@ -566,9 +586,11 @@ createNode mesh -n "pCubeShape10" -p "pCube10";
 	setAttr ".gtag[5].gtagcmp" -type "componentList" 1 "f[1]";
 	setAttr ".pv" -type "double2" 0.75 0.125 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.375 0 0.625 0 0.375
-		 0.25 0.625 0.25 0.375 0.5 0.625 0.5 0.375 0.75 0.625 0.75 0.375 1 0.625 1 0.875 0
-		 0.875 0.25 0.125 0 0.125 0.25;
+	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.86043841 0.52786499
+		 0.90851861 0.52786499 0.86043841 0.5759452 0.90851861 0.5759452 0.86043841 0.62402534
+		 0.90851861 0.62402534 0.86043841 0.67210549 0.90851861 0.67210549 0.86043841 0.72018564
+		 0.90851861 0.72018564 0.95659876 0.52786499 0.95659876 0.5759452 0.81235832 0.52786499
+		 0.81235832 0.5759452;
 	setAttr ".cuvs" -type "string" "map1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
@@ -622,9 +644,11 @@ createNode mesh -n "pCubeShape11" -p "pCube11";
 	setAttr ".gtag[5].gtagcmp" -type "componentList" 1 "f[1]";
 	setAttr ".pv" -type "double2" 0.75 0.125 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.375 0 0.625 0 0.375
-		 0.25 0.625 0.25 0.375 0.5 0.625 0.5 0.375 0.75 0.625 0.75 0.375 1 0.625 1 0.875 0
-		 0.875 0.25 0.125 0 0.125 0.25;
+	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.86043841 0.52786499
+		 0.90851861 0.52786499 0.86043841 0.5759452 0.90851861 0.5759452 0.86043841 0.62402534
+		 0.90851861 0.62402534 0.86043841 0.67210549 0.90851861 0.67210549 0.86043841 0.72018564
+		 0.90851861 0.72018564 0.95659876 0.52786499 0.95659876 0.5759452 0.81235832 0.52786499
+		 0.81235832 0.5759452;
 	setAttr ".cuvs" -type "string" "map1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
@@ -677,11 +701,13 @@ createNode mesh -n "WalkwayShape" -p "Walkway";
 	setAttr ".gtag[4].gtagcmp" -type "componentList" 1 "f[4]";
 	setAttr ".gtag[5].gtagnm" -type "string" "top";
 	setAttr ".gtag[5].gtagcmp" -type "componentList" 1 "f[1]";
-	setAttr ".pv" -type "double2" 0.5 0.625 ;
+	setAttr ".pv" -type "double2" 0.8844785241668931 0.62402533037641716 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.375 0 0.625 0 0.375
-		 0.25 0.625 0.25 0.375 0.5 0.625 0.5 0.375 0.75 0.625 0.75 0.375 1 0.625 1 0.875 0
-		 0.875 0.25 0.125 0 0.125 0.25;
+	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.86043841 0.52786499
+		 0.90851861 0.52786499 0.86043841 0.5759452 0.90851861 0.5759452 0.86043841 0.62402534
+		 0.90851861 0.62402534 0.86043841 0.67210549 0.90851861 0.67210549 0.86043841 0.72018564
+		 0.90851861 0.72018564 0.95659876 0.52786499 0.95659876 0.5759452 0.81235832 0.52786499
+		 0.81235832 0.5759452;
 	setAttr ".cuvs" -type "string" "map1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
@@ -732,9 +758,11 @@ createNode mesh -n "PlatformShape" -p "Platform";
 	setAttr ".gtag[5].gtagcmp" -type "componentList" 1 "f[1]";
 	setAttr ".pv" -type "double2" 0.75 0.125 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.375 0 0.625 0 0.375
-		 0.25 0.625 0.25 0.375 0.5 0.625 0.5 0.375 0.75 0.625 0.75 0.375 1 0.625 1 0.875 0
-		 0.875 0.25 0.125 0 0.125 0.25;
+	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.86043841 0.52786499
+		 0.90851861 0.52786499 0.86043841 0.5759452 0.90851861 0.5759452 0.86043841 0.62402534
+		 0.90851861 0.62402534 0.86043841 0.67210549 0.90851861 0.67210549 0.86043841 0.72018564
+		 0.90851861 0.72018564 0.95659876 0.52786499 0.95659876 0.5759452 0.81235832 0.52786499
+		 0.81235832 0.5759452;
 	setAttr ".cuvs" -type "string" "map1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
@@ -761,83 +789,9 @@ createNode mesh -n "PlatformShape" -p "Platform";
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "Table";
-	rename -uid "6CF527E8-4B63-BB03-57ED-DB9CD848DEAE";
-	setAttr ".rp" -type "double3" 4.9986648462955214 0 3 ;
-	setAttr ".sp" -type "double3" 4.9986648462955214 0 3 ;
-createNode mesh -n "TableShape" -p "Table";
-	rename -uid "D88AA40F-43E3-C65E-8D92-1AAB8FC616D4";
-	setAttr -k off ".v";
-	setAttr ".vir" yes;
-	setAttr ".vif" yes;
-	setAttr -s 6 ".gtag";
-	setAttr ".gtag[0].gtagnm" -type "string" "back";
-	setAttr ".gtag[0].gtagcmp" -type "componentList" 1 "f[2]";
-	setAttr ".gtag[1].gtagnm" -type "string" "bottom";
-	setAttr ".gtag[1].gtagcmp" -type "componentList" 1 "f[3]";
-	setAttr ".gtag[2].gtagnm" -type "string" "front";
-	setAttr ".gtag[2].gtagcmp" -type "componentList" 1 "f[0]";
-	setAttr ".gtag[3].gtagnm" -type "string" "left";
-	setAttr ".gtag[3].gtagcmp" -type "componentList" 1 "f[5:13]";
-	setAttr ".gtag[4].gtagnm" -type "string" "right";
-	setAttr ".gtag[4].gtagcmp" -type "componentList" 1 "f[4]";
-	setAttr ".gtag[5].gtagnm" -type "string" "top";
-	setAttr ".gtag[5].gtagcmp" -type "componentList" 1 "f[1]";
-	setAttr ".pv" -type "double2" 0.65003870696008548 0.64691289870286539 ;
-	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 22 ".uvst[0].uvsp[0:21]" -type "float2" 0.63218153 0.57548434
-		 0.66789579 0.57548434 0.63218153 0.6111986 0.66789579 0.6111986 0.63218153 0.64691287
-		 0.66789579 0.64691287 0.63218153 0.68262714 0.66789579 0.68262714 0.63218153 0.71834147
-		 0.66789579 0.71834147 0.70361018 0.57548434 0.70361018 0.6111986 0.59646726 0.57548434
-		 0.59646726 0.6111986 0.59646726 0.57548434 0.63218153 0.57548434 0.63218153 0.6111986
-		 0.59646726 0.6111986 0.59646726 0.6111986 0.59646726 0.57548434 0.59646726 0.57548434
-		 0.59646726 0.6111986;
-	setAttr ".cuvs" -type "string" "map1";
-	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr ".covm[0]"  0 1 1;
-	setAttr ".cdvm[0]"  0 1 1;
-	setAttr -s 16 ".vt[0:15]"  3.59942317 0 6.51912212 8 0 6.51912212 3.59942317 3 6.51912212
-		 8 3 6.51912212 3.59942317 3 2.5 8 3 2.5 3.59942317 0 2.5 8 0 2.5 0.90090084 0 2.5
-		 0.90090084 0 6.51912212 0.90090084 3 6.51912212 0.90090084 3 2.5 3.59942317 3 0.66780162
-		 3.59942317 1.2206049e-16 0.66780162 0.90090084 -1.7753567e-16 0.66780162 0.90090084 3 0.66780162;
-	setAttr -s 28 ".ed[0:27]"  0 1 0 2 3 0 4 5 0 6 7 0 0 2 1 1 3 0 2 4 1
-		 3 5 0 4 6 0 5 7 0 6 0 1 7 1 0 6 8 1 0 9 0 8 9 0 2 10 0 9 10 0 4 11 1 10 11 0 11 8 1
-		 4 12 0 6 13 0 12 13 0 8 14 0 13 14 0 11 15 0 15 14 0 12 15 0;
-	setAttr -s 14 -ch 56 ".fc[0:13]" -type "polyFaces" 
-		f 4 0 5 -2 -5
-		mu 0 4 0 1 3 2
-		f 4 1 7 -3 -7
-		mu 0 4 2 3 5 4
-		f 4 2 9 -4 -9
-		mu 0 4 4 5 7 6
-		f 4 3 11 -1 -11
-		mu 0 4 6 7 9 8
-		f 4 -12 -10 -8 -6
-		mu 0 4 1 10 11 3
-		f 4 14 16 18 19
-		mu 0 4 14 15 16 17
-		f 4 10 13 -15 -13
-		mu 0 4 12 0 15 14
-		f 4 4 15 -17 -14
-		mu 0 4 0 2 16 15
-		f 4 6 17 -19 -16
-		mu 0 4 2 13 17 16
-		f 4 22 24 -27 -28
-		mu 0 4 18 19 20 21
-		f 4 8 21 -23 -21
-		mu 0 4 13 12 19 18
-		f 4 12 23 -25 -22
-		mu 0 4 12 14 20 19
-		f 4 -20 25 26 -24
-		mu 0 4 14 17 21 20
-		f 4 -18 20 27 -26
-		mu 0 4 17 13 18 21;
-	setAttr ".cd" -type "dataPolyComponent" Index_Data Edge 0 ;
-	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
-	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
-	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 createNode transform -n "Chair";
 	rename -uid "709BDA0D-43E7-EFDD-B98C-2C9697112606";
+	setAttr ".t" -type "double3" 0 0 2.6530716189919961 ;
 	setAttr ".rp" -type "double3" 0.63102963030908432 0 9.3125993770899189 ;
 	setAttr ".sp" -type "double3" 0.63102963030908432 0 9.3125993770899189 ;
 createNode mesh -n "ChairShape" -p "Chair";
@@ -858,12 +812,15 @@ createNode mesh -n "ChairShape" -p "Chair";
 	setAttr ".gtag[4].gtagcmp" -type "componentList" 1 "f[4]";
 	setAttr ".gtag[5].gtagnm" -type "string" "top";
 	setAttr ".gtag[5].gtagcmp" -type "componentList" 1 "f[1]";
-	setAttr ".pv" -type "double2" 0.625 0.25 ;
+	setAttr ".pv" -type "double2" 0.61815739928463065 0.62330440180138025 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 22 ".uvst[0].uvsp[0:21]" -type "float2" 0.375 0 0.625 0 0.375
-		 0.25 0.625 0.25 0.375 0.5 0.625 0.5 0.375 0.75 0.625 0.75 0.375 1 0.625 1 0.875 0
-		 0.875 0.25 0.125 0 0.125 0.25 0.375 0 0.625 0 0.625 0.25 0.375 0.25 0.625 0.25 0.375
-		 0.25 0.375 0.25 0.625 0.25;
+	setAttr -s 22 ".uvst[0].uvsp[0:21]" -type "float2" 0.59025079 0.51167792
+		 0.64606398 0.51167792 0.59025079 0.56749111 0.64606398 0.56749111 0.59025079 0.62330437
+		 0.64606398 0.62330437 0.59025079 0.67911756 0.64606398 0.67911756 0.59025079 0.73493081
+		 0.64606398 0.73493081 0.70187724 0.51167792 0.70187724 0.56749111 0.53443754 0.51167792
+		 0.53443754 0.56749111 0.59025079 0.51167792 0.64606398 0.51167792 0.64606398 0.56749111
+		 0.59025079 0.56749111 0.64606398 0.56749111 0.59025079 0.56749111 0.59025079 0.56749111
+		 0.64606398 0.56749111;
 	setAttr ".cuvs" -type "string" "map1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
@@ -945,11 +902,13 @@ createNode mesh -n "MachineShape1" -p "Machine1";
 	setAttr ".gtag[4].gtagcmp" -type "componentList" 1 "f[4]";
 	setAttr ".gtag[5].gtagnm" -type "string" "top";
 	setAttr ".gtag[5].gtagcmp" -type "componentList" 1 "f[1]";
-	setAttr ".pv" -type "double2" 0.5 0.375 ;
+	setAttr ".pv" -type "double2" 0.12482336308242969 0.89378041019651988 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.375 0 0.625 0 0.375
-		 0.25 0.625 0.25 0.375 0.5 0.625 0.5 0.375 0.75 0.625 0.75 0.375 1 0.625 1 0.875 0
-		 0.875 0.25 0.125 0 0.125 0.25;
+	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.10073978 0.79744601
+		 0.14890695 0.79744601 0.10073978 0.84561324 0.14890695 0.84561324 0.10073978 0.89378041
+		 0.14890695 0.89378041 0.10073978 0.94194758 0.14890695 0.94194758 0.10073978 0.99011481
+		 0.14890695 0.99011481 0.19707417 0.79744601 0.19707417 0.84561324 0.052572548 0.79744601
+		 0.052572548 0.84561324;
 	setAttr ".cuvs" -type "string" "map1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
@@ -998,11 +957,13 @@ createNode mesh -n "MachineShape2" -p "Machine2";
 	setAttr ".gtag[4].gtagcmp" -type "componentList" 1 "f[4]";
 	setAttr ".gtag[5].gtagnm" -type "string" "top";
 	setAttr ".gtag[5].gtagcmp" -type "componentList" 1 "f[1]";
-	setAttr ".pv" -type "double2" 0.5 0.375 ;
+	setAttr ".pv" -type "double2" 0.11862209656360889 0.88757914367769897 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
-	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.375 0 0.625 0 0.375
-		 0.25 0.625 0.25 0.375 0.5 0.625 0.5 0.375 0.75 0.625 0.75 0.375 1 0.625 1 0.875 0
-		 0.875 0.25 0.125 0 0.125 0.25;
+	setAttr -s 14 ".uvst[0].uvsp[0:13]" -type "float2" 0.09453851 0.79124475
+		 0.14270568 0.79124475 0.09453851 0.83941197 0.14270568 0.83941197 0.09453851 0.88757914
+		 0.14270568 0.88757914 0.09453851 0.93574631 0.14270568 0.93574631 0.09453851 0.98391354
+		 0.14270568 0.98391354 0.19087291 0.79124475 0.19087291 0.83941197 0.046371281 0.79124475
+		 0.046371281 0.83941197;
 	setAttr ".cuvs" -type "string" "map1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
@@ -1033,20 +994,20 @@ createNode mesh -n "MachineShape2" -p "Machine2";
 	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "0180A6E8-4102-373A-64F0-CDAB6CA7AF7E";
+	rename -uid "627F011F-45B4-1E38-0CA8-85939170AFA3";
 	setAttr -s 3 ".lnk";
 	setAttr -s 3 ".slnk";
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "33449192-48B3-627A-82A3-E282D2E8C4BF";
+	rename -uid "3B040B73-4354-D4A6-10C3-E983EE60F998";
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "99416CE8-42A6-E64D-B11F-2D9B549B137D";
+	rename -uid "E82DFFDC-4C91-D6D4-B6A2-AFAA3AC2B1BD";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "E36EEF7C-4D2E-38AC-830D-A18570B549E3";
+	rename -uid "8442D9E3-41DB-9FAF-057A-AE9A87EE1FFE";
 createNode displayLayer -n "defaultLayer";
 	rename -uid "EBD38F04-4CC7-C601-A598-19A3CE0A0731";
 	setAttr ".ufem" -type "stringArray" 0  ;
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "C7FB0D7B-4758-B02C-C7DA-CAB5E638E75D";
+	rename -uid "CCA6027A-4A7D-C45A-5C1E-9EA4CFEAEF90";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "1FFBE50B-42D4-F1AF-4CC6-38881627AD78";
 	setAttr ".g" yes;
@@ -1088,8 +1049,12 @@ createNode script -n "uiConfigurationScriptNode";
 		+ "\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"UV Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"renderWindowPanel\" (localizedPanelLabel(\"Render View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Render View\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"shapePanel\" (localizedPanelLabel(\"Shape Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tshapePanel -edit -l (localizedPanelLabel(\"Shape Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"posePanel\" (localizedPanelLabel(\"Pose Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n"
 		+ "\t\tposePanel -edit -l (localizedPanelLabel(\"Pose Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynRelEdPanel\" (localizedPanelLabel(\"Dynamic Relationships\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Dynamic Relationships\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"relationshipPanel\" (localizedPanelLabel(\"Relationship Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Relationship Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"referenceEditorPanel\" (localizedPanelLabel(\"Reference Editor\")) `;\n\tif (\"\" != $panelName) {\n"
 		+ "\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Reference Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynPaintScriptedPanelType\" (localizedPanelLabel(\"Paint Effects\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Paint Effects\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"scriptEditorPanel\" (localizedPanelLabel(\"Script Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Script Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"profilerPanel\" (localizedPanelLabel(\"Profiler Tool\")) `;\n"
-		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Profiler Tool\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"motionMakerEditorPanel\" (localizedPanelLabel(\"MotionMaker Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"MotionMaker Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"contentBrowserPanel\" (localizedPanelLabel(\"Content Browser\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Content Browser\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\tif ($useSceneConfig) {\n        string $configName = `getPanel -cwl (localizedPanelLabel(\"Current Layout\"))`;\n"
-		+ "        if (\"\" != $configName) {\n\t\t\tpanelConfiguration -edit -label (localizedPanelLabel(\"Current Layout\")) \n\t\t\t\t-userCreated false\n\t\t\t\t-defaultImage \"vacantCell.xP:/\"\n\t\t\t\t-image \"\"\n\t\t\t\t-sc false\n\t\t\t\t-configString \"global string $gMainPane; paneLayout -e -cn \\\"single\\\" -ps 1 100 100 $gMainPane;\"\n\t\t\t\t-removeAllPanels\n\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Persp View\")) \n\t\t\t\t\t\"modelPanel\"\n"
+		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Profiler Tool\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"motionMakerEditorPanel\" (localizedPanelLabel(\"MotionMaker Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"MotionMaker Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"contentBrowserPanel\" (localizedPanelLabel(\"Content Browser\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Content Browser\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"Stereo\" (localizedPanelLabel(\"Stereo\")) `;\n"
+		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Stereo\")) -mbv $menusOkayInPanels  $panelName;\n{ string $editorName = ($panelName+\"Editor\");\n            stereoCameraView -e \n                -camera \"|persp\" \n                -useInteractiveMode 0\n                -displayLights \"default\" \n                -displayAppearance \"wireframe\" \n                -activeOnly 0\n                -ignorePanZoom 0\n                -wireframeOnShaded 0\n                -headsUpDisplay 1\n                -holdOuts 1\n                -selectionHiliteDisplay 1\n                -useDefaultMaterial 0\n                -bufferMode \"double\" \n                -twoSidedLighting 1\n                -backfaceCulling 0\n                -xray 0\n                -jointXray 0\n                -activeComponentsXray 0\n                -displayTextures 0\n                -smoothWireframe 0\n                -lineWidth 1\n                -textureAnisotropic 0\n                -textureHilight 1\n                -textureSampling 2\n"
+		+ "                -textureDisplay \"modulate\" \n                -textureMaxSize 16384\n                -fogging 0\n                -fogSource \"fragment\" \n                -fogMode \"linear\" \n                -fogStart 0\n                -fogEnd 100\n                -fogDensity 0.1\n                -fogColor 0.5 0.5 0.5 1 \n                -depthOfFieldPreview 1\n                -maxConstantTransparency 1\n                -objectFilterShowInHUD 1\n                -isFiltered 0\n                -colorResolution 4 4 \n                -bumpResolution 4 4 \n                -textureCompression 0\n                -transparencyAlgorithm \"frontAndBackCull\" \n                -transpInShadows 0\n                -cullingOverride \"none\" \n                -lowQualityLighting 0\n                -maximumNumHardwareLights 0\n                -occlusionCulling 0\n                -shadingModel 0\n                -useBaseRenderer 0\n                -useReducedRenderer 0\n                -smallObjectCulling 0\n                -smallObjectThreshold -1 \n                -interactiveDisableShadows 0\n"
+		+ "                -interactiveBackFaceCull 0\n                -sortTransparent 1\n                -controllers 1\n                -nurbsCurves 1\n                -nurbsSurfaces 1\n                -polymeshes 1\n                -subdivSurfaces 1\n                -planes 1\n                -lights 1\n                -cameras 1\n                -controlVertices 1\n                -hulls 1\n                -grid 1\n                -imagePlane 1\n                -joints 1\n                -ikHandles 1\n                -deformers 1\n                -dynamics 1\n                -particleInstancers 1\n                -fluids 1\n                -hairSystems 1\n                -follicles 1\n                -nCloths 1\n                -nParticles 1\n                -nRigids 1\n                -dynamicConstraints 1\n                -locators 1\n                -manipulators 1\n                -pluginShapes 1\n                -dimensions 1\n                -handles 1\n                -pivots 1\n                -textures 1\n                -strokes 1\n                -motionTrails 1\n"
+		+ "                -clipGhosts 1\n                -bluePencil 1\n                -greasePencils 0\n                -shadows 0\n                -captureSequenceNumber -1\n                -width 0\n                -height 0\n                -sceneRenderFilter 0\n                -displayMode \"centerEye\" \n                -viewColor 0 0 0 1 \n                -useCustomBackground 1\n                $editorName;\n            stereoCameraView -e -viewSelected 0 $editorName;\n            stereoCameraView -e \n                -pluginObjects \"gpuCacheDisplayFilter\" 1 \n                $editorName; };\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\tif ($useSceneConfig) {\n        string $configName = `getPanel -cwl (localizedPanelLabel(\"Current Layout\"))`;\n        if (\"\" != $configName) {\n\t\t\tpanelConfiguration -edit -label (localizedPanelLabel(\"Current Layout\")) \n\t\t\t\t-userCreated false\n\t\t\t\t-defaultImage \"vacantCell.xP:/\"\n\t\t\t\t-image \"\"\n\t\t\t\t-sc false\n\t\t\t\t-configString \"global string $gMainPane; paneLayout -e -cn \\\"single\\\" -ps 1 100 100 $gMainPane;\"\n"
+		+ "\t\t\t\t-removeAllPanels\n\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Persp View\")) \n\t\t\t\t\t\"modelPanel\"\n"
 		+ "\t\t\t\t\t\"$panelName = `modelPanel -unParent -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels `;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 0\\n    -activeComponentsXray 0\\n    -displayTextures 1\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 16384\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -bluePencil 1\\n    -greasePencils 0\\n    -excludeObjectPreset \\\"All\\\" \\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1311\\n    -height 684\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
 		+ "\t\t\t\t\t\"modelPanel -edit -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels  $panelName;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 0\\n    -activeComponentsXray 0\\n    -displayTextures 1\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 16384\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -bluePencil 1\\n    -greasePencils 0\\n    -excludeObjectPreset \\\"All\\\" \\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1311\\n    -height 684\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
 		+ "\t\t\t\t$configName;\n\n            setNamedPanelLayout (localizedPanelLabel(\"Current Layout\"));\n        }\n\n        panelHistory -e -clear mainPanelHistory;\n        sceneUIReplacement -clear;\n\t}\n\n\ngrid -spacing 5 -size 12 -divisions 5 -displayAxes yes -displayGridLines yes -displayDivisionLines yes -displayPerspectiveLabels no -displayOrthographicLabels no -displayAxesBold yes -perspectiveLabelPosition axis -orthographicLabelPosition edge;\nviewManip -drawCompass 0 -compassAngle 0 -frontParameters \"\" -homeParameters \"\" -selectionLockParameters \"\";\n}\n");
@@ -1591,7 +1556,8 @@ createNode reference -n "Asset1RN";
 		
 		2 "|Asset1:Scroll1" "rotatePivotTranslate" " -type \"double3\" 0 0 0"
 		"Asset1RN" 12
-		2 "|Asset1:futureComputer" "translate" " -type \"double3\" 0 0 0"
+		2 "|Asset1:futureComputer" "translate" " -type \"double3\" 0 0 1.7750932617652051"
+		
 		2 "|Asset1:futureComputer" "rotate" " -type \"double3\" 0 0 0"
 		2 "|Asset1:futureComputer" "scale" " -type \"double3\" 1 1 1"
 		2 "|Asset1:futureComputer" "rotatePivot" " -type \"double3\" 6.88410936624363679 5.18473830910131639 4.39219314166441066"
@@ -1600,7 +1566,7 @@ createNode reference -n "Asset1RN";
 		
 		2 "|Asset1:futureComputer" "scalePivot" " -type \"double3\" 6.88410936624363679 5.18473830910131639 4.39219314166441066"
 		
-		2 "|Asset1:futureComputer|Asset1:futureComputerShape" "uvPivot" " -type \"double2\" 0.37684908011782625 0.88031307247894763"
+		2 "|Asset1:futureComputer|Asset1:futureComputerShape" "uvPivot" " -type \"double2\" 0.390574282617838 0.62639437698098566"
 		
 		2 "|Asset1:futureComputer|Asset1:futureComputerShape" "uvSet[0].uvSetName" 
 		" -type \"string\" \"map1\""
@@ -1628,396 +1594,428 @@ createNode polyTweakUV -n "polyTweakUV1";
 	rename -uid "92A31EA2-49A0-1FDD-892E-018ABD669000";
 	setAttr ".uopa" yes;
 	setAttr -s 1490 ".uvtk";
-	setAttr ".uvtk[0:249]" -type "float2" 0.089862339 0.14952895 -0.065195076
-		 0.14955589 -0.065221123 -0.0011135535 0.089836113 -0.0011407332 -0.072730534 0.011229018
-		 -0.31520581 0.011862019 -0.31521454 0.0086060558 -0.072738968 0.0079730544 0.10249039
-		 -0.0031081038 0.25948203 -0.0032309499 0.2596015 0.14931813 0.10260975 0.14944097
-		 -0.074822985 0.0039077792 -0.31124339 0.0036065374 -0.3112393 0.0004318757 -0.074818932
-		 0.00073311757 -0.33263204 0.32806394 -0.33295545 0.32941517 -0.3372145 0.32894203
-		 -0.33663473 0.32625207 -0.332883 0.33081457 -0.33709446 0.33172056 -0.33241919 0.33212575
-		 -0.33627743 0.33435485 -0.33159241 0.33321497 -0.33477071 0.33660266 -0.42499313
-		 0.31951502 -0.42525026 0.32079962 -0.42945915 0.3206127 -0.42901674 0.31806865 -0.42510566
-		 0.32210699 -0.42914918 0.3231782 -0.42457759 0.32331505 -0.42811891 0.32554653 -0.42371473
-		 0.32431105 -0.42645228 0.32752314 -0.42259341 0.32499865 -0.42428049 0.32893911 -0.50188041
-		 0.29412243 -0.50072384 0.29339316 -0.49783006 0.29671431 -0.50007367 0.29820561 -0.49984053
-		 0.29234323 -0.49611923 0.29463422 -0.4993085 0.29107419 -0.49507686 0.2921479 -0.4991776
-		 0.28970417 -0.49478558 0.28946015 -0.49946454 0.28836057 -0.49527541 0.28679457 -0.316376
-		 0.33025417 -0.31560314 0.32903317 -0.31140569 0.33106443 -0.3128252 0.33353803 -0.31522319
-		 0.32760814 -0.31071737 0.3282263 -0.31526214 0.32612154 -0.31076911 0.32527491 -0.31571877
-		 0.32471779 -0.31156477 0.32245764 -0.31656632 0.32353935 -0.31310192 0.32003149 -0.33193371
-		 0.32689556 -0.33535746 0.32388815 -0.34142104 0.32848403 -0.34067899 0.32454094 -0.341272
-		 0.33253238 -0.34023401 0.33642301 -0.33826399 0.33986518 -0.43365374 0.32052925 -0.43310961
-		 0.31677559 -0.43317348 0.32428208 -0.43167305 0.32774082 -0.42926368 0.33065167 -0.4261345
-		 0.33280602 -0.49486229 0.29995626 -0.49810341 0.3022266 -0.49238661 0.29688847 -0.49086657
-		 0.29325649 -0.49041012 0.28933188 -0.49101385 0.28540161 -0.30716127 0.33298978 -0.3090404
-		 0.33671632 -0.30626664 0.32882664 -0.30631498 0.32452682 -0.30731028 0.32037041 -0.30930704
-		 0.31666496 -0.338999 0.32098541 -0.34558496 0.32806632 -0.34477714 0.32299671 -0.3454183
-		 0.33323559 -0.34428319 0.33826455 -0.34208158 0.342877 -0.43782857 0.32054511 -0.43725285
-		 0.31565848 -0.43720165 0.3254191 -0.43524525 0.32991675 -0.43212998 0.33371356 -0.4281261
-		 0.33657029 -0.49182382 0.30312228 -0.49598244 0.30615208 -0.48862538 0.29910946 -0.48665228
-		 0.29438353 -0.4860588 0.28930202 -0.486707 0.28419194 -0.30285507 0.3347396 -0.30498549
-		 0.33967558 -0.30186009 0.32938257 -0.30189642 0.3238937 -0.30296436 0.31852701 -0.30517453
-		 0.31357357 -0.3428894 0.31829605 -0.34971613 0.32770535 -0.34893116 0.32165894 -0.34953946
-		 0.33382925 -0.34841254 0.33984801 -0.34619945 0.34554705 -0.44198141 0.32062045 -0.44142833
-		 0.31471136 -0.44126788 0.32656029 -0.43882966 0.3321003 -0.43501708 0.33675626 -0.43019021
-		 0.34024182 -0.48874 0.30625328 -0.49376431 0.30997911 -0.48483041 0.30130917 -0.48240009
-		 0.29549259 -0.48173574 0.28932175 -0.48236588 0.28315094 -0.29848421 0.33627191 -0.30065915
-		 0.34232715 -0.29748681 0.32987788 -0.2975077 0.32337579 -0.29853988 0.31695899 -0.30073336
-		 0.3108522 -0.34702846 0.31590304 -0.3538233 0.32741174 -0.35313669 0.32055232 -0.35364094
-		 0.33431742 -0.35260767 0.34116039 -0.35057631 0.34781203 -0.44611534 0.32068625 -0.44562992
-		 0.31391886 -0.44544712 0.3274608 -0.47741607 0.28934017 -0.47803834 0.29639447 -0.47798428
-		 0.28227207 -0.29405198 0.33756015 -0.29607934 0.3446013 -0.29313695 0.33030078 -0.293143
-		 0.32296911 -0.29405305 0.31568083 -0.29602772 0.30856827 -0.35139701 0.31387171 -0.35791355
-		 0.3271918 -0.35738659 0.31969246 -0.3577278 0.33470508 -0.35685486 0.34219584 -0.35516459
-		 0.34962568 -0.45024374 0.32074371 -0.44986266 0.31329015 -0.44966912 0.32819977 -0.47310415
-		 0.28935996 -0.47363642 0.29713035 -0.47356305 0.28157321 -0.28956607 0.33858791 -0.29127899
-		 0.34644327 -0.28880337 0.33064571 -0.28879625 0.32266894 -0.28951892 0.31469741 -0.29111037
-		 0.30676857 -0.35596278 0.31225237 -0.36199215 0.32704994 -0.36167145 0.31908998 -0.36180472
-		 0.33499679 -0.36114028 0.34295318 -0.35991144 0.35095808 -0.45436618 0.32079723 -0.45412418
-		 0.31284145 -0.45392504 0.32875505 -0.46880022 0.28938136 -0.46919861 0.29767931 -0.46911046
-		 0.28107032 -0.28503644 0.33934405 -0.2862995 0.34781078 -0.28447962 0.33090702 -0.28446239
-		 0.32247028 -0.28495136 0.31401035 -0.28603756 0.30548403 -0.36068594 0.31108436 -0.36606395
-		 0.32698962 -0.3659806 0.31875142 -0.36587563 0.33519611 -0.36545089 0.34343299 -0.3647626
-		 0.35178921 -0.45848405 0.32084921 -0.45840651 0.31258658 -0.45820504 0.32911327 -0.46450111
-		 0.28940466 -0.46473488 0.29802656 -0.46463636 0.2807754 -0.28047353 0.33982012 -0.28118959
-		 0.34867147 -0.28016108 0.33108148 -0.28013811 0.32236955 -0.28036484 0.31361827 -0.28086782
-		 0.30473393 -0.36551967 0.31039736 -0.37013239 0.32701334 -0.37030259 0.31868228 -0.36994374
-		 0.33530626 -0.36977339 0.34363708 -0.36966267 0.35211071 -0.46259955 0.32090023 -0.46270031
-		 0.31253442 -0.4624975 0.32926646 -0.4602043 0.28942844 -0.46025509 0.29816246 -0.46015266
-		 0.28069487 -0.27588964 0.34001079 -0.27600247 0.34900406 -0.27584404 0.33116719 -0.27581879
-		 0.32236305 -0.27577305 0.31351927 -0.27566016 0.30452609 -0.37041333 0.31020889 -0.37420037
-		 0.32712361 -0.3746253 0.31888637 -0.3740122 0.33532998 -0.37409535 0.34356806 -0.37455642
-		 0.3519226 -0.46671507 0.32095149 -0.4669933 0.31268886 -0.46679035 0.32921365 -0.45590833
-		 0.28945258 -0.45577225 0.29808277 -0.45567247 0.28083017 -0.2712979 0.33991179 -0.27079484
-		 0.34879652 -0.27152473 0.33116075 -0.27150148 0.32244846 -0.27118924 0.31370994 -0.270473
-		 0.30485877 -0.37531319 0.31053039 -0.37827134 0.32732293 -0.37893566 0.31936619 -0.37808385
-		 0.33526978 -0.37840471 0.34322974 -0.3793903 0.351235 -0.47083309 0.32100353;
-	setAttr ".uvtk[250:499]" -0.47127345 0.31304821 -0.47107223 0.32895806 -0.45160934
-		 0.28947553 -0.45129874 0.29778957 -0.45120734 0.28117642 -0.26671141 0.33951989 -0.26562518
-		 0.34804621 -0.26720023 0.3310599 -0.26718304 0.32262328 -0.26662633 0.31418636 -0.26536331
-		 0.30571958 -0.38016459 0.31136164 -0.38234845 0.32761464 -0.38322124 0.32012388 -0.38216248
-		 0.33512792 -0.38268951 0.34262714 -0.38411316 0.35006723 -0.47495648 0.32105687 -0.47552982
-		 0.31360677 -0.47533181 0.32850841 -0.44730601 0.28949675 -0.4468461 0.29728985 -0.44676834
-		 0.28172466 -0.26214388 0.33883277 -0.26055241 0.34676173 -0.2628665 0.3308613 -0.26285931
-		 0.32288465 -0.26209649 0.31494233 -0.26038364 0.30708703 -0.38491154 0.3126938 -0.38643524
-		 0.32800207 -0.38746852 0.32115921 -0.38625285 0.33490798 -0.38693938 0.34176716 -0.38867912
-		 0.34844789 -0.47908619 0.32111219 -0.47975239 0.3143523 -0.4795613 0.32787946 -0.44299623
-		 0.28951451 -0.44242588 0.2965973 -0.44236258 0.2824603 -0.25760952 0.33784923 -0.25563502
-		 0.34496179 -0.25851992 0.33056101 -0.25852576 0.32322928 -0.25761071 0.31597003 -0.25558335
-		 0.308929 -0.38949981 0.31450793 -0.39053652 0.32849035 -0.39166385 0.32247135 -0.39035988
-		 0.33461425 -0.39114502 0.34066054 -0.39304748 0.34641644 -0.48322406 0.32116887 -0.48393437
-		 0.31526944 -0.48375449 0.32709101 -0.4386802 0.28952339 -0.43804708 0.29573643 -0.43799213
-		 0.28336623 -0.25312275 0.33657119 -0.25092933 0.34267798 -0.25415507 0.33015457 -0.25417611
-		 0.32365254 -0.2531786 0.31725845 -0.25100374 0.31120321 -0.39387664 0.31677255 -0.39465752
-		 0.32908401 -0.39579284 0.32405481 -0.39449105 0.33425328 -0.39529893 0.33932289 -0.39718667
-		 0.34402344 -0.48736522 0.32122466 -0.48807392 0.31634125 -0.4878464 0.32610187 -0.48598185
-		 0.33270386 -0.48965457 0.3306624 -0.48964146 0.33750686 -0.49264947 0.33456102 -0.49438956
-		 0.34116188 -0.49658021 0.3375347 -0.42674205 0.31022355 -0.43171445 0.30649486 -0.42864415
-		 0.30337387 -0.42451814 0.30643019 -0.43560645 0.30156422 -0.4318243 0.29935211 -0.43378142
-		 0.29462147 -0.43434456 0.28952256 -0.43365195 0.2844331 -0.24869835 0.33500335 -0.24648806
-		 0.33995685 -0.24976626 0.32963684 -0.24980253 0.32414749 -0.24880764 0.31879047 -0.24667713
-		 0.3138546 -0.39799434 0.3194426 -0.39880428 0.32978711 -0.39984211 0.32589635 -0.39865497
-		 0.33383581 -0.39939713 0.33777878 -0.40107703 0.34133407 -0.49153253 0.32132801 -0.49217853
-		 0.31757376 -0.49190226 0.32509479 -0.49329534 0.32860002 -0.49561396 0.33158061 -0.49867931
-		 0.33381131 -0.42559513 0.30023187 -0.42236969 0.30253929 -0.42805478 0.29714829 -0.42955619
-		 0.29351017 -0.42998692 0.28958455 -0.42934835 0.28567669 -0.24435228 0.33315983 -0.24235579
-		 0.33686522 -0.24534771 0.32900348 -0.24539596 0.32470372 -0.24450144 0.32054052 -0.24262235
-		 0.31681374 -0.40181208 0.32245418 -0.40298167 0.33059916 -0.40379855 0.32796475 -0.40286142
-		 0.33337781 -0.4034414 0.33606765 -0.40471858 0.33843145 -0.49572119 0.32152626 -0.49623618
-		 0.31898138 -0.49595377 0.32410571 -0.49690953 0.32650521 -0.49851218 0.32852694 -0.5006355
-		 0.32999417 -0.42260215 0.29701924 -0.42036185 0.29853773 -0.42430434 0.2949248 -0.42533505
-		 0.29243383 -0.4256106 0.28975049 -0.42510092 0.28710309 -0.240098 0.33107242 -0.23856065
-		 0.33349845 -0.24089345 0.32825539 -0.2409454 0.32530388 -0.24025688 0.32246575 -0.23883745
-		 0.31999227 -0.40530545 0.32571694 -0.40719318 0.33150479 -0.40765688 0.33019373 -0.40712067
-		 0.33290443 -0.40744409 0.33425567 -0.40814248 0.33542439 -0.49992374 0.32183573 -0.50022161
-		 0.32055387 -0.50002575 0.32315037 -0.50051296 0.32437477 -0.50134116 0.32539585 -0.50243652
-		 0.32611427 -0.41968426 0.29371771 -0.41852674 0.29445648 -0.42056656 0.29266199 -0.42109486
-		 0.29139152 -0.42122111 0.29002437 -0.42092884 0.28868809 -0.23594394 0.32881239 -0.23509657
-		 0.32999101 -0.23640051 0.32740876 -0.23643935 0.3259218 -0.23605943 0.32449695 -0.23528659
-		 0.32327631 -0.40848365 0.32910451 -0.32864428 0.32986829 -0.42103627 0.32104746 -0.50357008
-		 0.29002658 -0.31978521 0.32701048 -0.41143188 0.33245143 -0.50412548 0.3222203 -0.41682792
-		 0.29036185 -0.23187739 0.32651994 -0.031512059 0.49548247 -0.032228567 0.50217062
-		 -0.20438078 0.50266379 -0.205125 0.49592742 -0.0063482802 0.37216371 0.0029888283
-		 0.37215847 0.0030261409 0.43814802 -0.0063109081 0.43815345 -0.025638014 0.50109053
-		 -0.025081277 0.52514225 -0.031782664 0.52159393 -0.031718709 0.52850044 -0.20476815
-		 0.52863204 -0.20473093 0.52172649 -0.025148839 0.60368842 -0.031807996 0.60216296
-		 -0.032994486 0.46595258 -0.026393324 0.46502805 -0.026255012 0.48562422 -0.032917477
-		 0.48564079 -0.031241752 0.60897148 -0.20475698 0.60923237 -0.20423517 0.60243446
-		 -0.21088514 0.60399771 -0.21142441 0.52529836 -0.20976257 0.46537572 -0.20312914
-		 0.46630889 -0.20317224 0.48596033 -0.20983469 0.48596504 0.24159348 0.37202394 0.25093043
-		 0.37201881 0.25096756 0.43800831 0.24163082 0.43801343 -0.21097499 0.50162065 0.10639691
-		 0.34177658 0.10615378 0.36578155 -0.0021277051 0.365338 -0.0019028466 0.31043777
-		 0.023087176 0.31024495 0.24750349 0.30971852 0.24776217 0.36487022 0.13898486 0.36538038
-		 0.13872564 0.34125671 0.22183028 0.30954483 -0.12114861 0.4435454 -0.12791738 0.44388622
-		 -0.13054618 0.36559623 -0.1247805 0.36348304 -0.13481113 0.44417596 -0.1363149 0.3670426
-		 -0.14179114 0.44435257 -0.1420781 0.36784595 -0.14881951 0.44437701 -0.14782587 0.36802411
-		 -0.1558589 0.44423336 -0.15354967 0.36758757 -0.16287395 0.44392592 -0.15924144 0.36653948
-		 -0.16983032 0.44347918 -0.16489318 0.36488011 -0.17669705 0.44293892 -0.17050168
-		 0.36260787 -0.18344596 0.44237655 -0.1760723 0.3597199 -0.032494165 0.44424093 -0.039106213
-		 0.44449824 -0.042316221 0.36435577 -0.036541164 0.3615683 -0.045882367 0.44480383
-		 -0.048097156 0.36644143 -0.052783336 0.44505835 -0.053877857 0.36785865 -0.059770189
-		 0.44519794 -0.059649371 0.36863261;
-	setAttr ".uvtk[500:749]" -0.06680461 0.44518518 -0.065402471 0.36878031 -0.073849343
-		 0.44500393 -0.071128391 0.36831242 -0.080868743 0.44465876 -0.076818548 0.36723298
-		 -0.087828584 0.44417369 -0.082465671 0.36554176 -0.094697841 0.44359553 -0.088065572
-		 0.36323652 -0.10144912 0.44299567 -0.09362442 0.36031482 -0.11454351 0.44325417 -0.11902424
-		 0.36066845 -0.14739674 0.34731922 -0.064863704 0.34806153 -0.25670031 0.23508149
-		 -0.2566871 0.22709551 -0.093581326 0.22698721 -0.093594618 0.23497301 -0.25666359
-		 0.21910945 -0.093557902 0.21900091 -0.25663272 0.21112362 -0.093527026 0.21101519
-		 -0.25659803 0.20313743 -0.093492217 0.20302889 -0.25656304 0.19515148 -0.093457229
-		 0.19504294 -0.25653219 0.18716541 -0.093426295 0.18705693 -0.25650862 0.17917934
-		 -0.093402989 0.17907092 -0.25649559 0.17119357 -0.093389995 0.17108485 -0.25649449
-		 0.16320744 -0.093388624 0.16309878 0.081567697 0.1627492 0.08158081 0.17073646 -0.081550144
-		 0.17087302 -0.081563316 0.16288587 0.081605963 0.17872384 -0.08152505 0.17886028
-		 0.081641518 0.18671104 -0.081489526 0.18684754 0.081684284 0.19469807 -0.081446551
-		 0.1948348 0.081731103 0.20268515 -0.081399702 0.20282212 0.081778072 0.21067235 -0.081352912
-		 0.2108092 0.081821077 0.21865967 -0.081309877 0.21879616 0.081856482 0.22664711 -0.081274472
-		 0.22678348 0.081881605 0.23463434 -0.081249259 0.23477083 0.081894718 0.24262151
-		 -0.081236266 0.24275824 -0.25670144 0.24306765 -0.093595512 0.24295929 -0.089732118
-		 0.25840098 -0.083597146 0.2580325 -0.080514722 0.32900169 -0.085724242 0.33096948
-		 -0.077348433 0.25770754 -0.075296514 0.32763854 -0.071020298 0.25748545 -0.070077829
-		 0.32685831 -0.064647429 0.25740069 -0.064867459 0.32664528 -0.058262583 0.25746781
-		 -0.059672825 0.32698992 -0.051898684 0.25768429 -0.054502424 0.32788935 -0.045586549
-		 0.25802737 -0.049362384 0.32934347 -0.039355092 0.25845617 -0.044256859 0.33135453
-		 -0.033230104 0.2589063 -0.039180003 0.33392432 -0.17859632 0.25856066 -0.17262965
-		 0.25823551 -0.16859841 0.33055851 -0.17377368 0.33315668 -0.16651529 0.25786453 -0.16340753
-		 0.32859477 -0.16028774 0.25753802 -0.15820721 0.32723346 -0.15398124 0.25731337 -0.15300655
-		 0.32645348 -0.1476295 0.25722563 -0.14781374 0.32623819 -0.14126617 0.25728947 -0.14263654
-		 0.32657942 -0.13492343 0.25750154 -0.137483 0.3274729 -0.12863222 0.25784069 -0.1323595
-		 0.32891974 -0.12242153 0.25826448 -0.12726992 0.33092132 -0.11631685 0.25871021 -0.12220859
-		 0.33347991 -0.095718823 0.25872439 -0.090918429 0.33357385 -0.065071069 0.34542361
-		 -0.14800721 0.34495381 -0.20169976 0.73551941 -0.20040527 0.73507744 -0.19623509
-		 0.74313045 -0.19736356 0.7439633 -0.10797559 0.65176088 -0.10737573 0.6502046 -0.101626
-		 0.65239543 -0.102034 0.65367311 -0.20084834 0.73376656 -0.20216763 0.73423076 -0.2038855
-		 0.72484398 -0.20248273 0.72482783 -0.19652724 0.74505198 -0.19541425 0.74424601 -0.18900371
-		 0.75065285 -0.18983012 0.75179011 -0.10244941 0.6406557 -0.10139801 0.63933003 -0.096527569
-		 0.64309812 -0.097295783 0.64419883 -0.18869674 0.75257117 -0.18787971 0.75146383
-		 -0.1798037 0.75559092 -0.18024042 0.75692886 -0.093754597 0.63166022 -0.092335321
-		 0.6307137 -0.088840611 0.63578749 -0.089911409 0.63660145 -0.17891911 0.75732368
-		 -0.17848271 0.75601804 -0.16951817 0.75745797 -0.16951904 0.75886863 -0.082661383
-		 0.62574762 -0.081013702 0.6252836 -0.079256766 0.63118964 -0.080529056 0.63163537
-		 -0.16813892 0.75883305 -0.16812876 0.75745904 -0.15915301 0.75607187 -0.15871978
-		 0.75741172 -0.070258878 0.62353641 -0.06854593 0.62360173 -0.068702392 0.62976116
-		 -0.070051931 0.6297943 -0.15741643 0.75695878 -0.15783051 0.75564736 -0.14972281
-		 0.75156999 -0.14889818 0.75271159 -0.057770517 0.6252476 -0.056160327 0.62583476
-		 -0.058212575 0.63164246 -0.059508853 0.63126403 -0.14779872 0.75188047 -0.14859644
-		 0.75076109 -0.14213586 0.74439025 -0.14100465 0.7452262 -0.046413474 0.63071281 -0.045064352
-		 0.63176578 -0.048810653 0.6366607 -0.049924247 0.63589907 -0.13662052 0.73391426
-		 -0.13707355 0.73522758 -0.14021352 0.74410033 -0.14131135 0.74327546 -0.13575256
-		 0.73569745 -0.037309848 0.63937217 -0.036350399 0.64077562 -0.041406028 0.64431322
-		 -0.042230599 0.64324921 -0.13532871 0.73438931 -0.13487297 0.72500485 -0.13344023
-		 0.7250433 -0.031282611 0.65028948 -0.030777909 0.65189075 -0.036655068 0.65383768
-		 -0.037119828 0.65257829 -0.13333297 0.72364998 -0.13473925 0.72362715 -0.13645208
-		 0.65151078 -0.13506785 0.65143591 -0.028597653 0.66237205 -0.028472513 0.66406637
-		 -0.034771681 0.66435653 -0.034908265 0.66300017 -0.13544127 0.65015399 -0.13693371
-		 0.65013242 -0.14026693 0.64338452 -0.13959685 0.64159787 -0.03076569 0.73617357 -0.031369902
-		 0.73790228 -0.037269376 0.7362029 -0.03695064 0.73493391 -0.14042127 0.64049798 -0.14114767
-		 0.64169043 -0.14747041 0.63524199 -0.14704856 0.63368374 -0.036176354 0.747899 -0.037238978
-		 0.7492584 -0.042164557 0.74560553 -0.041430406 0.74448258 -0.14817235 0.63289094
-		 -0.14864442 0.63417542 -0.15679392 0.62991983 -0.15657815 0.62846398 -0.044794582
-		 0.75707757 -0.046203457 0.75804478 -0.049743615 0.75301081 -0.048689924 0.75217795
-		 -0.1578916 0.62805736 -0.15812415 0.6293956 -0.16724852 0.62784785 -0.16724274 0.62644303
-		 -0.055802401 0.76311922 -0.057440098 0.76360106 -0.059242722 0.75771129 -0.057981636
-		 0.75724751 -0.16861701 0.62646121 -0.16863245 0.62783569 -0.17777923 0.62917572 -0.1780017
-		 0.62780279 -0.068133198 0.76545477 -0.069838874 0.76540798 -0.069731347 0.75924879
-		 -0.068388246 0.75919855 -0.17929968 0.62825012 -0.17911565 0.62967491 -0.18732563
-		 0.63373703 -0.18779752 0.63241845 -0.080585115 0.76387316 -0.082193755 0.76330054
-		 -0.080181532 0.75747746 -0.078890823 0.75784785 -0.18888953 0.63324732 -0.188512
-		 0.63477898 -0.19492745 0.64105755 -0.19566861 0.63983333 -0.091937013 0.75851232
-		 -0.093290336 0.75746751 -0.089568742 0.75256443 -0.088457413 0.75331545 -0.19582796
-		 0.64272833 -0.1992718 0.64935917 -0.19643793 0.64096415 -0.20080772 0.64934027;
-	setAttr ".uvtk[750:999]" -0.10107141 0.74986565 -0.10204097 0.74843627 -0.096965037
-		 0.74498808 -0.09614154 0.74604422 -0.20114973 0.65063047 -0.19977033 0.65072072 -0.2026028
-		 0.72345656 -0.20401323 0.72345704 -0.10713636 0.73855299 -0.10764828 0.73676974 -0.10152899
-		 0.73548752 -0.10114532 0.7367298 -0.11029764 0.66389465 -0.11006983 0.66222131 -0.10383844
-		 0.66281801 -0.10393479 0.66417807 -0.10077035 0.65412652 -0.10243516 0.66284758 -0.10033276
-		 0.65284735 -0.096220277 0.64499885 -0.095418401 0.64391071 -0.089127906 0.63769078
-		 -0.088029273 0.63690048 -0.080119185 0.63291395 -0.078827225 0.63249844 -0.070057087
-		 0.63113773 -0.068697743 0.63113767 -0.05992689 0.63253862 -0.058633026 0.63295549
-		 -0.050716575 0.63698453 -0.049612962 0.63777709 -0.043313287 0.64404249 -0.042504571
-		 0.64513415 -0.038382612 0.65301937 -0.037938647 0.65430474 -0.036279798 0.66302556
-		 -0.036152303 0.66437191 -0.038300507 0.7348538 -0.038770162 0.73619902 -0.042048417
-		 0.74276245 -0.042905711 0.744416 -0.049080186 0.7506848 -0.050224241 0.75172716 -0.058181789
-		 0.75585783 -0.059480034 0.75637221 -0.068394832 0.75785851 -0.069747262 0.75787318
-		 -0.078684084 0.75653803 -0.079991959 0.75605196 -0.088015981 0.75205606 -0.089179225
-		 0.75103843 -0.095450081 0.74487275 -0.096335344 0.7432391 -0.09968739 0.73673362
-		 -0.10017633 0.73540241 -0.10255881 0.66418749 -0.207138 0.64939767 -0.20650816 0.64763772
-		 -0.21012259 0.72367102 -0.21001142 0.72540021 -0.2078841 0.7360689 -0.20738012 0.73770142
-		 -0.20229036 0.74736482 -0.20132074 0.74879307 -0.1934945 0.75651848 -0.19212693 0.75759077
-		 -0.1822685 0.7625562 -0.18063247 0.76315755 -0.16970178 0.76484489 -0.16795942 0.76491088
-		 -0.15704483 0.76315337 -0.15536737 0.76268202 -0.14553332 0.75765538 -0.14408594
-		 0.75669241 -0.1362966 0.74890989 -0.13522232 0.74755925 -0.13018298 0.73785847 -0.12956777
-		 0.73627466 -0.12740362 0.7256617 -0.12716872 0.72396123 -0.12911326 0.65027505 -0.12960505
-		 0.64845145 -0.13461575 0.63832641 -0.1355806 0.63685298 -0.14335865 0.62898266 -0.14472029
-		 0.62789363 -0.15453321 0.6228444 -0.1561614 0.62223178 -0.16703841 0.62046528 -0.16877407
-		 0.62038481 -0.17965764 0.62205803 -0.1813322 0.62251842 -0.19115517 0.62747782 -0.19260395
-		 0.62843621 -0.20039526 0.63621545 -0.20149752 0.63758039 -0.091826506 0.11926045
-		 -0.09320534 0.11926676 -0.093583293 0.019629935 -0.09228427 0.019269863 -0.094588704
-		 0.11927314 -0.094898172 0.019878307 -0.095975123 0.11927857 -0.096222065 0.020023325
-		 -0.097363375 0.11928244 -0.097549491 0.020071605 -0.098752342 0.11928441 -0.098876499
-		 0.020025352 -0.10014044 0.11928441 -0.10019895 0.019883135 -0.10152676 0.1192828
-		 -0.10151174 0.019639352 -0.10291006 0.11928047 -0.10280817 0.019286135 -0.10428905
-		 0.11927827 -0.10407933 0.018815735 -0.073146991 0.11866499 -0.074521057 0.11866452
-		 -0.074634992 0.018568436 -0.073358618 0.018090704 -0.075901322 0.11866607 -0.075936638
-		 0.018924335 -0.077286117 0.11866768 -0.077253781 0.019168476 -0.078673981 0.11866821
-		 -0.078579448 0.019309143 -0.080063723 0.11866732 -0.079908453 0.019352833 -0.081453972
-		 0.1186644 -0.081236683 0.019302169 -0.082843654 0.11865981 -0.082559966 0.019155065
-		 -0.084231488 0.11865355 -0.083873354 0.018906513 -0.085616209 0.11864622 -0.085169978
-		 0.018548409 -0.086996354 0.11863919 -0.086440809 0.018073002 -0.09045393 0.11925615
-		 -0.091010936 0.018788317 -0.097554825 0.015890757 -0.079899453 0.015167693 -0.31623295
-		 0.45746368 -0.32952735 0.45646358 -0.32594997 0.37108147 -0.31341222 0.37347668 -0.31481823
-		 0.36043105 -0.24020189 0.35998043 -0.2416397 0.37264994 -0.22182092 0.52739418 -0.22181138
-		 0.53672194 -0.32940713 0.53683048 -0.32941666 0.52750224 -0.22667849 0.45841163 -0.23981541
-		 0.45928568 -0.22892523 0.3705442 -0.22188318 0.46529168 -0.22187379 0.47461957 -0.32946971
-		 0.47472829 -0.32947895 0.46540016 -0.45322013 0.48383746 -0.50296283 0.48378673 -0.50287366
-		 0.39613503 -0.45313099 0.39618525 -0.43710008 0.39735451 -0.38575867 0.39725137 -0.3855764
-		 0.48771963 -0.43691772 0.48782334 -0.40610513 0.28466639 -0.40577829 0.28328368 -0.40142071
-		 0.28375503 -0.40200585 0.28650782 -0.40585649 0.28185228 -0.4015516 0.28091338 -0.40633485
-		 0.28051272 -0.40239528 0.27822158 -0.40718356 0.27940097 -0.40394267 0.27592668 -0.42556894
-		 0.34997061 -0.42582369 0.35120592 -0.42987433 0.35100248 -0.42943391 0.34855565 -0.42569181
-		 0.35246542 -0.42959002 0.35347375 -0.42519027 0.35363099 -0.42861196 0.35575923 -0.42436513
-		 0.35459432 -0.42701852 0.35767129 -0.42328939 0.35526279 -0.42493591 0.35904661 -0.50181198
-		 0.26384118 -0.50062835 0.26311359 -0.49772593 0.26652211 -0.50002277 0.26801145 -0.49971846
-		 0.26205674 -0.4959636 0.26442778 -0.49916336 0.26077315 -0.49487534 0.26191327 -0.49901429
-		 0.25938252 -0.49454811 0.25918502 -0.49929038 0.25801367 -0.49501517 0.2564708 -0.31396234
-		 0.28227267 -0.31321827 0.28108367 -0.30913296 0.28303406 -0.31049815 0.28544268 -0.31285682
-		 0.27969834 -0.30847925 0.2802752 -0.31290221 0.27825508 -0.30854464 0.27741024 -0.31335258
-		 0.27689478 -0.30933124 0.27467927 -0.31418136 0.2757552 -0.31083632 0.27233195 -0.40681601
-		 0.28586373 -0.40330538 0.28892949 -0.39711693 0.28421101 -0.39786431 0.28824595 -0.39728156
-		 0.28007039 -0.39835456 0.27609405 -0.40037972 0.27257955 -0.43391144 0.35089853 -0.43336636
-		 0.34728786 -0.43347019 0.3545135 -0.43204537 0.35785136 -0.42974272 0.36066702 -0.42674252
-		 0.36275855 -0.49474767 0.26985037 -0.49806753 0.2721203 -0.49219641 0.26676172 -0.49060968
-		 0.26308814 -0.49010035 0.25910538 -0.49066868 0.25510418 -0.30500236 0.28488156 -0.30680731
-		 0.28850898 -0.30415511 0.28083512 -0.30422407 0.27666101 -0.30521193 0.27263123 -0.30716932
-		 0.26904404 -0.3995721 0.29188737 -0.39285684 0.2846258 -0.39366809 0.28981349 -0.39304247
-		 0.27933905 -0.39421856 0.27419856 -0.39648366 0.2694881 -0.43793052 0.35089007 -0.43734869
-		 0.34618917 -0.43735418 0.35558543 -0.43549651 0.35992596 -0.43251893 0.36359832;
-	setAttr ".uvtk[1000:1249]" -0.42868027 0.36637086 -0.49169627 0.27310276 -0.49595729
-		 0.27613381 -0.48839948 0.26906186 -0.48634031 0.26428217 -0.48567846 0.25912517 -0.48627797
-		 0.25392485 -0.30081263 0.28655836 -0.30285579 0.29136106 -0.29987442 0.28135225 -0.29993784
-		 0.2760236 -0.30100206 0.27081925 -0.3031733 0.26602149 -0.39558479 0.29462695 -0.38863042
-		 0.28498265 -0.38941541 0.29116938 -0.38882908 0.27871981 -0.38999972 0.27256703 -0.39228016
-		 0.26674455 -0.4419283 0.35093936 -0.44136298 0.34525415 -0.44127515 0.35666141 -0.43895921
-		 0.36200795 -0.43531498 0.36651087 -0.43068838 0.36989361 -0.48859897 0.27632025 -0.49374762
-		 0.28004834 -0.48456874 0.27134115 -0.48203179 0.26545858 -0.48128518 0.25919527 -0.48185465
-		 0.25291699 -0.29656139 0.28802308 -0.29864189 0.29391286 -0.29562601 0.28181085 -0.29567972
-		 0.27549848 -0.2967149 0.26927406 -0.29887554 0.26335689 -0.39134428 0.2970621 -0.38442862
-		 0.28527108 -0.38511074 0.29228887 -0.38463578 0.27820829 -0.38571268 0.27121264 -0.3878099
-		 0.26441556 -0.44590834 0.35097966 -0.44540289 0.34446755 -0.44530323 0.35750428 -0.4768959
-		 0.25926363 -0.47760978 0.26642478 -0.47739133 0.2520746 -0.29225212 0.2892513 -0.29418412
-		 0.2960977 -0.291401 0.28219935 -0.29144442 0.27508125 -0.29236549 0.26801032 -0.29431885
-		 0.26111588 -0.38687038 0.29912704 -0.38024473 0.28548393 -0.38076153 0.29315558 -0.38045666
-		 0.27779976 -0.3813718 0.27014083 -0.3831225 0.26254663 -0.44988257 0.35101137 -0.44947383
-		 0.3438386 -0.44937143 0.35819229 -0.47251478 0.25933349 -0.47314492 0.26722395 -0.47289059
-		 0.25141543 -0.28789186 0.29022607 -0.28951427 0.29786092 -0.28719202 0.28251168 -0.28722611
-		 0.27476761 -0.28796843 0.26703256 -0.28955418 0.25934297 -0.38219565 0.30076963 -0.37607253
-		 0.28561679 -0.37637711 0.29375955 -0.37628761 0.27748957 -0.3769908 0.26935369 -0.37827122
-		 0.26117012 -0.45385134 0.35103998 -0.45357344 0.34338281 -0.45347151 0.35870287 -0.46814063
-		 0.25940552 -0.46864155 0.26783293 -0.46836004 0.25095588 -0.28349015 0.2909368 -0.28467315
-		 0.29916316 -0.28299314 0.28274307 -0.28301975 0.27455255 -0.28353778 0.26634187 -0.28463596
-		 0.25807005 -0.37736133 0.30195051 -0.37190768 0.2856665 -0.37196863 0.29409292 -0.37212458
-		 0.27727374 -0.37258342 0.26885003 -0.37331182 0.26030532 -0.45781526 0.35106668 -0.45769456
-		 0.34311339 -0.45759347 0.3590233 -0.46377182 0.25947854 -0.46410945 0.26823705 -0.46380979
-		 0.25070751 -0.27905801 0.29137549 -0.27970794 0.29997283 -0.27879989 0.28289029 -0.27882192
-		 0.27443239 -0.27908716 0.26593775 -0.27962106 0.2573151 -0.37241539 0.30263931 -0.36774665
-		 0.2856302 -0.36754775 0.29415068 -0.36796403 0.27714893 -0.36816284 0.26862854 -0.36830112
-		 0.25996235 -0.46177715 0.35109279 -0.46182713 0.34303889 -0.46172628 0.3591468 -0.45940605
-		 0.25955227 -0.45955849 0.26842695 -0.45925283 0.25067765 -0.27460697 0.29153726 -0.27467042
-		 0.30026883 -0.27460796 0.28295121 -0.27462885 0.2744039 -0.27462992 0.2658183 -0.27456644
-		 0.25708658 -0.36740968 0.30281711 -0.36358616 0.28550556 -0.36312726 0.29392937 -0.36380294
-		 0.27711251 -0.36374223 0.26868618 -0.36329532 0.26014045 -0.4657394 0.35111901 -0.46596059
-		 0.34316334 -0.46585873 0.3590717 -0.45504048 0.25962594 -0.45500201 0.26839805 -0.45470122
-		 0.25086671 -0.27014962 0.29141745 -0.26961574 0.30004054 -0.27041486 0.28292271 -0.27043712
-		 0.2744647 -0.27017874 0.26597983 -0.2695289 0.25738269 -0.36239877 0.30247408 -0.35942304
-		 0.28528979 -0.35871986 0.29342571 -0.35963833 0.27716246 -0.35933375 0.26901966 -0.35834941
-		 0.2608293 -0.46970376 0.3511456 -0.47008279 0.34348533 -0.4699786 0.35880145 -0.45067221
-		 0.25969908 -0.45045254 0.2681517 -0.45016792 0.25127006 -0.26569903 0.29101345 -0.26460066
-		 0.29928571 -0.26621702 0.28280279 -0.26624379 0.2746124 -0.26574662 0.26641876 -0.26456365
-		 0.258192 -0.3574394 0.30160969 -0.35525393 0.28497931 -0.35433903 0.29263839 -0.35546619
-		 0.27729532 -0.35494933 0.26962382 -0.35351518 0.26200971 -0.47367296 0.35117385 -0.47418311
-		 0.34399864 -0.47407666 0.35834476 -0.44629949 0.25977036 -0.44592187 0.26769507 -0.4456628
-		 0.2518785 -0.26126835 0.29032287 -0.25968242 0.29801232 -0.26201078 0.28258738 -0.26204476
-		 0.27484342 -0.26134476 0.26712936 -0.2597225 0.25949427 -0.35258812 0.30023265 -0.35107508
-		 0.28457066 -0.349998 0.2915667 -0.35128197 0.27750823 -0.35059991 0.27049047 -0.34884036
-		 0.26365241 -0.477649 0.35120377 -0.4782522 0.3446928 -0.47814414 0.35771546 -0.4419198
-		 0.25983867 -0.44142208 0.26704246 -0.4411945 0.25267696 -0.25687122 0.28934512 -0.2549178
-		 0.29623967 -0.25779229 0.28227398 -0.25783584 0.27515575 -0.25698474 0.26810402 -0.2550528
-		 0.26125798 -0.34790066 0.29836422 -0.34688154 0.28405955 -0.34571105 0.29021212 -0.34708044
-		 0.27779648 -0.34629515 0.2716102 -0.34436634 0.26571715 -0.48163238 0.35123548 -0.48228297
-		 0.34555218 -0.48217633 0.35693285 -0.43753403 0.25989708 -0.43696228 0.26621825 -0.43676388
-		 0.25364816 -0.25252193 0.28808114 -0.2503612 0.29399821 -0.25355721 0.28185686 -0.25361088
-		 0.27554449 -0.25267547 0.26933211 -0.25059482 0.26344213 -0.34343064 0.29603463 -0.34266815
-		 0.28344008 -0.34149224 0.28858021 -0.34285381 0.27815333 -0.34204265 0.27296573 -0.34012583
-		 0.26815253 -0.4856191 0.3512654 -0.48627391 0.34656081 -0.48610994 0.3559576 -0.48435214
-		 0.36232349 -0.48787621 0.3603377 -0.48790219 0.36692649 -0.49078062 0.36407372 -0.49249312
-		 0.37041828 -0.49458125 0.36691457 -0.42564097 0.28107056 -0.43065092 0.27722403 -0.42749521
-		 0.27408776 -0.42333773 0.27724114 -0.43454927 0.2721687 -0.43068025 0.26996469 -0.43261477
-		 0.2651341 -0.43312839 0.25994644 -0.43236542 0.25478238 -0.24823472 0.28653595 -0.24606344
-		 0.29133376 -0.24929896 0.28133151 -0.24936229 0.27600273 -0.24842411 0.27079707 -0.24638098
-		 0.26599425 -0.33922699 0.29329148 -0.3384293 0.28270862 -0.3373563 0.28668508;
-	setAttr ".uvtk[1250:1489]" -0.33859393 0.27856806 -0.33784649 0.27453306 -0.33613864
-		 0.27089161 -0.48963121 0.35134169 -0.4902319 0.34772405 -0.49000838 0.35496566 -0.49136928
-		 0.35833189 -0.49361792 0.36118814 -0.49658123 0.36331794 -0.42436019 0.27092993 -0.42110911
-		 0.27331194 -0.42682436 0.26776814 -0.42830816 0.26405388 -0.4287006 0.26005974 -0.42800644
-		 0.25609583 -0.24402493 0.28472397 -0.24206728 0.28831097 -0.24501255 0.28069422 -0.24508157
-		 0.27652022 -0.24423432 0.27247375 -0.24242944 0.26884609 -0.33533117 0.29019991 -0.33415902
-		 0.28186569 -0.33331552 0.28455767 -0.33429015 0.27902421 -0.33370483 0.27627113 -0.33240554
-		 0.27384976 -0.49366453 0.35150918 -0.49414596 0.34905657 -0.49390283 0.35399064 -0.49483636
-		 0.3562952 -0.49639073 0.35823247 -0.49844274 0.35963258 -0.42128143 0.26769996 -0.41902241
-		 0.26926899 -0.42298749 0.26555228 -0.42400584 0.26300845 -0.42425501 0.26027891 -0.42370671
-		 0.25759447 -0.23990551 0.28267583 -0.23840052 0.28502306 -0.24069214 0.27994487 -0.24075752
-		 0.27708015 -0.24010387 0.27432093 -0.23873872 0.27191275 -0.33176786 0.28685233 -0.32985437
-		 0.28092679 -0.32937589 0.28226647 -0.32993242 0.27949569 -0.32960573 0.27811274 -0.32889476
-		 0.2769154 -0.49771151 0.35178313 -0.49799111 0.35054752 -0.49781737 0.35304794 -0.49829343
-		 0.35422406 -0.49909624 0.35520217 -0.50015461 0.35588762 -0.41827857 0.26437879 -0.41711098
-		 0.26514304 -0.41916278 0.26329616 -0.4196851 0.26199886 -0.41979769 0.26060805 -0.41948509
-		 0.25925344 -0.2358841 0.28046009 -0.23505539 0.28160009 -0.23633456 0.27910003 -0.23637989
-		 0.27765664 -0.23601845 0.27627167 -0.23527455 0.2750822 -0.3285273 0.28337821 -0.41018918
-		 0.28283283 -0.42176872 0.35146794 -0.50348175 0.25965926 -0.31728879 0.27914134 -0.32552156
-		 0.27994624 -0.50175834 0.35212967 -0.41533679 0.26100162 -0.23194802 0.27821359 0.26047087
-		 0.16974112 0.26044869 0.17786959 0.094437204 0.17779759 0.094459675 0.16966936 0.26041603
-		 0.18599781 0.09440463 0.18592599 0.26037532 0.19412598 0.094364427 0.19405434 0.26033115
-		 0.20225433 0.094319843 0.20218238 0.26028666 0.21038237 0.094275258 0.21031049 0.26024631
-		 0.21851072 0.094235174 0.21843889 0.26021349 0.226639 0.094201945 0.22656736 0.26019117
-		 0.23476702 0.094179891 0.23469537 0.26018119 0.24289545 0.094169818 0.24282381 -0.26648006
-		 0.16320178 -0.26648176 0.17119357 -0.42970252 0.17103222 -0.42970058 0.16304055 -0.26647106
-		 0.17918518 -0.42969164 0.17902395 -0.26645023 0.18717685 -0.42967081 0.1870155 -0.26642182
-		 0.19516841 -0.4296422 0.19500712 -0.26638967 0.20316014 -0.42960992 0.20299873 -0.26635715
-		 0.21115145 -0.42957786 0.21099052 -0.26632881 0.21914318 -0.4295494 0.21898195 -0.26630798
-		 0.22713479 -0.42952856 0.2269738 -0.26629734 0.23512673 -0.42951754 0.23496538 -0.26629886
-		 0.24311808 -0.42951959 0.24295732 0.26048112 0.16161308 0.094469778 0.16154113 -0.12830365
-		 0.1197951 -0.12973323 0.11980326 -0.13023993 0.016489604 -0.12889346 0.016114751
-		 -0.13116768 0.11981155 -0.13160312 0.016748467 -0.13260531 0.11981858 -0.13297558
-		 0.016900519 -0.13404471 0.11982419 -0.13435209 0.016952137 -0.13548493 0.1198277
-		 -0.13572782 0.016905645 -0.13692433 0.11982943 -0.13709936 0.016759912 -0.1383619
-		 0.11982949 -0.13846102 0.01650844 -0.13979611 0.11982854 -0.13980561 0.016143719
-		 -0.14122579 0.1198277 -0.14112431 0.015657345 -0.10805672 0.11923195 -0.10944455
-		 0.11924399 -0.11045181 0.018149415 -0.10916694 0.01765571 -0.11083855 0.11925782
-		 -0.11176328 0.018520514 -0.1122371 0.11927177 -0.11309139 0.018778721 -0.11363886
-		 0.11928464 -0.114429 0.01893262 -0.11504252 0.11929609 -0.11577087 0.018988648 -0.11644664
-		 0.11930551 -0.11711275 0.018949309 -0.1178503 0.11931325 -0.11845054 0.018812696
-		 -0.11925199 0.11931922 -0.11977928 0.018573204 -0.12065064 0.11932434 -0.12109207
-		 0.018223206 -0.12204453 0.11932947 -0.12237995 0.017754355 -0.12688035 0.11978914
-		 -0.12757352 0.015614012 -0.13436234 0.012616733 -0.11579894 0.014761606 0.2439329
-		 0.45983583 0.25098386 0.45905536 0.25077268 0.59324825 0.24379078 0.59248322 0.24471718
-		 0.4528237 -0.0028032344 0.4594757 -0.0035342854 0.45241767 -0.21767068 0.75475228
-		 -0.21763781 0.76522583 -0.24714154 0.7653181 -0.24717426 0.75484467 -0.0097852331
-		 0.45871091 -0.0029452723 0.59212321 -0.0099963229 0.59290332 -0.36989692 0.76592755
-		 -0.36994383 0.75538784 -0.34025356 0.75525594 -0.34020677 0.76579583 -0.25764772
-		 0.75487775 -0.25761479 0.765351 -0.28711829 0.76544356 -0.28715113 0.75497025 -0.2582621
-		 0.55895931 -0.24778882 0.55892634 -0.48240426 0.49455842 -0.47471824 0.49456516 -0.47495785
-		 0.76205152 -0.4826434 0.76204455 -0.32966679 0.76574886 -0.32971358 0.75520927 -0.30002338
-		 0.7550773 -0.29997656 0.76561689 -0.34112957 0.55809629 -0.33058962 0.55804944 -0.25829491
-		 0.54848588 -0.28776568 0.55905205 -0.28779855 0.54857856 -0.41482282 0.49500015 -0.4071297
-		 0.49495724 -0.40563625 0.76269436 -0.41332921 0.76273721 -0.24782157 0.54845297 -0.21831793
-		 0.54836059 -0.21828517 0.55883396 -0.33063659 0.54750973 -0.30094624 0.54737782 -0.30089936
-		 0.55791748 -0.34117636 0.54755658 -0.37081993 0.55822819 -0.37086672 0.54768848 0.24452177
-		 0.59954119 -0.0037296992 0.59913492 0.25353479 0.75530201 0.24629802 0.75451046 0.24642023
-		 0.61701977 0.25372839 0.61620986 0.24705711 0.76182574 -0.010258285 0.76145184 -0.0094465893
-		 0.75418389 -0.016754925 0.75499398 -0.016561389 0.61590195 -0.0093246382 0.6166932
-		 -0.010083584 0.60937798 0.24723172 0.609752 -0.45306754 0.49458471 -0.45330662 0.76207066
-		 -0.43499997 0.76285809 -0.43649372 0.49512085 -0.50429428 0.76202512 -0.50405496
-		 0.49453917 -0.38545862 0.49483624 -0.38396493 0.76257342;
+	setAttr ".uvtk[0:249]" -type "float2" 0.10358769 -0.10438963 -0.051469743
+		 -0.10436269 -0.05149579 -0.25503212 0.10356146 -0.2550593 -0.059005201 -0.24268956
+		 -0.30148047 -0.24205658 -0.3014892 -0.24531254 -0.059013635 -0.24594554 0.11621574
+		 -0.2570267 0.27320737 -0.25714955 0.27332684 -0.10460045 0.11633509 -0.10447767 -0.061097652
+		 -0.25001079 -0.29751804 -0.25031203 -0.29751396 -0.25348669 -0.061093599 -0.25318548
+		 -0.31890669 0.074145377 -0.31923011 0.075496614 -0.32348916 0.075023472 -0.32290938
+		 0.072333515 -0.31915766 0.076896012 -0.32336912 0.077802002 -0.31869385 0.078207195
+		 -0.32255208 0.080436289 -0.31786707 0.07929641 -0.32104537 0.0826841 -0.41126779
+		 0.065596461 -0.41152492 0.066881061 -0.41573381 0.06669414 -0.4152914 0.064150095
+		 -0.41138032 0.068188429 -0.41542384 0.069259644 -0.41085225 0.069396496 -0.41439357
+		 0.071627975 -0.40998939 0.070392489 -0.41272694 0.073604584 -0.40886807 0.071080089
+		 -0.41055515 0.075020552 -0.48815507 0.04020384 -0.4869985 0.039474577 -0.48410472
+		 0.042795658 -0.48634833 0.044286966 -0.48611519 0.038424641 -0.48239389 0.040715575
+		 -0.48558316 0.037155598 -0.48135152 0.038229316 -0.48545226 0.035785586 -0.48106024
+		 0.035541564 -0.4857392 0.034441978 -0.48155007 0.032875985 -0.30265066 0.076335609
+		 -0.3018778 0.075114608 -0.29768035 0.077145875 -0.29909986 0.079619467 -0.30149785
+		 0.07368958 -0.29699203 0.07430774 -0.3015368 0.072202981 -0.29704377 0.071356356
+		 -0.30199343 0.070799232 -0.29783943 0.068539083 -0.30284098 0.069620788 -0.29937658
+		 0.066112936 -0.31820837 0.072977006 -0.32163212 0.069969594 -0.3276957 0.07456547
+		 -0.32695365 0.070622385 -0.32754666 0.078613818 -0.32650867 0.082504451 -0.32453865
+		 0.08594662 -0.4199284 0.066610694 -0.41938427 0.062857032 -0.41944814 0.070363522
+		 -0.41794771 0.07382226 -0.41553834 0.076733112 -0.41240916 0.078887463 -0.48113695
+		 0.046037614 -0.48437807 0.048307955 -0.47866127 0.042969823 -0.47714123 0.039337903
+		 -0.47668478 0.035413295 -0.47728851 0.031483024 -0.29343593 0.079071224 -0.29531506
+		 0.082797766 -0.2925413 0.074908078 -0.29258963 0.070608258 -0.29358494 0.066451848
+		 -0.2955817 0.062746406 -0.32527366 0.067066848 -0.33185962 0.074147761 -0.3310518
+		 0.069078147 -0.33169296 0.079317033 -0.33055785 0.084345996 -0.32835624 0.088958442
+		 -0.42410323 0.066626549 -0.42352751 0.061739922 -0.42347631 0.07150054 -0.42151991
+		 0.075998187 -0.41840464 0.079795003 -0.41440076 0.082651734 -0.47809848 0.049203634
+		 -0.4822571 0.052233487 -0.47490004 0.045190811 -0.47292694 0.040464878 -0.47233346
+		 0.035383433 -0.47298166 0.030273348 -0.28912973 0.080821037 -0.29126015 0.085757017
+		 -0.28813475 0.07546401 -0.28817108 0.069975138 -0.28923902 0.064608455 -0.29144919
+		 0.059655011 -0.32916406 0.064377487 -0.33599079 0.073786795 -0.33520582 0.067740381
+		 -0.33581412 0.079910696 -0.3346872 0.085929453 -0.33247411 0.091628492 -0.42825606
+		 0.066701889 -0.42770299 0.060792804 -0.42754254 0.07264173 -0.42510432 0.078181744
+		 -0.42129174 0.082837701 -0.41646487 0.086323261 -0.47501466 0.052334696 -0.48003897
+		 0.056060523 -0.47110507 0.047390521 -0.46867475 0.041573942 -0.4680104 0.035403162
+		 -0.46864054 0.029232353 -0.28475887 0.082353354 -0.28693381 0.088408589 -0.28376147
+		 0.075959325 -0.28378236 0.069457233 -0.28481454 0.063040435 -0.28700802 0.056933641
+		 -0.33330312 0.061984479 -0.34009796 0.073493183 -0.33941135 0.066633761 -0.3399156
+		 0.080398858 -0.33888233 0.087241828 -0.33685097 0.093893468 -0.43239 0.066767693
+		 -0.43190458 0.0600003 -0.43172178 0.073542237 -0.46369073 0.03542158 -0.464313 0.04247582
+		 -0.46425894 0.028353482 -0.28032663 0.083641589 -0.282354 0.090682745 -0.27941161
+		 0.07638222 -0.27941766 0.06905055 -0.28032771 0.061762273 -0.28230238 0.054649681
+		 -0.33767167 0.059953153 -0.34418821 0.073273242 -0.34366125 0.065773904 -0.34400246
+		 0.080786526 -0.34312952 0.08827728 -0.34143925 0.095707119 -0.4365184 0.066825151
+		 -0.43613732 0.059371591 -0.43594378 0.074281216 -0.45937881 0.035441369 -0.45991108
+		 0.043211699 -0.4598377 0.027654618 -0.27584073 0.084669352 -0.27755365 0.092524707
+		 -0.27507803 0.076727152 -0.27507091 0.068750381 -0.27579358 0.060778856 -0.27738503
+		 0.052849978 -0.34223744 0.058333814 -0.34826681 0.073131382 -0.34794611 0.065171421
+		 -0.34807938 0.081078231 -0.34741494 0.089034617 -0.3461861 0.097039521 -0.44064084
+		 0.066878676 -0.44039884 0.058922887 -0.4401997 0.074836493 -0.45507488 0.035462767
+		 -0.45547327 0.043760657 -0.45538512 0.027151734 -0.2713111 0.085425496 -0.27257416
+		 0.093892217 -0.27075428 0.076988459 -0.27073705 0.068551719 -0.27122602 0.060091794
+		 -0.27231222 0.051565439 -0.3469606 0.057165802 -0.35233861 0.073071063 -0.35225525
+		 0.064832866 -0.35215029 0.081277549 -0.35172555 0.089514434 -0.35103726 0.097870648
+		 -0.44475871 0.066930652 -0.44468117 0.058668017 -0.4444797 0.075194716 -0.45077577
+		 0.035486072 -0.45100954 0.044107914 -0.45091102 0.02685681 -0.26674819 0.085901558
+		 -0.26746425 0.094752908 -0.26643574 0.077162921 -0.26641276 0.068450987 -0.2666395
+		 0.059699714 -0.26714247 0.050815284 -0.35179433 0.056478798 -0.35640705 0.073094785
+		 -0.35657725 0.064763725 -0.3562184 0.081387699 -0.35604805 0.089718521 -0.35593733
+		 0.098192155 -0.44887421 0.066981673 -0.44897497 0.058615863 -0.44877216 0.0753479
+		 -0.44647896 0.035509855 -0.44652975 0.044243813 -0.44642732 0.026776284 -0.26216429
+		 0.086092234 -0.26227713 0.095085502 -0.2621187 0.077248633 -0.26209345 0.06844449
+		 -0.26204771 0.059600711 -0.26193482 0.050607443 -0.35668799 0.056290329 -0.36047503
+		 0.073205054 -0.36089996 0.064967811 -0.36028686 0.081411421 -0.36037001 0.089649498
+		 -0.36083108 0.098004043 -0.45298973 0.067032933 -0.45326796 0.058770299 -0.45306501
+		 0.075295091 -0.44218299 0.035533994 -0.44204691 0.044164121 -0.44194713 0.026911587
+		 -0.25757256 0.08599323 -0.2570695 0.094877958 -0.25779939 0.077242196 -0.25777614
+		 0.068529904 -0.2574639 0.059791386 -0.25674766 0.050940186 -0.36158785 0.056611836
+		 -0.364546 0.073404372 -0.36521032 0.065447628 -0.36435851 0.081351221 -0.36467937
+		 0.089311182 -0.36566496 0.097316444 -0.45710775 0.067084968;
+	setAttr ".uvtk[250:499]" -0.45754811 0.059129655 -0.45734689 0.075039506 -0.437884
+		 0.035556942 -0.4375734 0.043870926 -0.437482 0.02725783 -0.25298607 0.08560133 -0.25189984
+		 0.094127655 -0.25347489 0.077141345 -0.2534577 0.068704724 -0.25290099 0.060267806
+		 -0.25163797 0.051800996 -0.36643925 0.057443082 -0.36862311 0.073696077 -0.3694959
+		 0.066205323 -0.36843714 0.081209362 -0.36896417 0.08870858 -0.37038782 0.09614867
+		 -0.46123114 0.067138314 -0.46180448 0.05968821 -0.46160647 0.074589849 -0.43358067
+		 0.035578161 -0.43312076 0.043371201 -0.433043 0.027806073 -0.24841855 0.084914207
+		 -0.2468271 0.092843175 -0.24914117 0.076942742 -0.24913399 0.068966091 -0.24837117
+		 0.061023772 -0.2466583 0.053168446 -0.3711862 0.058775246 -0.3727099 0.074083507
+		 -0.37374318 0.067240655 -0.37252751 0.08098942 -0.37321404 0.087848604 -0.37495378
+		 0.094529331 -0.46536085 0.067193627 -0.46602705 0.060433745 -0.46583596 0.0739609
+		 -0.42927089 0.035595924 -0.42870054 0.042678654 -0.42863724 0.028541714 -0.24388419
+		 0.083930671 -0.2419097 0.091043234 -0.24479459 0.076642454 -0.24480043 0.069310725
+		 -0.24388538 0.062051475 -0.24185802 0.055010408 -0.37577447 0.060589373 -0.37681118
+		 0.074571788 -0.37793851 0.068552792 -0.37663454 0.080695689 -0.37741968 0.086741984
+		 -0.37932214 0.092497885 -0.46949872 0.067250311 -0.47020903 0.061350882 -0.47002915
+		 0.07317245 -0.42495486 0.035604805 -0.42432174 0.041817784 -0.42426679 0.029447645
+		 -0.23939742 0.082652628 -0.237204 0.088759422 -0.24042973 0.07623601 -0.24045077
+		 0.069733977 -0.23945327 0.063339889 -0.23727842 0.057284653 -0.3801513 0.062853992
+		 -0.38093218 0.075165451 -0.3820675 0.070136249 -0.38076571 0.080334723 -0.38157359
+		 0.085404336 -0.38346133 0.090104878 -0.47363988 0.067306101 -0.47434857 0.062422693
+		 -0.47412106 0.072183311 -0.47225651 0.0787853 -0.47592923 0.076743841 -0.47591612
+		 0.083588302 -0.47892413 0.080642462 -0.48066422 0.087243319 -0.48285487 0.083616138
+		 -0.41301671 0.056304991 -0.4179891 0.052576274 -0.41491881 0.049455225 -0.4107928
+		 0.052511603 -0.42188111 0.047645569 -0.41809896 0.045433462 -0.42005607 0.04070282
+		 -0.42061922 0.03560397 -0.41992661 0.030514508 -0.23497303 0.081084788 -0.23276272
+		 0.086038291 -0.23604093 0.075718284 -0.2360772 0.070228934 -0.23508231 0.064871907
+		 -0.2329518 0.059936047 -0.384269 0.065524042 -0.38507894 0.075868547 -0.38611677
+		 0.071977794 -0.38492963 0.079917252 -0.38567179 0.083860219 -0.38735169 0.087415516
+		 -0.47780719 0.067409456 -0.47845319 0.063655198 -0.47817692 0.071176231 -0.47957
+		 0.074681461 -0.48188862 0.077662051 -0.48495397 0.079892755 -0.41186979 0.046313226
+		 -0.40864435 0.048620641 -0.41432944 0.04322964 -0.41583085 0.039591581 -0.41626158
+		 0.035665959 -0.41562301 0.0317581 -0.23062696 0.079241276 -0.22863047 0.082946658
+		 -0.23162237 0.075084925 -0.23167065 0.070785165 -0.23077612 0.066621959 -0.22889702
+		 0.062895179 -0.38808674 0.068535626 -0.38925633 0.076680601 -0.39007321 0.074046195
+		 -0.38913608 0.07945925 -0.38971606 0.082149088 -0.39099324 0.084512889 -0.48199585
+		 0.067607701 -0.48251083 0.065062821 -0.48222843 0.070187151 -0.48318419 0.072586656
+		 -0.48478684 0.074608386 -0.48691016 0.076075613 -0.40887681 0.043100595 -0.40663651
+		 0.044619083 -0.410579 0.041006148 -0.41160971 0.03851524 -0.41188526 0.035831898
+		 -0.41137558 0.033184499 -0.22637267 0.077153862 -0.22483531 0.07957989 -0.22716813
+		 0.074336827 -0.22722007 0.071385324 -0.22653155 0.068547189 -0.22511211 0.066073716
+		 -0.3915801 0.071798384 -0.39346784 0.077586234 -0.39393154 0.07627517 -0.39339533
+		 0.07898587 -0.39371875 0.080337107 -0.39441714 0.081505835 -0.4861984 0.067917168
+		 -0.48649627 0.066635311 -0.48630041 0.069231808 -0.48678762 0.070456207 -0.48761582
+		 0.071477294 -0.48871118 0.072195709 -0.40595892 0.039799124 -0.4048014 0.040537834
+		 -0.40684122 0.038743407 -0.40736952 0.037472934 -0.40749577 0.036105782 -0.4072035
+		 0.034769505 -0.2222186 0.074893832 -0.22137126 0.076072454 -0.22267519 0.073490202
+		 -0.22271402 0.072003245 -0.22233412 0.070578396 -0.22156128 0.069357753 -0.39475831
+		 0.075185955 -0.31491894 0.075949728 -0.40731093 0.067128897 -0.48984474 0.036107987
+		 -0.30605987 0.073091924 -0.39770654 0.078532875 -0.49040014 0.068301737 -0.40310258
+		 0.036443263 -0.21815208 0.072601378 -0.017786726 0.24156381 -0.018503234 0.248252
+		 -0.19065544 0.24874523 -0.19139966 0.24200876 0.0073770527 0.11824507 0.016714154
+		 0.11823982 0.016751466 0.18422939 0.0074144248 0.18423481 -0.01191269 0.24717191
+		 -0.011355953 0.27122363 -0.018057331 0.26767531 -0.017993376 0.27458182 -0.19104281
+		 0.27471343 -0.19100562 0.26780787 -0.011423515 0.3497698 -0.018082663 0.34824434
+		 -0.019269153 0.21203397 -0.012668 0.21110944 -0.012529687 0.23170565 -0.019192144
+		 0.23172216 -0.017516419 0.35505286 -0.19103166 0.35531375 -0.19050983 0.34851584
+		 -0.1971598 0.35007909 -0.1976991 0.27137974 -0.19603726 0.21145712 -0.1894038 0.21239029
+		 -0.1894469 0.23204176 -0.19610938 0.23204647 0.25531882 0.11810529 0.26465577 0.11810017
+		 0.2646929 0.18408974 0.25535616 0.1840948 -0.19724968 0.24770203 0.12012225 0.087858021
+		 0.11987913 0.1118629 0.011597631 0.11141944 0.011822489 0.05651921 0.036812514 0.056326389
+		 0.26122883 0.055799931 0.26148751 0.11095166 0.15271017 0.11146182 0.15245095 0.08733815
+		 0.23555562 0.055626243 -0.10742328 0.18962678 -0.11419204 0.1899676 -0.11682085 0.11167759
+		 -0.11105516 0.10956448 -0.12108579 0.1902574 -0.12258955 0.11312395 -0.12806579 0.19043395
+		 -0.12835279 0.1139273 -0.1350942 0.19045839 -0.13410053 0.11410546 -0.14213356 0.1903148
+		 -0.13982436 0.11366892 -0.14914861 0.1900073 -0.14551613 0.11262083 -0.15610501 0.18956062
+		 -0.15116784 0.11096156 -0.16297171 0.18902031 -0.15677634 0.10868931 -0.16972062
+		 0.18845794 -0.16234699 0.10580134 -0.018768832 0.19032231 -0.02538088 0.19057962
+		 -0.028590888 0.11043721 -0.022815824 0.10764974 -0.032157026 0.19088522 -0.034371823
+		 0.11252278 -0.039058 0.19113973 -0.04015252 0.11394 -0.046044856 0.19127938 -0.045924038
+		 0.11471397;
+	setAttr ".uvtk[500:749]" -0.053079277 0.19126657 -0.051677138 0.11486167 -0.06012401
+		 0.19108531 -0.057403058 0.11439377 -0.06714341 0.19074014 -0.063093215 0.11331433
+		 -0.074103251 0.19025508 -0.068740338 0.11162311 -0.080972508 0.18967691 -0.074340239
+		 0.10931796 -0.087723807 0.18907705 -0.079899088 0.10639626 -0.10081818 0.18933555
+		 -0.10529891 0.10674989 -0.13367143 0.093400657 -0.051138371 0.094142973 -0.24297498
+		 -0.018837154 -0.24296178 -0.026823074 -0.079855993 -0.026931435 -0.079869285 -0.018945634
+		 -0.24293827 -0.034809202 -0.079832569 -0.034917682 -0.24290739 -0.042794973 -0.079801694
+		 -0.042903453 -0.2428727 -0.050781213 -0.079766884 -0.050889693 -0.24283771 -0.058767103
+		 -0.079731897 -0.058875702 -0.24280687 -0.066753231 -0.079700962 -0.066861652 -0.24278329
+		 -0.0747393 -0.079677656 -0.074847721 -0.24277027 -0.082725011 -0.079664662 -0.08283373
+		 -0.24276917 -0.090711139 -0.079663292 -0.090819798 0.095293045 -0.091169439 0.095306158
+		 -0.083182119 -0.067824811 -0.083045565 -0.067837983 -0.091032706 0.095331311 -0.075194798
+		 -0.067799717 -0.075058363 0.095366865 -0.067207597 -0.067764193 -0.067071043 0.095409632
+		 -0.059220515 -0.067721218 -0.059083782 0.095456451 -0.051233493 -0.067674369 -0.051096462
+		 0.09550342 -0.043246299 -0.067627579 -0.043109447 0.095546424 -0.035258979 -0.067584544
+		 -0.035122484 0.09558183 -0.027271539 -0.067549139 -0.027135104 0.095606953 -0.019284308
+		 -0.067523926 -0.019147754 0.095620066 -0.011297077 -0.067510933 -0.011160344 -0.24297611
+		 -0.010850936 -0.079870179 -0.010959297 -0.076006785 0.0044823289 -0.069871813 0.004113853
+		 -0.066789389 0.075083137 -0.071998894 0.077050924 -0.063623101 0.0037888885 -0.061571181
+		 0.073719978 -0.057294965 0.0035668015 -0.056352496 0.072939754 -0.050922096 0.0034820437
+		 -0.051142126 0.072726727 -0.044537246 0.0035491586 -0.045947492 0.073071361 -0.038173348
+		 0.0037656426 -0.040777087 0.073970795 -0.031861208 0.004108727 -0.035637051 0.07542491
+		 -0.025629759 0.0045375228 -0.030531526 0.07743597 -0.019504771 0.0049876571 -0.02545467
+		 0.080005765 -0.16487101 0.0046420097 -0.15890434 0.0043168664 -0.1548731 0.07663995
+		 -0.16004834 0.079238117 -0.15278998 0.0039458871 -0.14968219 0.074676216 -0.14656243
+		 0.0036193728 -0.14448187 0.073314905 -0.1402559 0.0033947229 -0.13928124 0.072534919
+		 -0.13390419 0.0033069849 -0.13408843 0.072319627 -0.12754086 0.0033708215 -0.12891123
+		 0.072660863 -0.12119809 0.0035828948 -0.12375768 0.073554337 -0.11490688 0.0039220452
+		 -0.11863416 0.07500118 -0.10869619 0.0043458343 -0.11354458 0.077002764 -0.10259151
+		 0.0047915578 -0.10848325 0.079561353 -0.081993505 0.0048057437 -0.077193096 0.07965529
+		 -0.051345736 0.091505051 -0.1342819 0.091035247 -0.18797442 0.48160085 -0.18667993
+		 0.48115882 -0.18250975 0.48921183 -0.18363824 0.49004468 -0.094250232 0.39784226
+		 -0.093650401 0.39628598 -0.087900683 0.39847687 -0.088308677 0.39975449 -0.18712303
+		 0.47984794 -0.18844232 0.48031214 -0.19016019 0.47092536 -0.18875739 0.47090927 -0.18280193
+		 0.49113336 -0.18168893 0.49032739 -0.1752784 0.49673426 -0.17610481 0.49787146 -0.088724092
+		 0.38673708 -0.087672696 0.38541147 -0.082802251 0.3891795 -0.083570465 0.39028022
+		 -0.17497143 0.49865261 -0.17415437 0.49754524 -0.16607836 0.50167227 -0.16651508
+		 0.50301027 -0.080029264 0.37774166 -0.078609988 0.37679508 -0.075115278 0.38186887
+		 -0.076186076 0.38268283 -0.16519377 0.50340509 -0.1647574 0.50209939 -0.15579286
+		 0.50353932 -0.1557937 0.50495005 -0.06893605 0.371829 -0.067288369 0.37136504 -0.065531433
+		 0.37727103 -0.066803724 0.37771681 -0.15441361 0.5049144 -0.15440342 0.5035404 -0.14542767
+		 0.50215328 -0.14499447 0.50349307 -0.056533545 0.36961779 -0.05482059 0.36968312
+		 -0.054977052 0.3758426 -0.056326598 0.37587568 -0.14369109 0.50304019 -0.14410517
+		 0.50172877 -0.1359975 0.49765134 -0.13517287 0.49879298 -0.04404518 0.37132898 -0.042434983
+		 0.37191615 -0.044487238 0.3777239 -0.04578352 0.37734547 -0.13407341 0.49796188 -0.1348711
+		 0.49684244 -0.12841055 0.49047163 -0.12727931 0.49130759 -0.032688133 0.37679419
+		 -0.03133902 0.37784716 -0.03508532 0.38274208 -0.036198914 0.38198045 -0.1228952
+		 0.47999564 -0.1233482 0.48130897 -0.12648818 0.49018171 -0.12758604 0.48935685 -0.12202724
+		 0.48177883 -0.023584515 0.38545355 -0.022625059 0.386857 -0.027680695 0.3903946 -0.028505266
+		 0.3893306 -0.12160339 0.48047069 -0.12114763 0.47108623 -0.11971489 0.47112468 -0.017557278
+		 0.39637086 -0.017052576 0.39797214 -0.022929728 0.39991912 -0.023394495 0.39865968
+		 -0.11960763 0.46973136 -0.12101391 0.46970853 -0.12272676 0.39759216 -0.12134251
+		 0.39751729 -0.014872313 0.40845343 -0.014747174 0.41014776 -0.02104634 0.41043791
+		 -0.021182925 0.40908155 -0.12171593 0.39623538 -0.12320837 0.3962138 -0.12654158
+		 0.3894659 -0.12587151 0.38767925 -0.017040357 0.48225495 -0.017644569 0.48398367
+		 -0.023544043 0.48228428 -0.023225307 0.48101529 -0.12669596 0.38657936 -0.12742236
+		 0.38777182 -0.1337451 0.38132337 -0.13332322 0.37976512 -0.022451013 0.49398038 -0.023513645
+		 0.49533978 -0.028439224 0.49168691 -0.027705073 0.49056396 -0.13444701 0.37897232
+		 -0.13491908 0.3802568 -0.14306858 0.37600127 -0.14285281 0.37454537 -0.031069249
+		 0.50315893 -0.032478116 0.50412607 -0.036018282 0.49909219 -0.034964591 0.49825937
+		 -0.14416626 0.37413874 -0.14439884 0.37547699 -0.15352318 0.37392923 -0.1535174 0.37252441
+		 -0.042077057 0.50920057 -0.043714762 0.50968242 -0.045517385 0.50379264 -0.0442563
+		 0.50332892 -0.1548917 0.37254259 -0.15490714 0.37391707 -0.16405389 0.3752571 -0.16427639
+		 0.37388417 -0.054407857 0.51153612 -0.056113541 0.51148939 -0.056006014 0.5053302
+		 -0.054662906 0.5052799 -0.16557434 0.3743315 -0.16539034 0.37575635 -0.17360029 0.37981841
+		 -0.17407218 0.3784999 -0.066859782 0.50995457 -0.068468422 0.50938189 -0.066456199
+		 0.50355887 -0.06516549 0.50392926 -0.17516419 0.37932876 -0.17478666 0.38086042 -0.18120214
+		 0.38713893 -0.18194327 0.38591471 -0.07821168 0.50459373 -0.079565004 0.50354886
+		 -0.075843409 0.49864581 -0.07473208 0.49939683 -0.18210265 0.38880971 -0.18554649
+		 0.39544055 -0.18271258 0.38704553 -0.18708238 0.39542171;
+	setAttr ".uvtk[750:999]" -0.087346092 0.49594703 -0.088315651 0.49451765 -0.083239719
+		 0.49106947 -0.082416221 0.4921256 -0.18742439 0.39671186 -0.18604502 0.3968021 -0.18887749
+		 0.46953794 -0.19028792 0.46953842 -0.093411028 0.48463437 -0.093922943 0.48285112
+		 -0.087803647 0.4815689 -0.087420002 0.48281118 -0.09657231 0.40997604 -0.096344501
+		 0.40830269 -0.090113103 0.4088994 -0.090209454 0.41025946 -0.087045029 0.40020791
+		 -0.088709846 0.40892896 -0.086607441 0.39892873 -0.082494959 0.39108023 -0.081693068
+		 0.38999215 -0.075402573 0.38377216 -0.07430394 0.38298187 -0.066393852 0.37899539
+		 -0.065101892 0.37857983 -0.056331754 0.37721911 -0.054972403 0.37721905 -0.046201557
+		 0.37862006 -0.044907689 0.37903687 -0.036991239 0.38306591 -0.035887629 0.38385847
+		 -0.029587954 0.39012393 -0.028779238 0.39121553 -0.024657279 0.39910075 -0.024213314
+		 0.40038612 -0.022554457 0.40910694 -0.022426963 0.41045329 -0.024575174 0.48093519
+		 -0.025044829 0.4822804 -0.028323084 0.48884383 -0.029180378 0.49049738 -0.035354853
+		 0.49676621 -0.036498904 0.49780852 -0.044456452 0.50193918 -0.045754701 0.50245357
+		 -0.054669492 0.50393987 -0.056021929 0.50395453 -0.064958751 0.50261939 -0.066266626
+		 0.50213337 -0.074290648 0.49813741 -0.075453892 0.49711984 -0.081724748 0.49095413
+		 -0.082610026 0.48932049 -0.085962072 0.482815 -0.086451009 0.48148379 -0.088833496
+		 0.41026887 -0.19341269 0.39547905 -0.19278285 0.39371911 -0.19639727 0.4697524 -0.19628611
+		 0.47148159 -0.19415876 0.48215029 -0.19365481 0.4837828 -0.18856505 0.4934462 -0.1875954
+		 0.49487445 -0.17976919 0.50259984 -0.17840162 0.50367212 -0.16854319 0.50863755 -0.16690716
+		 0.50923896 -0.15597644 0.51092625 -0.15423408 0.51099229 -0.14331952 0.50923479 -0.14164206
+		 0.50876343 -0.13180801 0.50373673 -0.13036063 0.50277376 -0.12257125 0.49499133 -0.12149698
+		 0.49364063 -0.11645765 0.48393986 -0.11584243 0.48235604 -0.11367828 0.47174308 -0.11344337
+		 0.47004262 -0.11538792 0.39635643 -0.11587971 0.39453283 -0.12089041 0.38440779 -0.12185528
+		 0.38293436 -0.12963334 0.37506405 -0.13099495 0.37397507 -0.1408079 0.36892578 -0.14243606
+		 0.36831322 -0.15331307 0.36654672 -0.15504876 0.36646619 -0.16593233 0.36813942 -0.16760686
+		 0.3685998 -0.17742983 0.37355921 -0.17887864 0.37451759 -0.18666992 0.38229683 -0.18777218
+		 0.38366184 -0.078101173 -0.1346582 -0.079480007 -0.13465188 -0.07985796 -0.23428865
+		 -0.078558937 -0.23464872 -0.080863371 -0.13464551 -0.081172839 -0.23404028 -0.082249805
+		 -0.13464008 -0.082496747 -0.23389526 -0.083638057 -0.13463621 -0.083824173 -0.23384698
+		 -0.085027024 -0.13463424 -0.085151181 -0.23389323 -0.086415127 -0.13463424 -0.086473629
+		 -0.23403545 -0.087801442 -0.13463585 -0.087786421 -0.23427923 -0.089184701 -0.13463818
+		 -0.089082837 -0.23463245 -0.090563715 -0.13464038 -0.090353996 -0.23510285 -0.059421659
+		 -0.13525365 -0.060795724 -0.13525413 -0.060909659 -0.23535015 -0.059633285 -0.23582788
+		 -0.062175989 -0.13525258 -0.062211305 -0.23499425 -0.063560784 -0.13525097 -0.063528448
+		 -0.23475011 -0.064948648 -0.13525043 -0.064854115 -0.23460944 -0.06633839 -0.13525133
+		 -0.06618312 -0.23456575 -0.067728639 -0.13525425 -0.06751135 -0.23461641 -0.069118321
+		 -0.13525884 -0.068834633 -0.23476352 -0.070506155 -0.1352651 -0.070148021 -0.23501207
+		 -0.071890861 -0.13527243 -0.071444631 -0.23537017 -0.073271006 -0.13527946 -0.072715461
+		 -0.23584558 -0.076728597 -0.13466249 -0.077285603 -0.23513027 -0.083829507 -0.23802784
+		 -0.06617412 -0.2387509 -0.30250761 0.20354506 -0.31580201 0.20254496 -0.31222463
+		 0.11716282 -0.29968688 0.11955804 -0.30109289 0.10651249 -0.22647657 0.10606188 -0.22791438
+		 0.11873138 -0.20809558 0.27347556 -0.20808604 0.28280333 -0.31568179 0.28291187 -0.31569132
+		 0.27358362 -0.21295318 0.20449302 -0.22609009 0.20536706 -0.21519992 0.11662555 -0.20815787
+		 0.21137308 -0.20814845 0.22070095 -0.31574437 0.22080967 -0.31575361 0.21148156 -0.43949479
+		 0.22991882 -0.48923749 0.2298681 -0.48914832 0.14221638 -0.43940565 0.14226669 -0.42337474
+		 0.14343596 -0.37203333 0.14333272 -0.37185106 0.23380105 -0.42319238 0.2339047 -0.39237979
+		 0.030747801 -0.39205295 0.029365093 -0.38769537 0.029836446 -0.38828051 0.032589227
+		 -0.39213115 0.027933687 -0.38782626 0.026994795 -0.39260951 0.026594132 -0.38866994
+		 0.024302989 -0.39345822 0.025482386 -0.39021733 0.022008091 -0.4118436 0.096052051
+		 -0.41209835 0.097287357 -0.41614899 0.097083926 -0.41570857 0.094637096 -0.41196647
+		 0.098546863 -0.41586468 0.099555194 -0.41146493 0.099712431 -0.41488662 0.10184067
+		 -0.41063979 0.10067576 -0.41329318 0.10375273 -0.40956405 0.10134423 -0.41121057
+		 0.10512805 -0.48808664 0.0099225938 -0.48690301 0.0091949999 -0.48400059 0.012603462
+		 -0.48629743 0.014092803 -0.48599312 0.00813815 -0.48223826 0.010509133 -0.48543802
+		 0.006854564 -0.48115 0.0079946816 -0.48528895 0.005463928 -0.48082277 0.0052663684
+		 -0.48556504 0.0040950179 -0.48128983 0.0025521517 -0.300237 0.028354079 -0.29949293
+		 0.027165085 -0.29540762 0.029115468 -0.29677281 0.031524092 -0.29913148 0.025779754
+		 -0.29475391 0.026356608 -0.29917687 0.024336487 -0.2948193 0.023491651 -0.29962724
+		 0.02297619 -0.2956059 0.020760685 -0.30045602 0.021836609 -0.29711097 0.018413305
+		 -0.39309067 0.031945139 -0.38958004 0.035010904 -0.38339159 0.030292422 -0.38413897
+		 0.034327358 -0.38355622 0.026151806 -0.38462922 0.022175461 -0.38665438 0.018660903
+		 -0.4201861 0.096979976 -0.41964102 0.093369305 -0.41974485 0.10059494 -0.41832003
+		 0.1039328 -0.41601738 0.10674846 -0.41301718 0.10883999 -0.48102233 0.015931726 -0.48434219
+		 0.018201649 -0.47847107 0.012843072 -0.47688434 0.0091695487 -0.47637501 0.0051867366
+		 -0.47694334 0.0011855364 -0.29127702 0.030962974 -0.29308197 0.034590393 -0.29042977
+		 0.026916534 -0.29049873 0.02274242 -0.29148659 0.01871258 -0.29344398 0.015125394
+		 -0.38584676 0.037968785 -0.3791315 0.03070721 -0.37994274 0.035894901 -0.37931713
+		 0.025420457 -0.38049322 0.020279974 -0.38275832 0.015569448 -0.42420518 0.096971512
+		 -0.42362335 0.092270613 -0.42362884 0.10166687 -0.42177117 0.1060074 -0.41879359
+		 0.10967976;
+	setAttr ".uvtk[1000:1249]" -0.41495493 0.11245221 -0.47797093 0.019184113 -0.48223194
+		 0.022215217 -0.47467414 0.015143216 -0.47261497 0.010363519 -0.47195312 0.0052065253
+		 -0.47255263 6.1988831e-06 -0.28708729 0.032639772 -0.28913045 0.037442476 -0.28614908
+		 0.027433664 -0.2862125 0.022105008 -0.28727672 0.016900599 -0.28944796 0.012102842
+		 -0.38185945 0.040708303 -0.37490508 0.031064063 -0.37569007 0.037250787 -0.37510374
+		 0.024801224 -0.37627438 0.018648386 -0.37855482 0.012825906 -0.42820296 0.097020805
+		 -0.42763764 0.091335595 -0.42754981 0.10274285 -0.42523387 0.10808939 -0.42158964
+		 0.11259222 -0.41696304 0.11597496 -0.47487363 0.022401661 -0.48002228 0.026129752
+		 -0.4708434 0.017422497 -0.46830645 0.011539936 -0.46755984 0.0052766204 -0.46812931
+		 -0.0010016263 -0.28283605 0.034104496 -0.28491655 0.03999427 -0.28190067 0.027892262
+		 -0.28195438 0.021579891 -0.28298956 0.015355408 -0.2851502 0.0094383061 -0.37761894
+		 0.043143451 -0.37070328 0.03135249 -0.3713854 0.038370281 -0.37091044 0.024289697
+		 -0.37198734 0.01729399 -0.37408456 0.010496914 -0.432183 0.097061098 -0.43167755
+		 0.090548992 -0.43157789 0.10358572 -0.46317056 0.0053449869 -0.46388444 0.012506127
+		 -0.46366599 -0.0018440187 -0.27852678 0.03533271 -0.28045878 0.042179048 -0.27767566
+		 0.028280765 -0.27771908 0.021162659 -0.27864015 0.014091671 -0.28059351 0.0071972907
+		 -0.37314504 0.045208395 -0.36651939 0.031565338 -0.36703619 0.039236993 -0.36673132
+		 0.023881167 -0.36764646 0.016222179 -0.36939716 0.0086280406 -0.43615723 0.097092807
+		 -0.43574849 0.089920044 -0.43564609 0.10427374 -0.45878944 0.0054148436 -0.45941958
+		 0.013305306 -0.45916525 -0.0025032163 -0.27416652 0.036307484 -0.27578893 0.043942273
+		 -0.27346668 0.028593093 -0.27350077 0.020849019 -0.27424309 0.013113916 -0.27582884
+		 0.0054243207 -0.36847031 0.046850979 -0.36234719 0.031698197 -0.36265177 0.039840966
+		 -0.36256227 0.023570985 -0.36326545 0.01543504 -0.36454588 0.0072515309 -0.440126
+		 0.097121418 -0.4398481 0.089464247 -0.43974617 0.10478431 -0.45441529 0.0054869354
+		 -0.45491621 0.013914287 -0.4546347 -0.0029627681 -0.26976481 0.03701821 -0.27094781
+		 0.045244515 -0.2692678 0.028824478 -0.26929441 0.020633966 -0.26981243 0.012423217
+		 -0.27091062 0.0041514039 -0.36363599 0.048031867 -0.35818234 0.031747907 -0.35824329
+		 0.040174335 -0.35839924 0.023355156 -0.35885808 0.014931381 -0.35958648 0.0063867271
+		 -0.44408992 0.09714812 -0.44396922 0.089194834 -0.44386813 0.10510474 -0.45004648
+		 0.0055599511 -0.45038411 0.014318407 -0.45008445 -0.0032111406 -0.26533267 0.0374569
+		 -0.2659826 0.046054184 -0.26507455 0.028971702 -0.26509658 0.020513803 -0.26536182
+		 0.012019098 -0.26589572 0.0033964515 -0.35869005 0.048720658 -0.35402131 0.031711608
+		 -0.35382241 0.040232092 -0.35423869 0.023230344 -0.3544375 0.01470989 -0.35457578
+		 0.006043762 -0.44805181 0.097174227 -0.44810179 0.089120328 -0.44800094 0.10522825
+		 -0.44568071 0.005633682 -0.44583315 0.014508307 -0.44552749 -0.0032410026 -0.26088163
+		 0.037618667 -0.26094508 0.046350181 -0.26088262 0.029032618 -0.26090351 0.020485312
+		 -0.26090458 0.01189965 -0.2608411 0.0031679273 -0.35368434 0.048898458 -0.34986082
+		 0.031586975 -0.34940192 0.04001078 -0.3500776 0.023193926 -0.35001689 0.014767528
+		 -0.34956998 0.0062218606 -0.45201406 0.097200453 -0.45223525 0.089244783 -0.45213339
+		 0.10515314 -0.44131514 0.0057073534 -0.44127667 0.014479399 -0.44097587 -0.0030519366
+		 -0.25642428 0.037498862 -0.2558904 0.046121895 -0.25668952 0.029004127 -0.25671178
+		 0.020546108 -0.25645339 0.012061179 -0.25580356 0.0034640431 -0.34867343 0.048555434
+		 -0.3456977 0.031371206 -0.34499452 0.039507121 -0.34591299 0.023243874 -0.34560841
+		 0.015101016 -0.34462407 0.0069107115 -0.45597842 0.097227037 -0.45635745 0.089566767
+		 -0.45625326 0.1048829 -0.43694687 0.0057804883 -0.4367272 0.014233053 -0.43644258
+		 -0.002648592 -0.25197369 0.037094861 -0.25087532 0.045367062 -0.25249168 0.028884202
+		 -0.25251845 0.020693809 -0.25202128 0.012500107 -0.25083831 0.004273355 -0.34371406
+		 0.047691047 -0.34152859 0.031060725 -0.34061369 0.038719803 -0.34174085 0.023376733
+		 -0.34122398 0.015705168 -0.33978984 0.0080911219 -0.45994762 0.09725529 -0.46045777
+		 0.090080082 -0.46035132 0.10442621 -0.43257415 0.0058517754 -0.43219653 0.013776422
+		 -0.43193746 -0.002040118 -0.24754301 0.036404282 -0.24595709 0.044093668 -0.24828546
+		 0.028668791 -0.24831943 0.020924836 -0.24761942 0.013210714 -0.24599718 0.0055756867
+		 -0.33886278 0.046314001 -0.33734974 0.030652076 -0.33627266 0.037648112 -0.33755663
+		 0.023589641 -0.33687457 0.01657182 -0.33511502 0.0097338259 -0.46392366 0.097285211
+		 -0.46452686 0.090774238 -0.4644188 0.1037969 -0.42819446 0.0059200823 -0.42769673
+		 0.01312381 -0.42746916 -0.0012416542 -0.2431459 0.035426527 -0.24119249 0.042321026
+		 -0.24406697 0.02835539 -0.24411051 0.021237165 -0.24325942 0.014185369 -0.24132749
+		 0.0073393881 -0.33417532 0.044445574 -0.3331562 0.030140966 -0.33198571 0.036293536
+		 -0.3333551 0.023877889 -0.33256981 0.017691553 -0.330641 0.011798501 -0.46790704
+		 0.097316921 -0.46855763 0.091633618 -0.46845099 0.10301429 -0.42380869 0.0059784949
+		 -0.42323694 0.012299597 -0.42303854 -0.00027048588 -0.23879661 0.034162551 -0.23663588
+		 0.040079623 -0.23983189 0.027938277 -0.23988554 0.021625906 -0.23895015 0.015413463
+		 -0.2368695 0.0095235407 -0.3297053 0.042115986 -0.32894281 0.029521495 -0.3277669
+		 0.034661621 -0.32912847 0.024234742 -0.32831731 0.019047081 -0.32640049 0.014233887
+		 -0.47189376 0.097346842 -0.47254857 0.092642248 -0.4723846 0.10203904 -0.4706268
+		 0.10840493 -0.47415087 0.10641915 -0.47417685 0.11300784 -0.47705528 0.11015517 -0.47876778
+		 0.11649972 -0.48085591 0.11299592 -0.41191563 0.027151972 -0.41692558 0.023305446
+		 -0.41376987 0.020169169 -0.40961239 0.023322552 -0.42082393 0.018250048 -0.4169549
+		 0.016046047 -0.41888943 0.011215448 -0.41940305 0.0060278475 -0.41864008 0.00086373091
+		 -0.23450939 0.03261736 -0.2323381 0.037415177 -0.23557363 0.027412921 -0.23563696
+		 0.022084147 -0.23469879 0.016878426 -0.23265567 0.012075603 -0.32550165 0.039372891
+		 -0.32470396 0.028790027 -0.32363096 0.032766491;
+	setAttr ".uvtk[1250:1489]" -0.32486859 0.024649471 -0.32412115 0.020614475 -0.3224133
+		 0.016972959 -0.47590587 0.097423136 -0.47650656 0.093805492 -0.47628304 0.1010471
+		 -0.47764394 0.10441333 -0.47989258 0.10726959 -0.48285589 0.10939938 -0.41063485
+		 0.017011285 -0.40738377 0.019393355 -0.41309902 0.013849497 -0.41458282 0.010135233
+		 -0.41497526 0.006141156 -0.4142811 0.0021771789 -0.23029961 0.030805379 -0.22834195
+		 0.034392387 -0.23128721 0.026775628 -0.23135623 0.022601634 -0.230509 0.018555105
+		 -0.22870411 0.014927447 -0.32160583 0.036281317 -0.32043368 0.027947098 -0.31959018
+		 0.030639082 -0.32056481 0.025105625 -0.31997949 0.022352546 -0.3186802 0.019931167
+		 -0.47993919 0.097590625 -0.48042062 0.095138013 -0.48017749 0.10007209 -0.48111102
+		 0.10237664 -0.48266539 0.10431391 -0.4847174 0.10571402 -0.40755609 0.013781309 -0.40529707
+		 0.015350342 -0.40926215 0.011633635 -0.4102805 0.0090898573 -0.41052967 0.0063603222
+		 -0.40998137 0.0036758184 -0.22618018 0.028757244 -0.22467521 0.031104475 -0.22696681
+		 0.026026279 -0.2270322 0.02316156 -0.22637855 0.020402342 -0.22501341 0.017994106
+		 -0.31804252 0.032933742 -0.31612903 0.027008206 -0.31565055 0.02834788 -0.31620708
+		 0.025577098 -0.31588039 0.024194151 -0.31516942 0.022996813 -0.48398617 0.097864568
+		 -0.48426577 0.096628964 -0.48409203 0.099129379 -0.48456809 0.1003055 -0.4853709
+		 0.10128361 -0.48642927 0.10196906 -0.40455323 0.010460138 -0.40338564 0.011224389
+		 -0.40543744 0.009377569 -0.40595976 0.0080802739 -0.40607235 0.0066894591 -0.40575975
+		 0.0053347945 -0.22215876 0.026541501 -0.22133008 0.0276815 -0.22260924 0.025181442
+		 -0.22265457 0.023738056 -0.22229311 0.022353083 -0.22154924 0.021163613 -0.31480196
+		 0.029459625 -0.39646384 0.028914243 -0.40804338 0.097549379 -0.48975641 0.0057406723
+		 -0.30356345 0.025222749 -0.31179622 0.02602765 -0.488033 0.09821111 -0.40161145 0.0070830286
+		 -0.21822271 0.024295002 0.27419621 -0.084177457 0.27417403 -0.076048993 0.10816255
+		 -0.076121055 0.10818502 -0.084249221 0.27414137 -0.067920767 0.10812996 -0.06799265
+		 0.27410066 -0.059792601 0.10808976 -0.059864245 0.27405649 -0.051664315 0.10804519
+		 -0.051736198 0.274012 -0.043536216 0.10800061 -0.043608159 0.27397165 -0.035407931
+		 0.10796051 -0.035479754 0.27393883 -0.027279645 0.10792729 -0.02735123 0.27391651
+		 -0.019151568 0.10790524 -0.019223273 0.27390653 -0.011023134 0.10789517 -0.011094779
+		 -0.25275472 -0.090716802 -0.25275642 -0.082725011 -0.41597718 -0.082886361 -0.41597524
+		 -0.090878032 -0.25274572 -0.074733458 -0.4159663 -0.074894629 -0.25272489 -0.066741787
+		 -0.41594547 -0.066903137 -0.25269648 -0.058750235 -0.41591686 -0.058911525 -0.25266433
+		 -0.050758444 -0.41588458 -0.050919913 -0.25263181 -0.042767137 -0.41585252 -0.04292807
+		 -0.25260347 -0.034775466 -0.41582406 -0.034936637 -0.25258264 -0.026783854 -0.41580322
+		 -0.026944786 -0.252572 -0.018791914 -0.4157922 -0.018953264 -0.25257352 -0.010800511
+		 -0.41579425 -0.010961264 0.27420646 -0.092305504 0.10819511 -0.092377506 -0.11457831
+		 -0.13412355 -0.11600789 -0.13411538 -0.1165146 -0.23742899 -0.11516812 -0.23780385
+		 -0.11744235 -0.1341071 -0.11787779 -0.23717013 -0.11887997 -0.13410006 -0.11925024
+		 -0.23701808 -0.12031937 -0.13409446 -0.12062675 -0.23696646 -0.12175962 -0.13409095
+		 -0.1220025 -0.23701295 -0.12319901 -0.13408922 -0.12337401 -0.23715869 -0.12463655
+		 -0.13408916 -0.12473568 -0.23741016 -0.12607077 -0.13409011 -0.1260803 -0.23777488
+		 -0.12750044 -0.13409095 -0.127399 -0.23826125 -0.094331384 -0.13468669 -0.095719218
+		 -0.13467465 -0.096726477 -0.23576917 -0.09544161 -0.23626287 -0.097113192 -0.13466083
+		 -0.098037951 -0.23539807 -0.098511778 -0.13464688 -0.099366061 -0.23513986 -0.09991353
+		 -0.134634 -0.10070368 -0.23498596 -0.10131717 -0.13462256 -0.10204554 -0.23492993
+		 -0.1027213 -0.13461314 -0.10338742 -0.23496927 -0.10412496 -0.13460539 -0.10472519
+		 -0.23510589 -0.10552666 -0.13459943 -0.10605396 -0.23534538 -0.10692531 -0.13459431
+		 -0.10736674 -0.23569538 -0.10831919 -0.13458918 -0.10865462 -0.23616423 -0.11315501
+		 -0.13412951 -0.11384818 -0.23830459 -0.120637 -0.24130186 -0.10207361 -0.23915699
+		 0.25765824 0.20591727 0.2647092 0.20513675 0.26449803 0.33932963 0.25751612 0.3385646
+		 0.25844252 0.1989051 0.010922101 0.20555708 0.01019105 0.19849907 -0.20394537 0.50083363
+		 -0.20391247 0.51130724 -0.23341621 0.51139951 -0.23344894 0.50092602 0.0039401073
+		 0.20479235 0.010780063 0.33820465 0.0037290175 0.3389847 -0.35617158 0.51200891 -0.35621849
+		 0.50146925 -0.32652822 0.50133729 -0.32648143 0.51187718 -0.2439224 0.50095916 -0.24388947
+		 0.51143241 -0.27339295 0.51152492 -0.27342579 0.50105166 -0.24453677 0.30504069 -0.23406349
+		 0.30500773 -0.46867892 0.24063987 -0.4609929 0.24064654 -0.46123251 0.50813293 -0.46891806
+		 0.5081259 -0.31594145 0.51183021 -0.31598824 0.50129068 -0.28629804 0.50115871 -0.28625122
+		 0.51169825 -0.32740423 0.30417767 -0.31686428 0.30413082 -0.24456958 0.29456726 -0.27404034
+		 0.30513343 -0.27407321 0.29465994 -0.40109748 0.2410816 -0.39340436 0.24103868 -0.39191091
+		 0.50877571 -0.39960387 0.50881863 -0.23409624 0.29453436 -0.20459262 0.29444197 -0.20455983
+		 0.30491534 -0.31691125 0.29359111 -0.2872209 0.29345921 -0.28717402 0.30399886 -0.32745102
+		 0.29363796 -0.35709459 0.30430958 -0.35714138 0.29376987 0.25824711 0.34562263 0.0099956375
+		 0.3452163 0.26726013 0.50138342 0.26002336 0.50059187 0.26014557 0.36310115 0.26745373
+		 0.36229131 0.26078245 0.50790715 0.003467055 0.50753319 0.0042787511 0.50026524 -0.0030296072
+		 0.50107527 -0.002836071 0.36198339 0.0044007022 0.36277458 0.0036417563 0.35545936
+		 0.26095706 0.35583344 -0.4393422 0.24066609 -0.43958127 0.50815201 -0.42127463 0.5089395
+		 -0.42276838 0.24120224 -0.49056894 0.50810647 -0.49032962 0.24062055 -0.37173328
+		 0.24091762 -0.37023959 0.50865483;
 createNode transformGeometry -n "transformGeometry1";
 	rename -uid "D737F63E-4B6A-200D-AC4E-E58B62D41F13";
 	setAttr ".txf" -type "matrix" 0.029487272013073527 0 0.71971397002354787 0 0 0.72031777560867483 0 0
@@ -2027,485 +2025,1218 @@ createNode reference -n "Asset2RN";
 	setAttr ".ed" -type "dataReferenceEdits" 
 		"Asset2RN"
 		"Asset2RN" 0
-		"Asset2RN" 240
-		2 "|Asset2:pCube6" "translate" " -type \"double3\" 3.50528767980814582 0 -3.57877018964151716"
+		"Asset2RN" 87
+		2 "|Asset2:pCube6" "translate" " -type \"double3\" 0 0 1.33971876749391505"
 		
-		2 "|Asset2:pCube6" "rotate" " -type \"double3\" 0 -88.02946815158733784 0"
+		2 "|Asset2:pCube6" "rotate" " -type \"double3\" 0 0 0"
+		2 "|Asset2:pCube6" "rotatePivot" " -type \"double3\" 3.50528767980814582 3.08418917655944824 -3.57877018964151716"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvPivot" " -type \"double2\" 0.87421574623069986 0.87688945390574324"
+		2 "|Asset2:pCube6" "scalePivot" " -type \"double3\" 3.50528767980814582 3.08418917655944824 -3.57877018964151716"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints" " -s 236"
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[0]" " -type \"float2\" 0.95591210999999998 0.77221512999999997"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvPivot" " -type \"double2\" 0.62029708682277762 0.63326483379302401"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[1]" " -type \"float2\" 0.96708762999999998 0.78564173000000004"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvst[0].uvsp[0:235]" (" -s 236 -type \"float2\" 0.70199347000000001 0.52859049999999996 0.71316897999999995 0.54201710000000003 0.66578519000000003 0.59048045000000005 0.66114198999999996 0.54339212000000003 0.69145047999999998 0.53382808000000004 0.683617 0.58208740000000003 0.67607092999999996 0.58513141000000002 0.72478271000000005 0.53040337999999998 0.65609156999999996 0.59926647 0.71321749999999995 0.60335236999999997 0.64779520000000002 0.56417322000000003 0.65714561999999999 0.58523488000000001 0.64520454000000005 0.60437589999999997 0.64588093999999996 0.57752793999999996 0.65757774999999996 0.559282 0.72273385999999995 0.59383600999999997 0.70490622999999997 0.59532887000000001 0.66854787000000004 0.56347877000000002 0.66615415 0.60313565000000002 0.67875074999999996 0.52966875000000002 0.68920254999999997 0.60280131999999997 0.64768267000000002 0.53427601000000002 0.68057250999999996 0.59592646000000005 0.68233538000000005 0.54969131999999998 0.72733033000000002 0.54660016 0.68902361000000001 0.55879610999999996 0.70915972"
+		+ "999999999 0.58691978 0.72386074 0.56571364000000002 0.71118378999999998 0.55463463000000002 0.66219306 0.57830197000000005 0.72320019999999996 0.57989961000000001 0.70692980000000005 0.54088997999999999 0.51596045000000001 0.5436995 0.56476044999999997 0.56844925999999996 0.54475892000000004 0.73801327000000005 0.56519841999999998 0.72813678000000004 0.53698920999999999 0.56757449999999998 0.54904341999999995 0.59864169 0.51326382000000004 0.66522545 0.57253456000000003 0.54509180999999995 0.55866574999999996 0.66954237000000005 0.58277416000000004 0.54160881000000005 0.55872524000000001 0.67875313999999998 0.55277633999999998 0.54067003999999996 0.59431171000000005 0.55441790999999996 0.59610521999999999 0.53058481000000002 0.54852712000000003 0.57918625999999995 0.56284940000000006 0.55786508000000001 0.51555203999999999 0.54067003999999996 0.54918325000000001 0.60746557000000001 0.55399226999999995 0.56505865 0.53460156999999997 0.57133608999999996 0.59380734000000002 0.56866448999999997 0.5493230799999999"
+		+ "6 0.55846435000000005 0.54473925000000001 0.73202681999999997 0.53884840000000001 0.58066194999999998 0.56364619999999999 0.71396183999999996 0.54914211999999996 0.54067003999999996 0.51360965000000003 0.69367056999999999 0.60805321000000001 0.52951311999999995 0.53189682999999999 0.72950541999999996 0.56164479 0.72846144000000002 0.55277633999999998 0.53407174000000002 0.59427034999999995 0.54499637999999995 0.55691206000000004 0.55787039000000005 0.55692255000000002 0.56965034999999997 0.5897038 0.56863408999999998 0.51555203999999999 0.53407174000000002 0.54932307999999996 0.55324525000000002 0.53884840000000001 0.60781156999999997 0.54914211999999996 0.53407174000000002 0.55692708000000002 0.57460266000000004 0.59455000999999996 0.55736129999999995 0.51416980999999995 0.71211743000000005 0.60925077999999999 0.60627317000000003 0.54269968999999996 0.71399570000000001 0.51931011999999999 0.54067003999999996 0.51931011999999999 0.53407174000000002 0.51361811000000002 0.67688393999999996 0.55399215000000002 0"
+		+ ".56027132000000002 0.53807055999999998 0.69822996999999998 0.53193080000000004 0.71601278000000002 0.51385139999999996 0.72945994000000003 0.5138855 0.71596729999999997 0.54905557999999999 0.60525256000000005 0.56149864000000005 0.71673346000000004 0.53640199 0.71704619999999997 0.53654813999999995 0.72877424999999996 0.51711905000000002 0.57198864000000005 0.56362091999999997 0.69830011999999997 0.54267441999999999 0.69833392000000005 0.54915296999999996 0.61374784000000004 0.53805435000000001 0.71214533000000002 0.53690970000000005 0.56113272999999997 0.54484867999999997 0.60368591999999999 0.51418602000000002 0.69820212999999998 0.53187227000000004 0.67305714000000005 0.51327789000000001 0.67309028000000004 0.56732952999999997 0.71237998999999996 0.53185833000000005 0.66519231000000001 0.52821516999999996 0.73178416000000002 0.51457107000000002 0.73178273000000005 0.51457047 0.73735218999999996 0.52821457000000005 0.73735362000000004 0.57670569000000005 0.67863702999999997 0.55666172999999997 0.53049046 0."
+		+ "56732059000000001 0.70024341000000001 0.57664632999999998 0.66942637999999999 0.56475604000000001 0.56472224000000004 0.53292298000000005 0.73206568000000005 0.53294264999999996 0.73805219 0.55408668999999999 0.69239985999999998 0.58202803000000003 0.71236913999999996 0.58201908999999996 0.70023257000000005 0.55663525999999997 0.54154628999999999 0.53484498999999996 0.67684542999999997 0.53481995999999998 0.69236874999999998 0.55411184000000002 0.67687660000000005 0.57472562999999999 0.68220758000000004 0.57466936000000002 0.69259828000000001 0.55848122 0.68211960999999999 0.55842495000000003 0.69251019000000003 0.58101438999999999 0.71849834999999995 0.58102726999999998 0.72811556 0.53762913000000001 0.5436995 0.56518542999999999 0.71851962999999996 0.54914211999999996 0.52931647999999998 0.53050207999999999 0.69367915000000002 0.52915108 0.57133608999999996 0.53051053999999997 0.67689252 0.54860902 0.73705560000000003 0.54861402999999997 0.73133897999999997 0.56834030000000002 0.73707288999999998 0.56834530"
+		+ "999999999 0.73135631999999995 0.53337347999999996 0.66512263000000005 0.55670558999999997 0.66509764999999998 0.53338087000000001 0.67208672000000003 0.55671298999999996 0.67206173999999996 0.59050632000000003 0.54162734999999995 0.59607874999999999 0.54164064000000001 0.59053277999999998 0.53057145999999999 0.59311842999999997 0.57895982000000001 0.58280050999999999 0.53055297999999995 0.59427034999999995 0.54499637999999995 0.548576 0.59611373999999995 0.58964550000000004 0.57649152999999997 0.59374917000000005 0.57652186999999999 0.51596045000000001 0.55324525000000002 0.51596045000000001 0.55846435000000005 0.58400953 0.56859188999999999 0.58395134999999998 0.57644932999999998 0.56470226999999995 0.57630663999999998 0.51931011999999999 0.52931647999999998 0.51555203999999999 0.52931647999999998 0.58644079999999998 0.61392712999999999 0.58647108000000003 0.60764485999999995 0.55277633999999998 0.52931647999999998 0.59314524999999996 0.58421719000000005 0.59818565999999995 0.59625649000000003 0.598208900000"
+		+ "00004 0.58817375000000005 0.52433348000000002 0.57198864000000005 0.54859924000000004 0.58803099000000003 0.60925077999999999 0.57651788000000004 0.60057448999999996 0.57651788000000004 0.51711905000000002 0.59886461000000002 0.52433348000000002 0.60699694999999998 0.60057448999999996 0.6130082 0.56475604000000001 0.55736129999999995 0.57462943 0.60520582999999994 0.57461726999999996 0.59859496000000001 0.59455000999999996 0.56472224000000004 0.54484867999999997 0.57205117000000005 0.54855381999999997 0.58444357000000002 0.56286442000000003 0.57459742000000003 0.51518439999999999 0.56140082999999996 0.60121047000000005 0.52939986999999999 0.56286000999999997 0.56964499000000002 0.52915108 0.61691684000000002 0.60734295999999999 0.57244097999999999 0.54831898000000001 0.56027132000000002 0.60050022999999997 0.57232779 0.54831898000000001 0.56505865 0.51526380000000005 0.56784259999999998 0.55670010999999997 0.54516131000000001 0.55674148000000001 0.55458277 0.54831898000000001 0.57592136000000005 0.55399226999"
+		+ "999995 0.57592136000000005 0.53460156999999997 0.61691684000000002 0.72478271000000005 0.54201716 0.64686549000000004 0.55063139999999999 0.69767009999999996 0.57506089999999999 0.71316897999999995 0.53040332000000001 0.70692980000000005 0.55879610999999996 0.70858383000000003 0.57337189 0.67706847000000003 0.57086426000000001 0.68902361000000001 0.54088997999999999 0.68233538000000005 0.56347877000000002 0.66676009000000003 0.53546386999999995 0.65927970000000002 0.52847748999999999 0.66854787000000004 0.54969131999999998 0.72273385999999995 0.60335236999999997 0.64530074999999998 0.59117662999999998 0.65758501999999996 0.57167590000000001 0.71321738000000001 0.59383600999999997 0.67615342 0.59031557999999995 0.683617 0.57506089999999999 0.66570269999999998 0.58529633000000003 0.64682508000000005 0.54347294999999995 0.69766998000000002 0.58208740000000003 0.69146406999999999 0.52856338000000003 0.66118239999999995 0.55055058000000001 0.70197999 0.53385519999999997 0.65757774999999996 0.56417322000000003 0.64"
+		+ "588093999999996 0.57167590000000001 0.64779520000000002 0.55928195000000003 0.645293 0.58525037999999996 0.65758501999999996 0.57752793999999996 0.64533817999999998 0.59899913999999999 0.65715325000000002 0.59116119 0.65595793999999996 0.60464317000000001 0.65927970000000002 0.53427601000000002 0.68935429999999998 0.59502535999999995 0.67867063999999999 0.53562403000000003 0.70475458999999996 0.60310489 0.68057250999999996 0.60313565000000002 0.64768267000000002 0.52847748999999999 0.66615415 0.59592646000000005 0.66684019999999999 0.52950865000000003 0.72320019999999996 0.58691978 0.66219306 0.57086426000000001 0.70915972999999999 0.57989961000000001 0.70857583999999996 0.5657295 0.67706847000000003 0.57830197000000005 0.71119927999999999 0.54656917000000005 0.72386861000000002 0.57335603000000002 0.72731482999999997 0.55466568000000005"
+		)
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts" " -s 80"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[0]" " -type \"float3\" -3.2223584999999999 0 -6.38908"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[2]" " -type \"float2\" 0.91970384000000005 0.83410507"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[1]" " -type \"float3\" -4.187973 0 -5.38967129999999983"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[3]" " -type \"float2\" 0.91506063999999998 0.78701675000000004"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[2]" " -type \"float3\" -3.2223584999999999 0 -6.38908"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[4]" " -type \"float2\" 0.94536911999999995 0.77745271000000005"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[3]" " -type \"float3\" -4.187973 0 -5.38967129999999983"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[5]" " -type \"float2\" 0.93753564 0.82571203000000004"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[4]" " -type \"float3\" -2.22294970000000003 0 -5.42346530000000016"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[6]" " -type \"float2\" 0.92998957999999998 0.82875602999999998"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[5]" " -type \"float3\" -3.18856409999999979 0 -4.424057"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[7]" " -type \"float2\" 0.97870135000000003 0.774028"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[6]" " -type \"float3\" -2.22294970000000003 0 -5.42346530000000016"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[8]" " -type \"float2\" 0.91001021999999998 0.8428911"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[7]" " -type \"float3\" -3.18856409999999979 0 -4.424057"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[9]" " -type \"float2\" 0.96713614000000003 0.846977"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[8]" " -type \"float3\" 1.42093960000000008 0 -11.245509"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[10]" " -type \"float2\" 0.90171385000000004 0.80779785000000004"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[9]" " -type \"float3\" 0.45532509999999998 0 -10.2461"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[11]" " -type \"float2\" 0.91106427000000001 0.82885951000000002"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[10]" " -type \"float3\" 1.42093960000000008 0 -11.245509"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[12]" " -type \"float2\" 0.89912318999999996 0.84800052999999997"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[11]" " -type \"float3\" 0.45532509999999998 0 -10.2461"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[13]" " -type \"float2\" 0.89979958999999998 0.82115256999999997"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[12]" " -type \"float3\" 2.42034819999999984 0 -10.279894"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[14]" " -type \"float2\" 0.91149639999999998 0.80290662999999995"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[13]" " -type \"float3\" 1.45473370000000002 0 -9.28048609999999918"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[15]" " -type \"float2\" 0.97665250000000003 0.83746063999999998"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[14]" " -type \"float3\" 2.42034819999999984 0 -10.279894"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[16]" " -type \"float2\" 0.95882487000000005 0.83895350000000002"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[15]" " -type \"float3\" 1.45473370000000002 0 -9.28048609999999918"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[17]" " -type \"float2\" 0.92246651999999996 0.80710340000000003"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[16]" " -type \"float3\" 10.242431 0 -2.77230979999999994"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[18]" " -type \"float2\" 0.92007278999999997 0.84676026999999998"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[17]" " -type \"float3\" 9.27681540000000027 0 -1.77290119999999995"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[19]" " -type \"float2\" 0.93266939999999998 0.77329338000000003"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[18]" " -type \"float3\" 10.242431 0 -2.77230979999999994"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[20]" " -type \"float2\" 0.94312119000000005 0.84642594999999998"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[19]" " -type \"float3\" 9.27681540000000027 0 -1.77290119999999995"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[21]" " -type \"float2\" 0.90160130999999999 0.77790064000000003"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[20]" " -type \"float3\" 11.241839 0 -1.80669529999999989"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[22]" " -type \"float2\" 0.93449115999999999 0.83955109000000006"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[21]" " -type \"float3\" 10.276224 0 -0.80728661999999995"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[23]" " -type \"float2\" 0.93625402000000002 0.79331594999999999"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[22]" " -type \"float3\" 11.241839 0 -1.80669529999999989"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[24]" " -type \"float2\" 0.98124897 0.79022479000000001"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[23]" " -type \"float3\" 10.276224 0 -0.80728661999999995"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[25]" " -type \"float2\" 0.94294226000000003 0.80242073999999997"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[24]" " -type \"float3\" 5.52833410000000036 0 2.1526923"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[26]" " -type \"float2\" 0.96307838000000001 0.83054441000000001"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[25]" " -type \"float3\" 4.56271979999999999 0 3.152101"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[27]" " -type \"float2\" 0.97777939000000003 0.80933827000000003"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[26]" " -type \"float3\" 5.52833410000000036 0 2.1526923"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[28]" " -type \"float2\" 0.96510242999999996 0.79825926000000003"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[27]" " -type \"float3\" 4.56271979999999999 0 3.152101"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[29]" " -type \"float2\" 0.91611171000000002 0.82192659000000001"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[28]" " -type \"float3\" 6.52774289999999979 0 3.11830689999999988"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[30]" " -type \"float2\" 0.97711884999999998 0.82352424000000002"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[29]" " -type \"float3\" 5.5621280999999998 0 4.1177153999999998"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[31]" " -type \"float2\" 0.96084844999999997 0.78451461"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[30]" " -type \"float3\" 6.52774289999999979 0 3.11830689999999988"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[32]" " -type \"float2\" 0.76987910000000004 0.78732413000000001"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[31]" " -type \"float3\" 5.5621280999999998 0 4.1177153999999998"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[33]" " -type \"float2\" 0.81867909000000005 0.81207388999999996"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[32]" " -type \"float3\" -0.54352730999999999 0 -9.388257"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[34]" " -type \"float2\" 0.79867756000000001 0.98163789999999995"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[33]" " -type \"float3\" -4.40598539999999961 0 -5.39062209999999986"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[35]" " -type \"float2\" 0.81911707 0.97176141000000005"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[34]" " -type \"float3\" -0.54352730999999999 0 -9.388257"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[36]" " -type \"float2\" 0.79090786000000002 0.81119912999999999"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[35]" " -type \"float3\" -4.40598539999999961 0 -5.39062209999999986"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[37]" " -type \"float2\" 0.80296206000000003 0.84226632000000001"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[36]" " -type \"float3\" 9.45055960000000006 0 0.26788845999999999"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[38]" " -type \"float2\" 0.76718246999999995 0.90885006999999995"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[37]" " -type \"float3\" 5.5881008999999997 0 4.265523"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[39]" " -type \"float2\" 0.82645321000000005 0.78871643999999996"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[38]" " -type \"float3\" 9.45055960000000006 0 0.26788845999999999"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[40]" " -type \"float2\" 0.81258439999999998 0.913167"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[39]" " -type \"float3\" 5.5881008999999997 0 4.265523"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[41]" " -type \"float2\" 0.83669280999999995 0.78523343999999995"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[40]" " -type \"float3\" -2.774168 0 -3.81398320000000002"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[42]" " -type \"float2\" 0.81264389000000004 0.92237776999999999"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[41]" " -type \"float3\" 1.08829010000000004 0 -7.81161789999999989"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[43]" " -type \"float2\" 0.80669497999999995 0.78429466000000003"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[42]" " -type \"float3\" 1.08829010000000004 0 -7.81161789999999989"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[44]" " -type \"float2\" 0.84823035999999996 0.79804253999999997"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[43]" " -type \"float3\" -2.774168 0 -3.81398320000000002"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[45]" " -type \"float2\" 0.85002387000000001 0.77420944000000003"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[44]" " -type \"float3\" 3.89723089999999983 0 2.63182809999999989"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[46]" " -type \"float2\" 0.80244576999999995 0.82281088999999996"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[45]" " -type \"float3\" 7.75968889999999956 0 -1.36580649999999992"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[47]" " -type \"float2\" 0.81676804999999997 0.80148971000000002"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[46]" " -type \"float3\" 7.75968889999999956 0 -1.36580649999999992"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[48]" " -type \"float2\" 0.76947069000000001 0.78429466000000003"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[47]" " -type \"float3\" 3.89723089999999983 0 2.63182809999999989"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[49]" " -type \"float2\" 0.80310190000000004 0.85109018999999997"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[48]" " -type \"float3\" 11.416561 0 -1.76691829999999994"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[50]" " -type \"float2\" 0.80791091999999998 0.80868328"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[49]" " -type \"float3\" 9.72569080000000064 0 -3.40061310000000017"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[51]" " -type \"float2\" 0.78852021999999999 0.81496071999999997"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[50]" " -type \"float3\" 9.72569080000000064 0 -3.40061310000000017"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[52]" " -type \"float2\" 0.84772599000000004 0.81228911999999998"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[51]" " -type \"float3\" 11.416561 0 -1.76691829999999994"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[53]" " -type \"float2\" 0.80324172999999999 0.80208897999999995"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[52]" " -type \"float3\" 3.05429169999999983 0 -9.84642410000000012"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[54]" " -type \"float2\" 0.79865788999999998 0.97565144000000004"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[53]" " -type \"float3\" 3.05429169999999983 0 -9.84642410000000012"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[55]" " -type \"float2\" 0.79276705000000003 0.82428657999999999"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[54]" " -type \"float3\" 1.42247429999999997 0 -11.423063"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[56]" " -type \"float2\" 0.81756485000000001 0.95758646999999997"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[55]" " -type \"float3\" 1.42247429999999997 0 -11.423063"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[57]" " -type \"float2\" 0.80306076999999998 0.78429466000000003"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[56]" " -type \"float3\" 2.230866 0 -8.99418069999999936"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[58]" " -type \"float2\" 0.76752830000000005 0.9372952"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[57]" " -type \"float3\" 0.59904849999999998 0 -10.57082"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[59]" " -type \"float2\" 0.86197186000000003 0.77313774999999996"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[58]" " -type \"float3\" 0.59904849999999998 0 -10.57082"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[60]" " -type \"float2\" 0.78581548000000001 0.97313004999999997"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[59]" " -type \"float3\" 2.230866 0 -8.99418069999999936"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[61]" " -type \"float2\" 0.81556344000000003 0.97208607000000002"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[60]" " -type \"float3\" 8.90226460000000053 0 -2.54836960000000001"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[62]" " -type \"float2\" 0.80669497999999995 0.77769637000000003"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[61]" " -type \"float3\" 10.593135 0 -0.91467463999999998"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[63]" " -type \"float2\" 0.848189 0.78862100999999996"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[62]" " -type \"float3\" 10.593135 0 -0.91467463999999998"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[64]" " -type \"float2\" 0.81083070999999995 0.80149501999999995"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[63]" " -type \"float3\" 8.90226460000000053 0 -2.54836960000000001"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[65]" " -type \"float2\" 0.81084120000000004 0.81327497999999998"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[64]" " -type \"float3\" 2.90438889999999983 0 -8.3434323999999993"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[66]" " -type \"float2\" 0.84362245000000002 0.81225871999999999"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[65]" " -type \"float3\" 1.76181319999999997 0 -7.16086910000000021"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[67]" " -type \"float2\" 0.76947069000000001 0.77769637000000003"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[66]" " -type \"float3\" -2.10064479999999998 0 -3.16323469999999984"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[68]" " -type \"float2\" 0.80324172999999999 0.79686986999999998"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[67]" " -type \"float3\" -2.10064479999999998 0 -3.16323469999999984"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[69]" " -type \"float2\" 0.79276705000000003 0.85143619999999998"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[68]" " -type \"float3\" 1.76181319999999997 0 -7.16086910000000021"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[70]" " -type \"float2\" 0.80306076999999998 0.77769637000000003"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[69]" " -type \"float3\" 2.90438889999999983 0 -8.3434323999999993"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[71]" " -type \"float2\" 0.81084573000000004 0.81822729000000005"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[70]" " -type \"float3\" 3.72781470000000015 0 -9.19567580000000007"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[72]" " -type \"float2\" 0.84846865999999999 0.80098592999999996"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[71]" " -type \"float3\" 3.72781470000000015 0 -9.19567580000000007"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[73]" " -type \"float2\" 0.76808845999999997 0.95574205999999995"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[72]" " -type \"float3\" 8.25094220000000078 0 -3.17766789999999988"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[74]" " -type \"float2\" 0.86316943000000002 0.84989780000000004"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[73]" " -type \"float3\" 7.10836649999999981 0 -1.99510480000000001"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[75]" " -type \"float2\" 0.79661833999999998 0.95762031999999997"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[74]" " -type \"float3\" 3.2459087000000002 0 2.00252989999999986"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[76]" " -type \"float2\" 0.77322875999999996 0.78429466000000003"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[75]" " -type \"float3\" 3.2459087000000002 0 2.00252989999999986"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[77]" " -type \"float2\" 0.77322875999999996 0.77769637000000003"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[76]" " -type \"float3\" 7.10836649999999981 0 -1.99510480000000001"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[78]" " -type \"float2\" 0.76753676000000004 0.92050856000000003"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[77]" " -type \"float3\" 8.25094220000000078 0 -3.17766789999999988"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[79]" " -type \"float2\" 0.80791080000000004 0.80389595000000003"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[78]" " -type \"float3\" 9.07436850000000028 0 -4.02991149999999987"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[80]" " -type \"float2\" 0.79198921 0.94185459999999999"
+		2 "|Asset2:pCube6|Asset2:pCube6Shape" "pnts[79]" " -type \"float3\" 9.07436850000000028 0 -4.02991149999999987";
+	setAttr ".ptag" -type "string" "";
+lockNode -l 1 ;
+createNode reference -n "Asset3RN";
+	rename -uid "F0211A5A-42D0-E122-492B-D7A693B9F00B";
+	setAttr ".ed" -type "dataReferenceEdits" 
+		"Asset3RN"
+		"Asset3RN" 0
+		"Asset3RN" 512
+		2 "|Asset3:stoveTable" "translate" " -type \"double3\" 2.51740417013579432 0.50760688452913616 5.38786633658828418"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[81]" " -type \"float2\" 0.78584944999999995 0.95963739999999997"
+		2 "|Asset3:stoveTable" "scale" " -type \"double3\" 1.40232270964929628 1.40232270964929628 1.40232270964929628"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[82]" " -type \"float2\" 0.76777004999999998 0.97308457000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvPivot" " -type \"double2\" 0.37459640164669245 0.88201617889738027"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[83]" " -type \"float2\" 0.76780415000000002 0.95959192999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints" " -s 508"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[84]" " -type \"float2\" 0.80297421999999996 0.84887718999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[0]" " -type \"float2\" 0.42484081000000001 0.79402143000000003"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[85]" " -type \"float2\" 0.81541728999999996 0.96035808"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[1]" " -type \"float2\" 0.47097932999999997 0.99461597000000002"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[86]" " -type \"float2\" 0.79032062999999997 0.96067082999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[2]" " -type \"float2\" 0.34239893999999998 0.89398896999999999"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[87]" " -type \"float2\" 0.79046678999999997 0.97239887999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[3]" " -type \"float2\" 0.36401695000000001 0.81912434000000001"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[88]" " -type \"float2\" 0.77103770000000005 0.81561326999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[4]" " -type \"float2\" 0.29419046999999998 0.89398896999999999"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[89]" " -type \"float2\" 0.81753956999999999 0.94192474999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[5]" " -type \"float2\" 0.33442949999999999 0.99461597000000002"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[90]" " -type \"float2\" 0.79659307000000001 0.94195854999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[6]" " -type \"float2\" 0.29419046999999998 0.89522237000000005"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[91]" " -type \"float2\" 0.80307161999999999 0.85737246"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[7]" " -type \"float2\" 0.33442949999999999 0.99584949"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[92]" " -type \"float2\" 0.79197298999999999 0.95576996000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[8]" " -type \"float2\" 0.32496148000000002 0.95586187"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[93]" " -type \"float2\" 0.79082834999999996 0.80475735999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[9]" " -type \"float2\" 0.40307253999999998 0.77901350999999996"
 		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[94]" " -type \"float2\" 0.79876733 0.84731053999999995"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[95]" " -type \"float2\" 0.76810467000000004 0.94182675999999999"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[96]" " -type \"float2\" 0.78579091999999995 0.91668176999999995"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[97]" " -type \"float2\" 0.76719654000000004 0.91671491000000005"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[98]" " -type \"float2\" 0.82124817000000006 0.95600461999999997"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[99]" " -type \"float2\" 0.78577697000000002 0.90881692999999997"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[100]" " -type \"float2\" 0.78213381999999998 0.97540879000000003"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[101]" " -type \"float2\" 0.76848972000000004 0.97540735999999995"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[102]" " -type \"float2\" 0.76848912000000003 0.98097681999999997"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[103]" " -type \"float2\" 0.78213321999999996 0.98097825000000005"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[104]" " -type \"float2\" 0.83062433999999996 0.92226165999999998"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[105]" " -type \"float2\" 0.81058037000000005 0.77411509000000001"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[106]" " -type \"float2\" 0.82123922999999999 0.94386804000000002"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[107]" " -type \"float2\" 0.83056498000000001 0.91305101"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[108]" " -type \"float2\" 0.81867467999999999 0.80834687000000005"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[109]" " -type \"float2\" 0.78684162999999996 0.97569030999999995"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[110]" " -type \"float2\" 0.78686129999999999 0.98167682000000001"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[111]" " -type \"float2\" 0.80800532999999997 0.93602448999999999"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[112]" " -type \"float2\" 0.83594668000000005 0.95599376999999996"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[113]" " -type \"float2\" 0.83593773999999998 0.94385719000000001"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[114]" " -type \"float2\" 0.81055390999999999 0.78517091000000006"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[115]" " -type \"float2\" 0.78876363999999999 0.92047005999999998"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[116]" " -type \"float2\" 0.78873861000000001 0.93599337000000005"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[117]" " -type \"float2\" 0.80803049000000005 0.92050122999999995"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[118]" " -type \"float2\" 0.82864428000000001 0.92583221000000004"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[119]" " -type \"float2\" 0.82858801000000004 0.93622291000000002"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[120]" " -type \"float2\" 0.81239985999999997 0.92574424"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[121]" " -type \"float2\" 0.81234360000000005 0.93613482000000003"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[122]" " -type \"float2\" 0.83493304000000002 0.96212297999999996"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[123]" " -type \"float2\" 0.83494592000000001 0.97174019"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[124]" " -type \"float2\" 0.79154778000000003 0.78732413000000001"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[125]" " -type \"float2\" 0.81910408000000001 0.96214425999999997"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[126]" " -type \"float2\" 0.80306076999999998 0.77294110999999999"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[127]" " -type \"float2\" 0.78442073000000001 0.93730378000000003"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[128]" " -type \"float2\" 0.78306973000000002 0.81496071999999997"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[129]" " -type \"float2\" 0.78442919 0.92051715000000001"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[130]" " -type \"float2\" 0.80252767000000003 0.98068023000000004"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[131]" " -type \"float2\" 0.80253266999999995 0.97496360999999998"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[132]" " -type \"float2\" 0.82225895000000004 0.98069751000000005"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[133]" " -type \"float2\" 0.82226396000000002 0.97498094999999996"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[134]" " -type \"float2\" 0.78729212000000004 0.90874725999999995"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[135]" " -type \"float2\" 0.81062424 0.90872227999999999"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[136]" " -type \"float2\" 0.78729950999999998 0.91571133999999998"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[137]" " -type \"float2\" 0.81063163000000005 0.91568636999999997"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[138]" " -type \"float2\" 0.84442496 0.78525197999999996"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[139]" " -type \"float2\" 0.84999740000000001 0.78526527000000002"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[140]" " -type \"float2\" 0.84445143 0.77419609"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[141]" " -type \"float2\" 0.84703708 0.82258445000000002"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[142]" " -type \"float2\" 0.83671916000000002 0.77417760999999996"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[143]" " -type \"float2\" 0.848189 0.78862100999999996"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[144]" " -type \"float2\" 0.80249464999999998 0.83973836999999996"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[145]" " -type \"float2\" 0.84356414999999996 0.82011615999999998"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[146]" " -type \"float2\" 0.84766781000000002 0.8201465"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[147]" " -type \"float2\" 0.76987910000000004 0.79686986999999998"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[148]" " -type \"float2\" 0.76987910000000004 0.80208897999999995"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[149]" " -type \"float2\" 0.83792818000000002 0.81221652"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[150]" " -type \"float2\" 0.83787 0.82007395999999999"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[151]" " -type \"float2\" 0.81862091999999997 0.81993126999999999"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[152]" " -type \"float2\" 0.77322875999999996 0.77294110999999999"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[153]" " -type \"float2\" 0.76947069000000001 0.77294110999999999"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[154]" " -type \"float2\" 0.84035945000000001 0.85755174999999995"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[155]" " -type \"float2\" 0.84038972999999995 0.85126948000000002"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[156]" " -type \"float2\" 0.80669497999999995 0.77294110999999999"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[157]" " -type \"float2\" 0.84706389999999998 0.82784181999999995"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[158]" " -type \"float2\" 0.85210430999999998 0.83988112000000004"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[159]" " -type \"float2\" 0.85212754999999996 0.83179837000000001"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[160]" " -type \"float2\" 0.77825211999999999 0.81561326999999995"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[161]" " -type \"float2\" 0.80251788999999996 0.83165562000000004"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[162]" " -type \"float2\" 0.86316943000000002 0.82014251000000005"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[163]" " -type \"float2\" 0.85449313999999998 0.82014251000000005"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[164]" " -type \"float2\" 0.77103770000000005 0.84248924000000003"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[165]" " -type \"float2\" 0.77825211999999999 0.85062157999999999"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[166]" " -type \"float2\" 0.85449313999999998 0.85663283000000001"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[167]" " -type \"float2\" 0.81867467999999999 0.80098592999999996"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[168]" " -type \"float2\" 0.82854806999999997 0.84883045999999995"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[169]" " -type \"float2\" 0.82853591000000004 0.84221959000000002"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[170]" " -type \"float2\" 0.84846865999999999 0.80834687000000005"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[171]" " -type \"float2\" 0.79876733 0.81567579999999995"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[172]" " -type \"float2\" 0.80247246999999999 0.82806820000000003"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[173]" " -type \"float2\" 0.81678307000000006 0.81822205000000003"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[174]" " -type \"float2\" 0.76910305000000001 0.80502545999999997"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[175]" " -type \"float2\" 0.85512911999999996 0.7730245"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[176]" " -type \"float2\" 0.81677865999999999 0.81326962000000003"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[177]" " -type \"float2\" 0.78306973000000002 0.86054145999999998"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[178]" " -type \"float2\" 0.86126161000000001 0.81606561"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[179]" " -type \"float2\" 0.80223763000000003 0.80389595000000003"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[180]" " -type \"float2\" 0.85441887000000005 0.81595242000000001"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[181]" " -type \"float2\" 0.80223763000000003 0.80868328"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[182]" " -type \"float2\" 0.76918244000000002 0.81146722999999998"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[183]" " -type \"float2\" 0.81061875999999999 0.78878592999999997"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[184]" " -type \"float2\" 0.81066011999999998 0.79820740000000001"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[185]" " -type \"float2\" 0.80223763000000003 0.81954598000000001"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[186]" " -type \"float2\" 0.80791091999999998 0.81954598000000001"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[187]" " -type \"float2\" 0.78852021999999999 0.86054145999999998"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[188]" " -type \"float2\" 0.97870135000000003 0.78564179000000001"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[189]" " -type \"float2\" 0.90078413000000002 0.79425603"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[190]" " -type \"float2\" 0.95158874999999998 0.81868552999999999"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[191]" " -type \"float2\" 0.96708762999999998 0.77402793999999997"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[192]" " -type \"float2\" 0.96084844999999997 0.80242073999999997"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[193]" " -type \"float2\" 0.96250248000000005 0.81699650999999995"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[194]" " -type \"float2\" 0.93098711999999995 0.81448889000000002"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[195]" " -type \"float2\" 0.94294226000000003 0.78451461"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[196]" " -type \"float2\" 0.93625402000000002 0.80710340000000003"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[197]" " -type \"float2\" 0.92067873 0.77908849999999996"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[198]" " -type \"float2\" 0.91319835000000005 0.77210212"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[199]" " -type \"float2\" 0.92246651999999996 0.79331594999999999"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[200]" " -type \"float2\" 0.97665250000000003 0.846977"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[201]" " -type \"float2\" 0.89921938999999995 0.83480125999999999"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[202]" " -type \"float2\" 0.91150366999999999 0.81530051999999997"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[203]" " -type \"float2\" 0.96713603000000004 0.83746063999999998"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[204]" " -type \"float2\" 0.93007207000000003 0.83394020999999996"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[205]" " -type \"float2\" 0.93753564 0.81868552999999999"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[206]" " -type \"float2\" 0.91962135 0.82892096000000004"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[207]" " -type \"float2\" 0.90074372000000003 0.78709757000000002"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[208]" " -type \"float2\" 0.95158863000000005 0.82571203000000004"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[209]" " -type \"float2\" 0.94538270999999996 0.77218801000000004"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[210]" " -type \"float2\" 0.91510104999999997 0.79417521000000002"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[211]" " -type \"float2\" 0.95589864000000002 0.77747982999999998"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[212]" " -type \"float2\" 0.91149639999999998 0.80779785000000004"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[213]" " -type \"float2\" 0.89979958999999998 0.81530051999999997"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[214]" " -type \"float2\" 0.90171385000000004 0.80290656999999999"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[215]" " -type \"float2\" 0.89921165000000003 0.82887500999999997"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[216]" " -type \"float2\" 0.91150366999999999 0.82115256999999997"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[217]" " -type \"float2\" 0.89925683000000001 0.84262376999999999"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[218]" " -type \"float2\" 0.91107190000000005 0.83478582000000001"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[219]" " -type \"float2\" 0.90987658999999999 0.84826778999999997"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[220]" " -type \"float2\" 0.91319835000000005 0.77790064000000003"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[221]" " -type \"float2\" 0.94327295 0.83864998999999996"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[222]" " -type \"float2\" 0.93258929000000002 0.77924864999999999"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[223]" " -type \"float2\" 0.95867323999999998 0.84672952000000001"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[224]" " -type \"float2\" 0.93449115999999999 0.84676026999999998"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[225]" " -type \"float2\" 0.90160130999999999 0.77210212"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[226]" " -type \"float2\" 0.92007278999999997 0.83955109000000006"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[227]" " -type \"float2\" 0.92075883999999997 0.77313328000000003"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[228]" " -type \"float2\" 0.97711884999999998 0.83054441000000001"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[229]" " -type \"float2\" 0.91611171000000002 0.81448889000000002"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[230]" " -type \"float2\" 0.96307838000000001 0.82352424000000002"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[231]" " -type \"float2\" 0.96249448999999998 0.80935413"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[232]" " -type \"float2\" 0.93098711999999995 0.82192659000000001"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[233]" " -type \"float2\" 0.96511793000000001 0.79019379999999995"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[234]" " -type \"float2\" 0.97778726000000005 0.81698066000000003"
-		
-		2 "|Asset2:pCube6|Asset2:pCube6Shape" "uvSet[0].uvSetPoints[235]" " -type \"float2\" 0.98123347999999999 0.79829030999999995";
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[10]" 
+		" -type \"float2\" 0.33820301000000003 0.78040683"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[11]" 
+		" -type \"float2\" 0.42933732000000002 0.78040527999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[12]" 
+		" -type \"float2\" 0.31194298999999998 0.77901350999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[13]" 
+		" -type \"float2\" 0.33820301000000003 0.77901350999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[14]" 
+		" -type \"float2\" 0.41531169000000001 0.87546550999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[15]" 
+		" -type \"float2\" 0.26702154 0.77614450000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[16]" 
+		" -type \"float2\" 0.30488008 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[17]" 
+		" -type \"float2\" 0.29064 0.77635544999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[18]" 
+		" -type \"float2\" 0.27503747000000001 0.77343952999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[19]" 
+		" -type \"float2\" 0.30129152999999997 0.89398896999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[20]" 
+		" -type \"float2\" 0.27191221999999998 0.83345610000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[21]" 
+		" -type \"float2\" 0.41566312 0.90819793999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[22]" 
+		" -type \"float2\" 0.43980913999999999 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[23]" 
+		" -type \"float2\" 0.36401695000000001 0.91120380000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[24]" 
+		" -type \"float2\" 0.39833849999999998 0.99183255000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[25]" 
+		" -type \"float2\" 0.33081353000000002 0.99433934999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[26]" 
+		" -type \"float2\" 0.2766459 0.76962644000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[27]" 
+		" -type \"float2\" 0.42916268000000002 0.77467781000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[28]" 
+		" -type \"float2\" 0.29182344999999998 0.77447962999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[29]" 
+		" -type \"float2\" 0.427926 0.77467781000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[30]" 
+		" -type \"float2\" 0.46077168000000002 0.90771358999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[31]" 
+		" -type \"float2\" 0.39360445999999999 0.95631491999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[32]" 
+		" -type \"float2\" 0.26341951000000002 0.99155599000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[33]" 
+		" -type \"float2\" 0.427926 0.77590227000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[34]" 
+		" -type \"float2\" 0.30365842999999998 0.88472289000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[35]" 
+		" -type \"float2\" 0.33087896999999999 0.99183255000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[36]" 
+		" -type \"float2\" 0.35020578000000002 0.77504044999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[37]" 
+		" -type \"float2\" 0.29185724000000002 0.77635544999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[38]" 
+		" -type \"float2\" 0.29855644999999997 0.77344011999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[39]" 
+		" -type \"float2\" 0.46718967 0.93008131000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[40]" 
+		" -type \"float2\" 0.46579796000000001 0.93008131000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[41]" 
+		" -type \"float2\" 0.29774106 0.77495044000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[42]" 
+		" -type \"float2\" 0.39833849999999998 0.99322432000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[43]" 
+		" -type \"float2\" 0.38245118 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[44]" 
+		" -type \"float2\" 0.26578647 0.77614450000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[45]" 
+		" -type \"float2\" 0.27052045000000002 0.83345610000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[46]" 
+		" -type \"float2\" 0.42916268000000002 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[47]" 
+		" -type \"float2\" 0.39227300999999998 0.98909837"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[48]" 
+		" -type \"float2\" 0.35020578000000002 0.77426033999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[49]" 
+		" -type \"float2\" 0.30365855000000003 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[50]" 
+		" -type \"float2\" 0.36875099 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[51]" 
+		" -type \"float2\" 0.26341951000000002 0.78074849000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[52]" 
+		" -type \"float2\" 0.37878144000000002 0.95631491999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[53]" 
+		" -type \"float2\" 0.27052045000000002 0.84973036999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[54]" 
+		" -type \"float2\" 0.40600508000000002 0.78662425000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[55]" 
+		" -type \"float2\" 0.47715086000000001 0.84881746999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[56]" 
+		" -type \"float2\" 0.39244235 0.96978903000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[57]" 
+		" -type \"float2\" 0.43265998 0.85176574999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[58]" 
+		" -type \"float2\" 0.36151235999999998 0.78937787000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[59]" 
+		" -type \"float2\" 0.36756754000000003 0.81813340999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[60]" 
+		" -type \"float2\" 0.43265998 0.85457497999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[61]" 
+		" -type \"float2\" 0.38773089999999999 0.97270506999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[62]" 
+		" -type \"float2\" 0.38773089999999999 0.96978903000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[63]" 
+		" -type \"float2\" 0.32703280000000001 0.99294764000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[64]" 
+		" -type \"float2\" 0.38626390999999999 0.98877263000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[65]" 
+		" -type \"float2\" 0.33576155000000002 0.89522237000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[66]" 
+		" -type \"float2\" 0.27955389000000003 0.779037"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[67]" 
+		" -type \"float2\" 0.38532709999999998 0.98744421999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[68]" 
+		" -type \"float2\" 0.47410451999999997 0.89531057999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[69]" 
+		" -type \"float2\" 0.38532709999999998 0.98631245000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[70]" 
+		" -type \"float2\" 0.48577332000000001 0.86073922999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[71]" 
+		" -type \"float2\" 0.38532709999999998 0.98527783000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[72]" 
+		" -type \"float2\" 0.47763294000000001 0.81651722999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[73]" 
+		" -type \"float2\" 0.38532709999999998 0.98427485999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[74]" 
+		" -type \"float2\" 0.46816498000000001 0.90575700999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[75]" 
+		" -type \"float2\" 0.38667439999999997 0.98325258000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[76]" 
+		" -type \"float2\" 0.28260952 0.81217771999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[77]" 
+		" -type \"float2\" 0.3878414 0.98325258000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[78]" 
+		" -type \"float2\" 0.37681150000000002 0.88260095999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[79]" 
+		" -type \"float2\" 0.38929939000000002 0.98325258000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[80]" 
+		" -type \"float2\" 0.36638397 0.86733276000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[81]" 
+		" -type \"float2\" 0.39124428999999999 0.98439074000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[82]" 
+		" -type \"float2\" 0.29892445000000001 0.88816558999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[83]" 
+		" -type \"float2\" 0.39124428999999999 0.98588686999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[84]" 
+		" -type \"float2\" 0.29774106 0.88969189000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[85]" 
+		" -type \"float2\" 0.39124428999999999 0.98733537999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[86]" 
+		" -type \"float2\" 0.43265998 0.85457503999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[87]" 
+		" -type \"float2\" 0.3891753 0.98909837"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[88]" 
+		" -type \"float2\" 0.46292203999999998 0.76818286999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[89]" 
+		" -type \"float2\" 0.26341951000000002 0.99294764000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[90]" 
+		" -type \"float2\" 0.35132872999999998 0.95982498000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[91]" 
+		" -type \"float2\" 0.37878144000000002 0.95982509999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[92]" 
+		" -type \"float2\" 0.26521151999999998 0.79216975000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[93]" 
+		" -type \"float2\" 0.37585199000000002 0.77484065000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[94]" 
+		" -type \"float2\" 0.26706278 0.77468729000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[95]" 
+		" -type \"float2\" 0.36046654 0.82460696"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[96]" 
+		" -type \"float2\" 0.48236698 0.83164167"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[97]" 
+		" -type \"float2\" 0.38754505 0.89371467000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[98]" 
+		" -type \"float2\" 0.43976098000000002 0.81971996999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[99]" 
+		" -type \"float2\" 0.47537571000000001 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[100]" 
+		" -type \"float2\" 0.45869702000000001 0.77651959999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[101]" 
+		" -type \"float2\" 0.48236704000000002 0.80254424000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[102]" 
+		" -type \"float2\" 0.26532190999999999 0.83035981999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[103]" 
+		" -type \"float2\" 0.39183943999999998 0.77664018000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[104]" 
+		" -type \"float2\" 0.46934854999999998 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[105]" 
+		" -type \"float2\" 0.26341951000000002 0.82921975999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[106]" 
+		" -type \"float2\" 0.43976098000000002 0.84881746999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[107]" 
+		" -type \"float2\" 0.26853262999999999 0.84997135000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[108]" 
+		" -type \"float2\" 0.38777648999999997 0.77640145999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[109]" 
+		" -type \"float2\" 0.36028062999999999 0.77708548"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[110]" 
+		" -type \"float2\" 0.33916348000000002 0.77871310999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[111]" 
+		" -type \"float2\" 0.33079016 0.83017045"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[112]" 
+		" -type \"float2\" 0.44577116 0.77861404000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[113]" 
+		" -type \"float2\" 0.47289902 0.77590555000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[114]" 
+		" -type \"float2\" 0.37230152 0.77484065000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[115]" 
+		" -type \"float2\" 0.26847690000000002 0.87906872999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[116]" 
+		" -type \"float2\" 0.46934854999999998 0.77838308"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[117]" 
+		" -type \"float2\" 0.28478354 0.77344352000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[118]" 
+		" -type \"float2\" 0.42743593000000002 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[119]" 
+		" -type \"float2\" 0.43265998 0.85990381000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[120]" 
+		" -type \"float2\" 0.31313669999999999 0.79291809000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[121]" 
+		" -type \"float2\" 0.45298295999999999 0.77343600999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[122]" 
+		" -type \"float2\" 0.37230152 0.77731293000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[123]" 
+		" -type \"float2\" 0.39242101000000001 0.99183255000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[124]" 
+		" -type \"float2\" 0.27536928999999999 0.77888829000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[125]" 
+		" -type \"float2\" 0.38295298999999999 0.77565461000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[126]" 
+		" -type \"float2\" 0.36165005 0.77645724999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[127]" 
+		" -type \"float2\" 0.33394527000000002 0.87919413999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[128]" 
+		" -type \"float2\" 0.46579796000000001 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[129]" 
+		" -type \"float2\" 0.44094449000000002 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[130]" 
+		" -type \"float2\" 0.47171551 0.85712038999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[131]" 
+		" -type \"float2\" 0.42338246000000002 0.81115221999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[132]" 
+		" -type \"float2\" 0.36548828999999999 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[133]" 
+		" -type \"float2\" 0.36165005 0.77890605000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[134]" 
+		" -type \"float2\" 0.36993443999999998 0.87236309000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[135]" 
+		" -type \"float2\" 0.43029296 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[136]" 
+		" -type \"float2\" 0.34161608999999998 0.77871310999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[137]" 
+		" -type \"float2\" 0.44768655000000002 0.77659243"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[138]" 
+		" -type \"float2\" 0.38189160999999999 0.77484065000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[139]" 
+		" -type \"float2\" 0.44768655000000002 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[140]" 
+		" -type \"float2\" 0.37585199000000002 0.77730387000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[141]" 
+		" -type \"float2\" 0.38532007000000001 0.77640145999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[142]" 
+		" -type \"float2\" 0.47181159 0.77838308"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[143]" 
+		" -type \"float2\" 0.27536928999999999 0.77643454000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[144]" 
+		" -type \"float2\" 0.46579796000000001 0.77525871999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[145]" 
+		" -type \"float2\" 0.43029302000000003 0.77493398999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[146]" 
+		" -type \"float2\" 0.26524395000000001 0.77344471000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[147]" 
+		" -type \"float2\" 0.36143941000000002 0.77521211000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[148]" 
+		" -type \"float2\" 0.47176546000000003 0.93871939000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[149]" 
+		" -type \"float2\" 0.26341951000000002 0.99557287000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[150]" 
+		" -type \"float2\" 0.36756754000000003 0.81488645000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[151]" 
+		" -type \"float2\" 0.26341951000000002 0.898341"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[152]" 
+		" -type \"float2\" 0.41097641000000001 0.81488645000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[153]" 
+		" -type \"float2\" 0.37686425000000001 0.93502492000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[154]" 
+		" -type \"float2\" 0.41097641000000001 0.81365304999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[155]" 
+		" -type \"float2\" 0.37685828999999998 0.93379146000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[156]" 
+		" -type \"float2\" 0.30586106000000002 0.93413550000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[157]" 
+		" -type \"float2\" 0.36756754000000003 0.81365304999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[158]" 
+		" -type \"float2\" 0.47176546000000003 0.89531057999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[159]" 
+		" -type \"float2\" 0.33441818000000001 0.99557287000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[160]" 
+		" -type \"float2\" 0.33441764000000002 0.94174986999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[161]" 
+		" -type \"float2\" 0.30586708000000001 0.93536889999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[162]" 
+		" -type \"float2\" 0.26341951000000002 0.94174986999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[163]" 
+		" -type \"float2\" 0.47053205999999997 0.89531057999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[164]" 
+		" -type \"float2\" 0.26341951000000002 0.99433952999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[165]" 
+		" -type \"float2\" 0.33441764000000002 0.89834093999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[166]" 
+		" -type \"float2\" 0.33441818000000001 0.99433941000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[167]" 
+		" -type \"float2\" 0.470532 0.93871939000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[168]" 
+		" -type \"float2\" 0.47526592000000001 0.89531057999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[169]" 
+		" -type \"float2\" 0.36324990000000001 0.86279726000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[170]" 
+		" -type \"float2\" 0.36012351999999997 0.77344548999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[171]" 
+		" -type \"float2\" 0.34161608999999998 0.77623016"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[172]" 
+		" -type \"float2\" 0.44612169000000002 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[173]" 
+		" -type \"float2\" 0.42980295000000002 0.77901350999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[174]" 
+		" -type \"float2\" 0.399032 0.86957960999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[175]" 
+		" -type \"float2\" 0.44449502000000002 0.77481412999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[176]" 
+		" -type \"float2\" 0.32888793999999999 0.99155599000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[177]" 
+		" -type \"float2\" 0.48159993000000001 0.90438395999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[178]" 
+		" -type \"float2\" 0.33916348000000002 0.77623016"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[179]" 
+		" -type \"float2\" 0.33867346999999998 0.77901350999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[180]" 
+		" -type \"float2\" 0.39833849999999998 0.77623016"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[181]" 
+		" -type \"float2\" 0.26341951000000002 0.77467905999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[182]" 
+		" -type \"float2\" 0.37940252000000002 0.77484065000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[183]" 
+		" -type \"float2\" 0.44094449000000002 0.77496277999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[184]" 
+		" -type \"float2\" 0.36324990000000001 0.82460696"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[185]" 
+		" -type \"float2\" 0.47526604 0.85712038999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[186]" 
+		" -type \"float2\" 0.44224428999999998 0.77666294999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[187]" 
+		" -type \"float2\" 0.47881650999999997 0.83891517000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[188]" 
+		" -type \"float2\" 0.41211891 0.79084736"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[189]" 
+		" -type \"float2\" 0.37940252000000002 0.77728724000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[190]" 
+		" -type \"float2\" 0.26975339999999998 0.83176154000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[191]" 
+		" -type \"float2\" 0.47449892999999999 0.89531057999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[192]" 
+		" -type \"float2\" 0.43155283 0.77667677000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[193]" 
+		" -type \"float2\" 0.38485014000000001 0.77677410999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[194]" 
+		" -type \"float2\" 0.36413687 0.77890605000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[195]" 
+		" -type \"float2\" 0.32888782 0.94453335000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[196]" 
+		" -type \"float2\" 0.45788962 0.98904919999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[197]" 
+		" -type \"float2\" 0.36413687 0.77645724999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[198]" 
+		" -type \"float2\" 0.36993443999999998 0.86957960999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[199]" 
+		" -type \"float2\" 0.40070551999999998 0.77901350999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[200]" 
+		" -type \"float2\" 0.38658881 0.77542168"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[201]" 
+		" -type \"float2\" 0.44933957000000002 0.80006546000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[202]" 
+		" -type \"float2\" 0.26620293 0.89468824999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[203]" 
+		" -type \"float2\" 0.46821724999999997 0.77666913999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[204]" 
+		" -type \"float2\" 0.36336762 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[205]" 
+		" -type \"float2\" 0.283539 0.77526103999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[206]" 
+		" -type \"float2\" 0.47449892999999999 0.85712038999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[207]" 
+		" -type \"float2\" 0.26975352000000002 0.86995177999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[208]" 
+		" -type \"float2\" 0.28477138000000002 0.77708679000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[209]" 
+		" -type \"float2\" 0.42743593000000002 0.77623016"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[210]" 
+		" -type \"float2\" 0.30957592 0.77901350999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[211]" 
+		" -type \"float2\" 0.36164993000000001 0.77454358000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[212]" 
+		" -type \"float2\" 0.34421574999999999 0.77623016"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[213]" 
+		" -type \"float2\" 0.47085029 0.85712038999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[214]" 
+		" -type \"float2\" 0.27288752999999999 0.77643454000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[215]" 
+		" -type \"float2\" 0.47289902 0.77838582000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[216]" 
+		" -type \"float2\" 0.37476461999999999 0.77731293000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[217]" 
+		" -type \"float2\" 0.35691601000000001 0.85918713000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[218]" 
+		" -type \"float2\" 0.48515039999999998 0.83164167"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[219]" 
+		" -type \"float2\" 0.37476461999999999 0.77484065000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[220]" 
+		" -type \"float2\" 0.39242101000000001 0.98904919999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[221]" 
+		" -type \"float2\" 0.26341951000000002 0.94453328999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[222]" 
+		" -type \"float2\" 0.47535431 0.77838582000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[223]" 
+		" -type \"float2\" 0.48236698 0.80254424000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[224]" 
+		" -type \"float2\" 0.48515039999999998 0.86073922999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[225]" 
+		" -type \"float2\" 0.47181159 0.77591062"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[226]" 
+		" -type \"float2\" 0.45159596000000002 0.77504116000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[227]" 
+		" -type \"float2\" 0.46934854999999998 0.77591062"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[228]" 
+		" -type \"float2\" 0.43265998 0.85712038999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[229]" 
+		" -type \"float2\" 0.30602544999999998 0.77623016"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[230]" 
+		" -type \"float2\" 0.47182024 0.77591062"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[231]" 
+		" -type \"float2\" 0.26620293 0.82921975999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[232]" 
+		" -type \"float2\" 0.38387114 0.80000870999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[233]" 
+		" -type \"float2\" 0.45159596000000002 0.77662014999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[234]" 
+		" -type \"float2\" 0.48515039999999998 0.80254424000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[235]" 
+		" -type \"float2\" 0.35691601000000001 0.83008963000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[236]" 
+		" -type \"float2\" 0.38532007000000001 0.77888060000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[237]" 
+		" -type \"float2\" 0.46036993999999998 0.77651959999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[238]" 
+		" -type \"float2\" 0.44577116 0.77613818999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[239]" 
+		" -type \"float2\" 0.47085029 0.86268729"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[240]" 
+		" -type \"float2\" 0.40812480000000001 0.81086957000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[241]" 
+		" -type \"float2\" 0.44331151000000002 0.77613818999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[242]" 
+		" -type \"float2\" 0.48159993000000001 0.83891517000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[243]" 
+		" -type \"float2\" 0.26341951000000002 0.99155599000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[244]" 
+		" -type \"float2\" 0.46182925000000002 0.77500135000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[245]" 
+		" -type \"float2\" 0.36993443999999998 0.81086957000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[246]" 
+		" -type \"float2\" 0.43265998 0.86268729"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[247]" 
+		" -type \"float2\" 0.37832427000000002 0.77730387000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[248]" 
+		" -type \"float2\" 0.39320182999999997 0.77500807999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[249]" 
+		" -type \"float2\" 0.47289902 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[250]" 
+		" -type \"float2\" 0.48515039999999998 0.83164167"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[251]" 
+		" -type \"float2\" 0.48236698 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[252]" 
+		" -type \"float2\" 0.47289902 0.77590555000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[253]" 
+		" -type \"float2\" 0.34665066 0.79068720000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[254]" 
+		" -type \"float2\" 0.47881650999999997 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[255]" 
+		" -type \"float2\" 0.39320195000000002 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[256]" 
+		" -type \"float2\" 0.399032 0.87236309000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[257]" 
+		" -type \"float2\" 0.46157264999999997 0.81111675999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[258]" 
+		" -type \"float2\" 0.47804940000000001 0.89531057999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[259]" 
+		" -type \"float2\" 0.33867346999999998 0.77623016"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[260]" 
+		" -type \"float2\" 0.44411879999999998 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[261]" 
+		" -type \"float2\" 0.47804940000000001 0.85712038999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[262]" 
+		" -type \"float2\" 0.32888793999999999 0.98877256999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[263]" 
+		" -type \"float2\" 0.35809945999999998 0.77535628999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[264]" 
+		" -type \"float2\" 0.36046647999999998 0.86279726000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[265]" 
+		" -type \"float2\" 0.38189160999999999 0.77728724000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[266]" 
+		" -type \"float2\" 0.41211212000000003 0.79363077999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[267]" 
+		" -type \"float2\" 0.33067965999999999 0.79198038999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[268]" 
+		" -type \"float2\" 0.47881650999999997 0.90438395999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[269]" 
+		" -type \"float2\" 0.33400095000000002 0.85009663999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[270]" 
+		" -type \"float2\" 0.42980295000000002 0.77623016"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[271]" 
+		" -type \"float2\" 0.32888782 0.94174986999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[272]" 
+		" -type \"float2\" 0.38463639999999999 0.77343792"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[273]" 
+		" -type \"float2\" 0.40070551999999998 0.77623016"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[274]" 
+		" -type \"float2\" 0.43348365999999999 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[275]" 
+		" -type \"float2\" 0.47171551 0.89531057999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[276]" 
+		" -type \"float2\" 0.46154559000000001 0.78201931999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[277]" 
+		" -type \"float2\" 0.45788968000000002 0.99183255000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[278]" 
+		" -type \"float2\" 0.31292385 0.83110768000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[279]" 
+		" -type \"float2\" 0.26696998 0.83176154000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[280]" 
+		" -type \"float2\" 0.44934194999999999 0.79728204000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[281]" 
+		" -type \"float2\" 0.28688197999999998 0.77527219000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[282]" 
+		" -type \"float2\" 0.26696998 0.86995177999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[283]" 
+		" -type \"float2\" 0.36391150999999999 0.77646446000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[284]" 
+		" -type \"float2\" 0.30957592 0.77623016"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[285]" 
+		" -type \"float2\" 0.42335539999999999 0.78205477999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[286]" 
+		" -type \"float2\" 0.48159993000000001 0.83891517000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[287]" 
+		" -type \"float2\" 0.26523644000000002 0.77678776000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[288]" 
+		" -type \"float2\" 0.39833849999999998 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[289]" 
+		" -type \"float2\" 0.46821724999999997 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[290]" 
+		" -type \"float2\" 0.26341951000000002 0.89468824999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[291]" 
+		" -type \"float2\" 0.38748765000000002 0.86461723000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[292]" 
+		" -type \"float2\" 0.35969942999999999 0.85918713000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[293]" 
+		" -type \"float2\" 0.47535431 0.77590555000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[294]" 
+		" -type \"float2\" 0.26341951000000002 0.94174981000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[295]" 
+		" -type \"float2\" 0.27288752999999999 0.77888829000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[296]" 
+		" -type \"float2\" 0.47085034999999997 0.85990381000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[297]" 
+		" -type \"float2\" 0.37839133000000003 0.83147245999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[298]" 
+		" -type \"float2\" 0.48236698 0.83164167"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[299]" 
+		" -type \"float2\" 0.47795123 0.84881746999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[300]" 
+		" -type \"float2\" 0.34421574999999999 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[301]" 
+		" -type \"float2\" 0.48515039999999998 0.80254424000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[302]" 
+		" -type \"float2\" 0.47182017999999998 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[303]" 
+		" -type \"float2\" 0.30602544999999998 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[304]" 
+		" -type \"float2\" 0.45473324999999998 0.77662014999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[305]" 
+		" -type \"float2\" 0.38387352000000002 0.79722530000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[306]" 
+		" -type \"float2\" 0.37860410999999999 0.79328281"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[307]" 
+		" -type \"float2\" 0.46934854999999998 0.77591062"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[308]" 
+		" -type \"float2\" 0.48236698 0.86073922999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[309]" 
+		" -type \"float2\" 0.32201940000000001 0.86474633000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[310]" 
+		" -type \"float2\" 0.47881650999999997 0.83891517000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[311]" 
+		" -type \"float2\" 0.38777648999999997 0.77888047999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[312]" 
+		" -type \"float2\" 0.35969942999999999 0.83008963000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[313]" 
+		" -type \"float2\" 0.44331151000000002 0.77861404000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[314]" 
+		" -type \"float2\" 0.40812480000000001 0.81365304999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[315]" 
+		" -type \"float2\" 0.47795123 0.81971996999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[316]" 
+		" -type \"float2\" 0.47085029 0.85990381000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[317]" 
+		" -type \"float2\" 0.45869702000000001 0.77344215000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[318]" 
+		" -type \"float2\" 0.26341951000000002 0.98877256999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[319]" 
+		" -type \"float2\" 0.36993443999999998 0.81365304999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[320]" 
+		" -type \"float2\" 0.47537571000000001 0.77590555000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[321]" 
+		" -type \"float2\" 0.48515039999999998 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[322]" 
+		" -type \"float2\" 0.39005399000000002 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[323]" 
+		" -type \"float2\" 0.48159993000000001 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[324]" 
+		" -type \"float2\" 0.3220768 0.89384383000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[325]" 
+		" -type \"float2\" 0.34664381 0.79347062000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[326]" 
+		" -type \"float2\" 0.37832427000000002 0.77484065000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[327]" 
+		" -type \"float2\" 0.43265998 0.85990381000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[328]" 
+		" -type \"float2\" 0.32496148000000002 0.98877256999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[329]" 
+		" -type \"float2\" 0.40307253999999998 0.78040527999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[330]" 
+		" -type \"float2\" 0.36875099 0.77484065000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[331]" 
+		" -type \"float2\" 0.35132872999999998 0.95586187"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[332]" 
+		" -type \"float2\" 0.26999604999999999 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[333]" 
+		" -type \"float2\" 0.27052045000000002 0.84706020000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[334]" 
+		" -type \"float2\" 0.29655748999999998 0.77617866000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[335]" 
+		" -type \"float2\" 0.38245118 0.77484065000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[336]" 
+		" -type \"float2\" 0.39244235 0.95631491999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[337]" 
+		" -type \"float2\" 0.33081353000000002 0.99294764000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[338]" 
+		" -type \"float2\" 0.43857752999999999 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[339]" 
+		" -type \"float2\" 0.27052045000000002 0.86619031000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[340]" 
+		" -type \"float2\" 0.26999611000000001 0.77625602000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[341]" 
+		" -type \"float2\" 0.39227300999999998 0.97270513000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[342]" 
+		" -type \"float2\" 0.47573011999999998 0.85712038999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[343]" 
+		" -type \"float2\" 0.46327180000000001 0.81125152"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[344]" 
+		" -type \"float2\" 0.32779049999999998 0.99294764000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[345]" 
+		" -type \"float2\" 0.46251409999999998 0.81125765999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[346]" 
+		" -type \"float2\" 0.42891252000000002 0.79510987"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[347]" 
+		" -type \"float2\" 0.38841759999999997 0.98877256999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[348]" 
+		" -type \"float2\" 0.26341951000000002 0.99433934999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[349]" 
+		" -type \"float2\" 0.38584358000000002 0.79540496999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[350]" 
+		" -type \"float2\" 0.46216434000000001 0.76818900999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[351]" 
+		" -type \"float2\" 0.43265998 0.85712038999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[352]" 
+		" -type \"float2\" 0.28031778000000002 0.779037"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[353]" 
+		" -type \"float2\" 0.29774106 0.89120549000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[354]" 
+		" -type \"float2\" 0.28240377 0.77756314999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[355]" 
+		" -type \"float2\" 0.34081118999999999 0.89120549000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[356]" 
+		" -type \"float2\" 0.47573011999999998 0.85457503999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[357]" 
+		" -type \"float2\" 0.29892450999999998 0.88969189000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[358]" 
+		" -type \"float2\" 0.28240377 0.77610266000000006"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[359]" 
+		" -type \"float2\" 0.34199464000000002 0.88969189000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[360]" 
+		" -type \"float2\" 0.34081118999999999 0.88969189000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[361]" 
+		" -type \"float2\" 0.36638397 0.86957967000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[362]" 
+		" -type \"float2\" 0.28240377 0.77459412999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[363]" 
+		" -type \"float2\" 0.40945410999999998 0.86957967000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[364]" 
+		" -type \"float2\" 0.34199464000000002 0.88816558999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[365]" 
+		" -type \"float2\" 0.37680548000000003 0.88405913000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[366]" 
+		" -type \"float2\" 0.28044295000000002 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[367]" 
+		" -type \"float2\" 0.41987543999999999 0.88423795000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[368]" 
+		" -type \"float2\" 0.40945410999999998 0.86733276000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[369]" 
+		" -type \"float2\" 0.28379679000000002 0.81217974000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[370]" 
+		" -type \"float2\" 0.27897297999999998 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[371]" 
+		" -type \"float2\" 0.28386878999999998 0.76910937000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[372]" 
+		" -type \"float2\" 0.41988145999999998 0.88277989999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[373]" 
+		" -type \"float2\" 0.46956593000000002 0.90575713000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[374]" 
+		" -type \"float2\" 0.27779644999999997 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[375]" 
+		" -type \"float2\" 0.46956593000000002 0.86268716999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[376]" 
+		" -type \"float2\" 0.28268157999999999 0.76910745999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[377]" 
+		" -type \"float2\" 0.4787342 0.81651722999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[378]" 
+		" -type \"float2\" 0.276438 0.77447736"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[379]" 
+		" -type \"float2\" 0.4787342 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[380]" 
+		" -type \"float2\" 0.46816498000000001 0.86268716999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[381]" 
+		" -type \"float2\" 0.48473406000000002 0.86073922999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[382]" 
+		" -type \"float2\" 0.276438 0.77548855999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[383]" 
+		" -type \"float2\" 0.48473406000000002 0.90380888999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[384]" 
+		" -type \"float2\" 0.47763294000000001 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[385]" 
+		" -type \"float2\" 0.47289902 0.89531057999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[386]" 
+		" -type \"float2\" 0.276438 0.77653163999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[387]" 
+		" -type \"float2\" 0.47289902 0.93838083999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[388]" 
+		" -type \"float2\" 0.48577332000000001 0.90380888999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[389]" 
+		" -type \"float2\" 0.33442949999999999 0.89522237000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[390]" 
+		" -type \"float2\" 0.276438 0.77767282999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[391]" 
+		" -type \"float2\" 0.33442949999999999 0.93829244000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[392]" 
+		" -type \"float2\" 0.47410451999999997 0.93838083999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[393]" 
+		" -type \"float2\" 0.38585877000000002 0.7976318"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[394]" 
+		" -type \"float2\" 0.27738243000000001 0.779037"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[395]" 
+		" -type \"float2\" 0.42892772000000001 0.79733675999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[396]" 
+		" -type \"float2\" 0.33576167000000001 0.93829244000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[397]" 
+		" -type \"float2\" 0.26815348999999999 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[398]" 
+		" -type \"float2\" 0.39057732000000001 0.96978896999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[399]" 
+		" -type \"float2\" 0.47715074000000002 0.85457497999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[400]" 
+		" -type \"float2\" 0.46504158000000001 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[401]" 
+		" -type \"float2\" 0.43265998 0.84881746999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[402]" 
+		" -type \"float2\" 0.41205828999999999 0.81813340999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[403]" 
+		" -type \"float2\" 0.47715074000000002 0.85176587000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[404]" 
+		" -type \"float2\" 0.46224748999999998 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[405]" 
+		" -type \"float2\" 0.43265998 0.85176587000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[406]" 
+		" -type \"float2\" 0.40600323999999999 0.78940748999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[407]" 
+		" -type \"float2\" 0.41205828999999999 0.81499940000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[408]" 
+		" -type \"float2\" 0.46504158000000001 0.77648824000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[409]" 
+		" -type \"float2\" 0.36151421 0.78659469000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[410]" 
+		" -type \"float2\" 0.39046806000000001 0.97270506999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[411]" 
+		" -type \"float2\" 0.26815348999999999 0.77625602000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[412]" 
+		" -type \"float2\" 0.47715086000000001 0.85176587000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[413]" 
+		" -type \"float2\" 0.46224748999999998 0.77648824000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[414]" 
+		" -type \"float2\" 0.36756754000000003 0.81499933999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[415]" 
+		" -type \"float2\" 0.26341951000000002 0.78217219999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[416]" 
+		" -type \"float2\" 0.29655748999999998 0.77495044000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[417]" 
+		" -type \"float2\" 0.35724055999999998 0.77535330999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[418]" 
+		" -type \"float2\" 0.27580059000000001 0.77467655999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[419]" 
+		" -type \"float2\" 0.35573255999999998 0.77457768000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[420]" 
+		" -type \"float2\" 0.34640264999999998 0.89398896999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[421]" 
+		" -type \"float2\" 0.46573246000000001 0.99461597000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[422]" 
+		" -type \"float2\" 0.46579796000000001 0.86268729"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[423]" 
+		" -type \"float2\" 0.30365855000000003 0.77469301000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[424]" 
+		" -type \"float2\" 0.29185724000000002 0.77510482000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[425]" 
+		" -type \"float2\" 0.29879630000000001 0.77495038999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[426]" 
+		" -type \"float2\" 0.40385221999999998 0.87375473999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[427]" 
+		" -type \"float2\" 0.33639276000000001 0.88333123999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[428]" 
+		" -type \"float2\" 0.29967374000000002 0.77442586000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[429]" 
+		" -type \"float2\" 0.30129152999999997 0.89259719999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[430]" 
+		" -type \"float2\" 0.29655748999999998 0.89259719999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[431]" 
+		" -type \"float2\" 0.29064 0.77510482000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[432]" 
+		" -type \"float2\" 0.39827293000000002 0.99322432000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[433]" 
+		" -type \"float2\" 0.33081358999999999 0.99155599000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[434]" 
+		" -type \"float2\" 0.34952550999999998 0.77344334000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[435]" 
+		" -type \"float2\" 0.29272699000000002 0.77510946999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[436]" 
+		" -type \"float2\" 0.42916942000000002 0.77590227000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[437]" 
+		" -type \"float2\" 0.48236698 0.90585035000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[438]" 
+		" -type \"float2\" 0.27758949999999999 0.81474911999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[439]" 
+		" -type \"float2\" 0.42916942000000002 0.77467781000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[440]" 
+		" -type \"float2\" 0.30365842999999998 0.88333123999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[441]" 
+		" -type \"float2\" 0.37111801 0.87375480000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[442]" 
+		" -type \"float2\" 0.29364496000000001 0.77450085000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[443]" 
+		" -type \"float2\" 0.27120334000000001 0.77343667000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[444]" 
+		" -type \"float2\" 0.46505891999999999 0.80329894999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[445]" 
+		" -type \"float2\" 0.27191221999999998 0.86619031000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[446]" 
+		" -type \"float2\" 0.46573262999999998 0.99183255000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[447]" 
+		" -type \"float2\" 0.427926 0.77344674000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[448]" 
+		" -type \"float2\" 0.43857752999999999 0.77468281999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[449]" 
+		" -type \"float2\" 0.27052045000000002 0.77430087000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[450]" 
+		" -type \"float2\" 0.43980913999999999 0.77468281999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[451]" 
+		" -type \"float2\" 0.27803755000000002 0.76964021000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[452]" 
+		" -type \"float2\" 0.48236698 0.86073922999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[453]" 
+		" -type \"float2\" 0.27107298000000002 0.77525370999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[454]" 
+		" -type \"float2\" 0.46466476000000001 0.77056712000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[455]" 
+		" -type \"float2\" 0.26578647 0.77737725000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[456]" 
+		" -type \"float2\" 0.29779696 0.77617866000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[457]" 
+		" -type \"float2\" 0.35724055999999998 0.77429068000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[458]" 
+		" -type \"float2\" 0.29779696 0.77495044000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[459]" 
+		" -type \"float2\" 0.34166867000000001 0.89259719999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[460]" 
+		" -type \"float2\" 0.34640264999999998 0.89259719999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[461]" 
+		" -type \"float2\" 0.35668098999999998 0.77344078000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[462]" 
+		" -type \"float2\" 0.39360445999999999 0.98904913999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[463]" 
+		" -type \"float2\" 0.26341951000000002 0.99294764000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[464]" 
+		" -type \"float2\" 0.36401695000000001 0.95631491999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[465]" 
+		" -type \"float2\" 0.39833849999999998 0.99322432000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[466]" 
+		" -type \"float2\" 0.33639276000000001 0.88472300999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[467]" 
+		" -type \"float2\" 0.46099847999999999 0.98904913999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[468]" 
+		" -type \"float2\" 0.46573246000000001 0.99322432000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[469]" 
+		" -type \"float2\" 0.39833849999999998 0.99461597000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[470]" 
+		" -type \"float2\" 0.30488008 0.77469301000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[471]" 
+		" -type \"float2\" 0.46718973000000003 0.86268716999999995"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[472]" 
+		" -type \"float2\" 0.29655748999999998 0.89120549000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[473]" 
+		" -type \"float2\" 0.46042019000000001 0.87498122"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[474]" 
+		" -type \"float2\" 0.40385221999999998 0.87236309000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[475]" 
+		" -type \"float2\" 0.48375875000000002 0.90585035000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[476]" 
+		" -type \"float2\" 0.29274654 0.77343804000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[477]" 
+		" -type \"float2\" 0.37111801 0.87236309000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[478]" 
+		" -type \"float2\" 0.34863149999999998 0.77504044999999999"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[479]" 
+		" -type \"float2\" 0.33081358999999999 0.99294764000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[480]" 
+		" -type \"float2\" 0.46099847999999999 0.95631491999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[481]" 
+		" -type \"float2\" 0.27619785000000002 0.81473534999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[482]" 
+		" -type \"float2\" 0.43141097 0.95631491999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[483]" 
+		" -type \"float2\" 0.39827293000000002 0.99183255000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[484]" 
+		" -type \"float2\" 0.33087896999999999 0.99322432000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[485]" 
+		" -type \"float2\" 0.46645050999999998 0.80328226000000003"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[486]" 
+		" -type \"float2\" 0.27218771000000003 0.77442049999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[487]" 
+		" -type \"float2\" 0.48375863000000002 0.86073922999999997"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[488]" 
+		" -type \"float2\" 0.427926 0.77467781000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[489]" 
+		" -type \"float2\" 0.46573262999999998 0.99322432000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[490]" 
+		" -type \"float2\" 0.43141097 0.91120374000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[491]" 
+		" -type \"float2\" 0.34166867000000001 0.89120549000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[492]" 
+		" -type \"float2\" 0.26702154 0.77737725000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[493]" 
+		" -type \"float2\" 0.46605640999999998 0.77055043000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[494]" 
+		" -type \"float2\" 0.42933732000000002 0.77901350999999996"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[495]" 
+		" -type \"float2\" 0.31194298999999998 0.78040683"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[496]" 
+		" -type \"float2\" 0.40233636 0.99584949"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[497]" 
+		" -type \"float2\" 0.34239893999999998 0.89522237000000005"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[498]" 
+		" -type \"float2\" 0.37663531 0.79346709999999998"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[499]" 
+		" -type \"float2\" 0.40307253999999998 0.99461597000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[500]" 
+		" -type \"float2\" 0.43192393000000001 0.86733276000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[501]" 
+		" -type \"float2\" 0.40233636 0.99461597000000002"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[502]" 
+		" -type \"float2\" 0.36401695000000001 0.86733276000000004"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[503]" 
+		" -type \"float2\" 0.37662113000000003 0.79470056"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[504]" 
+		" -type \"float2\" 0.47097932999999997 0.99584949"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[505]" 
+		" -type \"float2\" 0.43192393000000001 0.81912434000000001"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[506]" 
+		" -type \"float2\" 0.40307253999999998 0.99584949"
+		2 "|Asset3:stoveTable|Asset3:stoveTableShape" "uvSet[0].uvSetPoints[507]" 
+		" -type \"float2\" 0.42482661999999999 0.79525482999999997";
 	setAttr ".ptag" -type "string" "";
 lockNode -l 1 ;
 select -ne :time1;
@@ -2527,7 +3258,7 @@ select -ne :postProcessList1;
 	setAttr -s 2 ".p";
 select -ne :defaultRenderUtilityList1;
 select -ne :defaultRenderingList1;
-	setAttr -s 3 ".r";
+	setAttr -s 4 ".r";
 select -ne :defaultTextureList1;
 select -ne :standardSurface1;
 	setAttr ".bc" -type "float3" 0.40000001 0.40000001 0.40000001 ;
@@ -2535,9 +3266,9 @@ select -ne :standardSurface1;
 select -ne :openPBR_shader1;
 	setAttr ".sr" 0.5;
 select -ne :initialShadingGroup;
-	setAttr -s 35 ".dsm";
+	setAttr -s 36 ".dsm";
 	setAttr ".ro" yes;
-	setAttr -s 16 ".gn";
+	setAttr -s 17 ".gn";
 select -ne :initialParticleSE;
 	setAttr ".ro" yes;
 select -ne :initialMaterialInfo;
@@ -2559,6 +3290,8 @@ select -ne :defaultColorMgtGlobals;
 select -ne :hardwareRenderGlobals;
 	setAttr ".ctrs" 256;
 	setAttr ".btrs" 512;
+select -ne :ikSystem;
+	setAttr -s 4 ".sol";
 connectAttr "transformGeometry1.og" "Asset1RN.phl[1]";
 connectAttr "polyTweakUV1.uvtk[0]" "Asset1RN.phl[2]";
 connectAttr "Asset1RN.phl[3]" "polyTweakUV1.ip";
@@ -2618,7 +3351,6 @@ connectAttr "pCubeShape9.iog" ":initialShadingGroup.dsm" -na;
 connectAttr "pCubeShape10.iog" ":initialShadingGroup.dsm" -na;
 connectAttr "pCubeShape11.iog" ":initialShadingGroup.dsm" -na;
 connectAttr "PlatformShape.iog" ":initialShadingGroup.dsm" -na;
-connectAttr "TableShape.iog" ":initialShadingGroup.dsm" -na;
 connectAttr "ChairShape.iog" ":initialShadingGroup.dsm" -na;
 connectAttr "file1.msg" ":initialMaterialInfo.t" -na;
 // End of Scene2_Main.ma
